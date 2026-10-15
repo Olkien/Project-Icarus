@@ -6,7 +6,7 @@ Both sides depend on this file. Change it only together, and log the change in d
 TBD (Friend, week 2)
 
 ## Actions (what the controller outputs)
-TBD (Friend, week 2)
+TBD (Ken, week 2)
 
 ## Reward and episode end
 TBD
