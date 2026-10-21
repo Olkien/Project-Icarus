@@ -14,6 +14,10 @@
     <select id="live-scenario" aria-label="Scenario"></select>
     <select id="live-controller" aria-label="Controller"></select>
     <input id="live-seed" type="number" min="0" step="1" value="7" aria-label="Seed">
+    <label class="slider">wind x<span id="live-wind-val">1.0</span>
+      <input id="live-wind" type="range" min="0" max="2" step="0.1" value="1" aria-label="Wind scale"></label>
+    <label class="slider">noise x<span id="live-noise-val">1.0</span>
+      <input id="live-noise" type="range" min="0" max="4" step="0.25" value="1" aria-label="Noise multiplier"></label>
     <button id="live-start" class="btn">Start live</button>
   </span>
   <span id="status" class="status"></span>

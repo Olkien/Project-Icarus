@@ -118,3 +118,29 @@ test("header after ticks still sets tick length", function () {
   assert.strictEqual(run.tickS, 0.01);
   assert.strictEqual(run.header.seed, 7);
 });
+
+test("timeline uses the longest run and marks ended runs", function () {
+  const short = P.parseRun(lines([header, tick(0), tick(1), summary]));
+  const long = P.parseRun(lines([header, tick(0), tick(1), tick(2), tick(3), summary]));
+  const tl = P.timeline([short, long], 0.012);
+  assert.ok(Math.abs(tl.total - 0.02) < 1e-12);
+  assert.strictEqual(tl.ends[0].ended, true);
+  assert.strictEqual(tl.ends[1].ended, false);
+  assert.ok(Math.abs(tl.ends[0].duration - 0.01) < 1e-12);
+  assert.strictEqual(P.timeline([short, long], 99).t, tl.total);
+  assert.strictEqual(P.timeline([], 1).total, 0);
+});
+
+test("out of bounds end is detected", function () {
+  const oob = P.parseRun(lines([header, tick(0), tick(1, { events: ["oob", "done"] }), summary]));
+  const ok = P.parseRun(lines([header, tick(0), summary]));
+  assert.strictEqual(P.endedOutOfBounds(oob), true);
+  assert.strictEqual(P.endedOutOfBounds(ok), false);
+  assert.strictEqual(P.timeline([oob], 1).ends[0].oob, true);
+});
+
+test("clampToArena keeps points on the frame", function () {
+  assert.deepStrictEqual(P.clampToArena(100, -50, 800), { x: 100, y: -50, outside: false });
+  assert.deepStrictEqual(P.clampToArena(950, -900, 800), { x: 800, y: -800, outside: true });
+  assert.strictEqual(P.clampToArena(800, 0, 800).outside, false);
+});

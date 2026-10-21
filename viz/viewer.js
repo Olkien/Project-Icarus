@@ -18,6 +18,8 @@
     clock: el("clock"), speed: el("speed"), png: el("png"), legend: el("legend"),
     status: el("status"), live: el("live"), liveScenario: el("live-scenario"),
     liveController: el("live-controller"), liveSeed: el("live-seed"), liveStart: el("live-start"),
+    liveWind: el("live-wind"), liveWindVal: el("live-wind-val"),
+    liveNoise: el("live-noise"), liveNoiseVal: el("live-noise-val"),
   };
 
   const state = {
@@ -157,9 +159,10 @@
         if (!state.source) setPlaying(false);
       }
     }
+    if (total > 0 && state.t > total) state.t = total;
     state.last = state.playing ? now : null;
     ui.scrub.value = total > 0 ? Math.round((state.t / total) * 1000) : 0;
-    ui.clock.textContent = state.t.toFixed(2) + " s";
+    ui.clock.textContent = state.t.toFixed(2) + " / " + total.toFixed(2) + " s";
     draw();
     requestAnimationFrame(tickFrame);
   }
@@ -277,8 +280,8 @@
     ctx.strokeStyle = entry.color;
     ctx.lineWidth = 2;
     for (let i = start + 1; i <= idx; i++) {
-      const p0 = toPx(a, ticks[i - 1].state.x, ticks[i - 1].state.y);
-      const p1 = toPx(a, ticks[i].state.x, ticks[i].state.y);
+      const p0 = arenaPx(a, ticks[i - 1].state);
+      const p1 = arenaPx(a, ticks[i].state);
       ctx.globalAlpha = 0.08 + 0.7 * ((i - start) / (idx - start + 1));
       ctx.beginPath();
       ctx.moveTo(p0[0], p0[1]);
@@ -287,8 +290,14 @@
     }
     ctx.globalAlpha = 1;
     const st = ticks[idx].state;
-    const [x, y] = toPx(a, st.x, st.y);
+    const [x, y] = arenaPx(a, st);
     const size = Math.max(7, a.size / 90);
+    const end = P.timeline([run], state.t).ends[0];
+    const clamped = P.clampToArena(st.x, st.y, ARENA_MM);
+    if ((end.ended && end.oob) || clamped.outside) {
+      drawOutOfBounds(a, entry, x, y);
+      return;
+    }
     const c = Math.cos(-st.psi);
     const s = Math.sin(-st.psi);
     const pts = [[1.4, 0], [-0.8, 0.7], [-0.4, 0], [-0.8, -0.7]].map(function (p) {
@@ -302,6 +311,31 @@
     ctx.fill();
   }
 
+  function arenaPx(a, st) {
+    const c = P.clampToArena(st.x, st.y, ARENA_MM);
+    return toPx(a, c.x, c.y);
+  }
+
+  function drawOutOfBounds(a, entry, x, y) {
+    const r = Math.max(6, a.size / 110);
+    ctx.strokeStyle = entry.color;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, 2 * Math.PI);
+    ctx.moveTo(x - r * 0.6, y - r * 0.6);
+    ctx.lineTo(x + r * 0.6, y + r * 0.6);
+    ctx.moveTo(x + r * 0.6, y - r * 0.6);
+    ctx.lineTo(x - r * 0.6, y + r * 0.6);
+    ctx.stroke();
+    ctx.font = "11px " + css("--font");
+    ctx.fillStyle = entry.color;
+    const cx = a.x + a.size / 2;
+    const cy = a.y + a.size / 2;
+    ctx.textAlign = x > cx ? "right" : "left";
+    ctx.fillText("out of bounds", x + (x > cx ? -1 : 1) * (r + 6), y + (y > cy ? -r - 6 : r + 14));
+    ctx.textAlign = "left";
+  }
+
   function drawArenaHud(a, entry, tick, idx) {
     const run = entry.run;
     const pad = 10;
@@ -312,11 +346,16 @@
     const wdeg = (Math.atan2(wind[1], wind[0]) * 180) / Math.PI;
     const m = run.summary && run.summary.metrics;
     const count = m ? m.targets_hit + m.misses : Math.max(run.targets.length, 5);
+    const tl = P.timeline(state.runs.map(function (e) { return e.run; }), state.t);
+    const own = P.timeline([run], state.t).ends[0];
     const lines = [
-      "t " + state.t.toFixed(2) + " / " + P.duration(run).toFixed(2) + " s   " + state.speed + "x",
+      "t " + tl.t.toFixed(2) + " / " + tl.total.toFixed(2) + " s   " + state.speed + "x",
       "target " + Math.min(run.hitsBefore[idx] + 1, count) + " / " + count,
       "wind " + ws.toFixed(0) + " mm/s  " + (ws > 0.5 ? wdeg.toFixed(0) + " deg" : ""),
     ];
+    if (own.ended) {
+      lines.push("this run ended at " + own.duration.toFixed(2) + " s" + (own.oob ? ", out of bounds" : ""));
+    }
     lines.forEach(function (line, i) {
       ctx.fillText(line, a.x + pad, a.y + pad + 12 + i * 16);
     });
@@ -486,13 +525,16 @@
   function drawLegendOnCanvas(L) {
     if (state.runs.length < 2) return;
     const a = L.arena;
+    const tl = P.timeline(state.runs.map(function (e) { return e.run; }), state.t);
     ctx.font = "11px " + css("--font");
     state.runs.forEach(function (entry, i) {
       const y = a.y + a.size - 14 - (state.runs.length - 1 - i) * 15;
+      const end = tl.ends[i];
+      const note = end.duration.toFixed(2) + " s" + (end.ended ? (end.oob ? "  ended, out of bounds" : "  ended") : "");
       ctx.fillStyle = entry.color;
       ctx.fillRect(a.x + 10, y - 8, 9, 9);
-      ctx.fillStyle = css("--text");
-      ctx.fillText(runLabel(entry), a.x + 24, y);
+      ctx.fillStyle = end.ended ? css("--muted") : css("--text");
+      ctx.fillText(runLabel(entry) + "  " + note, a.x + 24, y);
     });
   }
 
@@ -512,6 +554,8 @@
     fill(ui.liveController, options.controllers, "pid");
     ui.live.hidden = false;
     ui.liveStart.onclick = startLive;
+    ui.liveWind.oninput = function () { ui.liveWindVal.textContent = Number(ui.liveWind.value).toFixed(1); };
+    ui.liveNoise.oninput = function () { ui.liveNoiseVal.textContent = Number(ui.liveNoise.value).toFixed(2); };
   }
 
   function startLive() {
@@ -522,6 +566,8 @@
       scenario: ui.liveScenario.value,
       controller: ui.liveController.value,
       seed: String(Math.max(0, parseInt(ui.liveSeed.value, 10) || 0)),
+      wind: ui.liveWind.value,
+      noise: ui.liveNoise.value,
     });
     const run = P.emptyRun();
     run.truncated = true;

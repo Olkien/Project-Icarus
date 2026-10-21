@@ -1,5 +1,7 @@
 import argparse
+import copy
 import json
+import math
 import re
 import webbrowser
 from functools import partial
@@ -18,6 +20,9 @@ SAMPLES_DIR = VIZ_DIR / "samples"
 HELD_OUT = ("s5_noise_sweep", "s6_unseen_wind")
 RUN_NAME = re.compile(r"^[\w.-]+\.jsonl$")
 MAX_SEED = 2**31 - 1
+WIND_SCALE_RANGE = (0.0, 2.0)
+NOISE_RANGE = (0.0, 4.0)
+WIND_FIELDS = ("speed_mm_s", "amplitude_mm_s", "sigma_mm_s")
 
 
 class ClientGone(Exception):
@@ -28,11 +33,38 @@ def live_scenarios() -> list[str]:
     return sorted(p.stem for p in SCENARIO_DIR.glob("*.json") if p.stem not in HELD_OUT)
 
 
+def live_scenario(name: str, wind_scale: float = 1.0, noise: float | None = None) -> dict:
+    lo, hi = WIND_SCALE_RANGE
+    if not (math.isfinite(wind_scale) and lo <= wind_scale <= hi):
+        raise ValueError(f"wind scale must be in {WIND_SCALE_RANGE}")
+    base = load_scenario(name)
+    scenario = copy.deepcopy(base)
+    for comp in scenario["wind"]:
+        for key in WIND_FIELDS:
+            if key in comp:
+                comp[key] = comp[key] * wind_scale
+    if noise is not None:
+        lo, hi = NOISE_RANGE
+        if not (math.isfinite(noise) and lo <= noise <= hi):
+            raise ValueError(f"noise multiplier must be in {NOISE_RANGE}")
+        scenario["noise_multiplier"] = noise
+    if wind_scale != 1.0 or scenario["noise_multiplier"] != base["noise_multiplier"]:
+        scenario["name"] = f"{name}_w{wind_scale:g}_n{scenario['noise_multiplier']:g}"
+    return scenario
+
+
+def query_float(query: dict, key: str, default: float | None) -> float | None:
+    text = query.get(key, [""])[0]
+    return float(text) if text else default
+
+
 def samples() -> list[str]:
     return sorted(f"samples/{p.name}" for p in SAMPLES_DIR.glob("*.jsonl"))
 
 
 class Handler(SimpleHTTPRequestHandler):
+    runs_dir = RUNS_DIR
+
     def log_message(self, format: str, *args) -> None:
         pass
 
@@ -61,7 +93,7 @@ class Handler(SimpleHTTPRequestHandler):
             super().do_GET()
 
     def run_file(self, name: str) -> None:
-        path = RUNS_DIR / name
+        path = self.runs_dir / name
         if not RUN_NAME.match(name) or not path.is_file():
             self.send_error(404)
             return
@@ -91,7 +123,12 @@ class Handler(SimpleHTTPRequestHandler):
         if not 0 <= seed <= MAX_SEED:
             self.send_json({"error": "bad seed"}, 400)
             return
-        scenario = load_scenario(scenario_name)
+        try:
+            scenario = live_scenario(scenario_name, query_float(query, "wind", 1.0),
+                                     query_float(query, "noise", None))
+        except ValueError as err:
+            self.send_json({"error": str(err)}, 400)
+            return
         physics = load_physics()
         commit = git_commit()
         self.send_response(200)
@@ -101,7 +138,8 @@ class Handler(SimpleHTTPRequestHandler):
         try:
             self.send_event(make_header(scenario, controller, seed, physics, commit))
             metrics = run_one(scenario, controller, seed, default_params(controller),
-                              physics=physics, out=run_path(scenario_name, controller, seed),
+                              physics=physics,
+                              out=run_path(scenario["name"], controller, seed, self.runs_dir),
                               commit=commit, on_tick=self.send_event)
             self.send_event({"type": "summary", "metrics": metrics})
         except ClientGone:

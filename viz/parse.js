@@ -151,6 +151,26 @@
     return run.ticks[run.ticks.length - 1].t + run.tickS;
   }
 
+  function endedOutOfBounds(run) {
+    const last = run.ticks[run.ticks.length - 1];
+    return Boolean(last && (last.events || []).includes("oob"));
+  }
+
+  function timeline(runs, t) {
+    const ends = runs.map(function (run) {
+      const d = duration(run);
+      return { duration: d, ended: run.ticks.length > 0 && t >= d, oob: endedOutOfBounds(run) };
+    });
+    const total = ends.reduce(function (m, e) { return Math.max(m, e.duration); }, 0);
+    return { total: total, t: Math.min(Math.max(t, 0), total), ends: ends };
+  }
+
+  function clampToArena(x, y, limit) {
+    const cx = Math.max(-limit, Math.min(limit, x));
+    const cy = Math.max(-limit, Math.min(limit, y));
+    return { x: cx, y: cy, outside: Math.abs(x) > limit || Math.abs(y) > limit };
+  }
+
   return {
     parseLine: parseLine,
     parseRun: parseRun,
@@ -160,5 +180,8 @@
     lineBuffer: lineBuffer,
     indexAt: indexAt,
     duration: duration,
+    endedOutOfBounds: endedOutOfBounds,
+    timeline: timeline,
+    clampToArena: clampToArena,
   };
 });

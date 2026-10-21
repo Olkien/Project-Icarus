@@ -82,7 +82,13 @@ input[type="number"] { width: 6em; cursor: text; }
 
 .file input { display: none; }
 
-.live { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+.live { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+
+.slider { display: inline-flex; align-items: center; gap: 4px; color: var(--muted); }
+
+.slider span { min-width: 3ch; color: var(--text); }
+
+.slider input { width: 90px; accent-color: var(--accent); }
 
 .status { color: var(--muted); margin-left: auto; }
 
