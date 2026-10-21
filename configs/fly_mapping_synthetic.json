@@ -1,0 +1,19 @@
+{
+  "network": {"type": "synthetic", "n": 2000, "wiring_seed": 0},
+  "steps_per_tick": 50,
+  "groups": {
+    "vis_L": "vis_L", "vis_R": "vis_R",
+    "air_fwd": "air_fwd", "air_back": "air_back", "air_L": "air_L", "air_R": "air_R",
+    "out_L": "out_L", "out_R": "out_R", "fwd": "fwd"
+  },
+  "encoding": {
+    "base_hz": 20.0, "bearing_hz": 300.0, "bearing_scale_rad": 1.0,
+    "range_hz": 100.0, "range_ref_mm": 300.0,
+    "air_base_hz": 0.0, "air_hz": 150.0, "air_ref_mm_s": 300.0
+  },
+  "decoding": {
+    "window_ticks": 4, "yaw_sign": -1.0, "gain_yaw": 1.5, "norm_yaw_hz": 169.0,
+    "thrust_base": 0.35, "gain_thrust": 0.4, "norm_fwd_hz": 67.525
+  },
+  "calibration": {"bearing_rad": 1.0, "range_mm": 300.0, "air_rel": [0.0, 0.0], "seconds": 2.0, "seed": 0}
+}
