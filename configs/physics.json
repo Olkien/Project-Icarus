@@ -1,0 +1,22 @@
+{
+  "dt_s": 0.001,
+  "tick_steps": 5,
+  "arena_half_mm": 800.0,
+  "m": 1.0,
+  "Tmax": 3900.0,
+  "c1": 10.0,
+  "c2": 0.01,
+  "tau_a": 0.02,
+  "slew_T": 78000.0,
+  "I": 0.03,
+  "c_r": 1.0,
+  "taumax": 10.0,
+  "slew_tau": 200.0,
+  "sensors": {
+    "bearing": {"sigma": 0.03, "delay_ticks": 4},
+    "range": {"sigma": 2.0, "delay_ticks": 4},
+    "vel_body": {"sigma": 5.0, "delay_ticks": 1},
+    "yaw_rate": {"sigma": 0.2, "delay_ticks": 1},
+    "air_rel": {"sigma": 8.0, "delay_ticks": 2}
+  }
+}
