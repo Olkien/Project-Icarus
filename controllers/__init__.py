@@ -4,6 +4,7 @@ REGISTRY = {
     "straight": "controllers.dummy:Straight",
     "random": "controllers.dummy:Random",
     "point_and_go": "controllers.dummy:PointAndGo",
+    "pid": "controllers.pid:PID",
 }
 
 
