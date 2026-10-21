@@ -51,12 +51,13 @@ def test_full_yaw_torque_steady_rate(physics, still):
 
 
 def test_no_thrust_goes_to_wind_velocity(physics):
+    s2 = scenario("s2_crosswind")
     sim = Sim(physics)
-    sim.reset(3, scenario("s2_crosswind"))
+    sim.reset(3, s2)
     far_targets(sim)
     sim.step_physics(2000, 0.0, 0.0)
     wx, wy = sim.wind_now()
-    assert math.hypot(wx, wy) == pytest.approx(80.0)
+    assert math.hypot(wx, wy) == pytest.approx(s2["wind"][0]["speed_mm_s"])
     assert sim.vx == pytest.approx(wx, abs=0.5)
     assert sim.vy == pytest.approx(wy, abs=0.5)
 
