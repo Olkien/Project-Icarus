@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Icarus viewer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="bar">
+  <span class="brand">ICARUS</span>
+  <label class="btn file">Open runs<input id="file" type="file" accept=".jsonl" multiple></label>
+  <span id="live" class="live" hidden>
+    <select id="live-scenario" aria-label="Scenario"></select>
+    <select id="live-controller" aria-label="Controller"></select>
+    <input id="live-seed" type="number" min="0" step="1" value="7" aria-label="Seed">
+    <button id="live-start" class="btn">Start live</button>
+  </span>
+  <span id="status" class="status"></span>
+</header>
+<main id="stage">
+  <canvas id="view"></canvas>
+</main>
+<footer class="bar controls">
+  <button id="play" class="btn" title="Space">Play</button>
+  <button id="restart" class="btn">Restart</button>
+  <input id="scrub" type="range" min="0" max="1000" value="0" aria-label="Scrub">
+  <span id="clock" class="clock">0.00 s</span>
+  <select id="speed" aria-label="Speed">
+    <option value="0.25">0.25x</option>
+    <option value="0.5">0.5x</option>
+    <option value="1" selected>1x</option>
+    <option value="2">2x</option>
+    <option value="4">4x</option>
+    <option value="8">8x</option>
+  </select>
+  <button id="png" class="btn">PNG</button>
+  <span id="legend" class="legend"></span>
+</footer>
+<script src="parse.js"></script>
+<script src="viewer.js"></script>
+</body>
+</html>
