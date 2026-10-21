@@ -1,6 +1,7 @@
 import math
 
 import numpy as np
+import pytest
 from scipy.sparse import csc_matrix
 
 from fly.lif import LIF_DEFAULTS, LIFStepper
@@ -149,3 +150,27 @@ def test_groups_exist():
         assert ids.size > 0 and ids.max() < net.n
     excit = net.signs > 0
     assert 0.6 < excit.mean() < 0.95
+
+
+def test_numba_stepper_matches_numpy():
+    pytest.importorskip("numba")
+    from fly.lif_numba import NumbaLIFStepper
+
+    a = SyntheticNetwork()
+    b = SyntheticNetwork()
+    b.lif = NumbaLIFStepper(b.weights, b.lif_params)
+    rates = np.zeros(a.n, dtype=np.float32)
+    rates[a.group("vis_L")] = 300.0
+    rates[a.group("air_fwd")] = 150.0
+    for net in (a, b):
+        net.reset(7)
+        net.set_rates(rates)
+    total = 0
+    for _ in range(4000):
+        sa = a.step()
+        sb = b.step()
+        assert np.array_equal(sa, sb)
+        total += sa.size
+    assert total > 0
+    assert np.array_equal(a.lif.v, b.lif.v)
+    assert np.array_equal(a.lif.g, b.lif.g)
