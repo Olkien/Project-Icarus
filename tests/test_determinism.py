@@ -2,7 +2,7 @@ import json
 import math
 
 from env.engine import Sim, make_generators, run_episode
-from env.runlog import RunWriter, read_run
+from env.runlog import RunWriter, read_run, round_tick
 from tests.conftest import scenario
 
 
@@ -89,7 +89,7 @@ def test_run_file_round_trip_and_repeat(physics, tmp_path):
             w.write(summary)
         h, ticks, s = read_run(path)
         assert h == header
-        assert ticks == result.ticks
+        assert ticks == [round_tick(r) for r in result.ticks]
         assert s == summary
         paths.append(path)
     assert paths[0].read_bytes() == paths[1].read_bytes()
@@ -97,3 +97,25 @@ def test_run_file_round_trip_and_repeat(physics, tmp_path):
     assert set(first) == {"type", "k", "t", "state", "wind", "target", "obs", "action", "info",
                           "events"}
     assert first["k"] == 0 and first["t"] == 0.0
+
+
+def test_run_file_rounding(physics, tmp_path):
+    result = run_episode(Sim(physics), Scripted(), 5, scenario("s4_turbulent"))
+    path = tmp_path / "r.jsonl"
+    with RunWriter(path) as w:
+        w.write({"type": "header", "controller": "scripted"})
+        for r in result.ticks:
+            w.write(r)
+    _, ticks, _ = read_run(path)
+
+    def places(v: float) -> int:
+        text = repr(v)
+        return len(text.split(".")[1]) if "." in text and "e" not in text else 0
+
+    for r in ticks[:200]:
+        assert places(r["t"]) <= 4
+        assert all(places(r["state"][k]) <= 3 for k in ("x", "y", "vx", "vy"))
+        assert places(r["state"]["psi"]) <= 4
+        assert all(places(v) <= 3 for v in r["wind"])
+        assert places(r["obs"]["bearing"]) <= 4
+        assert all(places(v) <= 3 for v in r["obs"]["vel_body"])

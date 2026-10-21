@@ -23,7 +23,34 @@ def run_path(scenario: str, controller: str, seed: int, out_dir: Path = RUNS_DIR
     return Path(out_dir) / f"{scenario}__{controller}__s{seed}.jsonl"
 
 
+LENGTH_DP = 3
+ANGLE_DP = 4
+TIME_DP = 4
+STATE_ANGLES = ("psi", "omega")
+OBS_ANGLES = ("bearing", "yaw_rate")
+
+
+def rounded(value, dp: int):
+    if isinstance(value, list):
+        return [rounded(v, dp) for v in value]
+    return round(value, dp) if isinstance(value, float) else value
+
+
+def round_tick(record: dict) -> dict:
+    out = dict(record)
+    out["t"] = rounded(record["t"], TIME_DP)
+    out["state"] = {k: rounded(v, ANGLE_DP if k in STATE_ANGLES else LENGTH_DP)
+                    for k, v in record["state"].items()}
+    out["wind"] = rounded(record["wind"], LENGTH_DP)
+    out["target"] = {k: rounded(v, LENGTH_DP) for k, v in record["target"].items()}
+    out["obs"] = {k: rounded(v, ANGLE_DP if k in OBS_ANGLES else LENGTH_DP)
+                  for k, v in record["obs"].items()}
+    return out
+
+
 def dumps(record: dict) -> str:
+    if record.get("type") == "tick":
+        record = round_tick(record)
     return json.dumps(record, separators=(",", ":"), allow_nan=False)
 
 
