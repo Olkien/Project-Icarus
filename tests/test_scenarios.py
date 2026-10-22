@@ -31,3 +31,28 @@ def test_s5_wind_is_s4_wind():
     s5 = load_scenario(SCENARIO_DIR / "s5_noise_sweep.json")
     assert s5["wind"] == s4["wind"]
     assert len(expand_noise_sweep(s5)) == 4
+
+
+def test_s5_levels_scale_s4_sensor_levers():
+    from env.scenario import CAPS
+
+    s4 = load_scenario(SCENARIO_DIR / "s4_turbulent.json")
+    levels = expand_noise_sweep(load_scenario(SCENARIO_DIR / "s5_noise_sweep.json"))
+    for factor, level in zip((0.5, 1.0, 2.0, 3.0), levels):
+        assert level["wind"] == s4["wind"]
+        assert level["noise_multiplier"] == pytest.approx(s4["noise_multiplier"] * factor)
+        assert level["sensor_delay_scale"] == pytest.approx(
+            min(CAPS["sensor_delay_scale"], s4["sensor_delay_scale"] * factor))
+        assert level["dropout"]["p_start"] == pytest.approx(
+            min(CAPS["dropout_p_start"], s4["dropout"]["p_start"] * factor))
+        assert level["dropout"]["length_ticks"] == s4["dropout"]["length_ticks"]
+
+
+def test_s6_uses_s4_levers():
+    s4 = load_scenario(SCENARIO_DIR / "s4_turbulent.json")
+    s6 = load_scenario(SCENARIO_DIR / "s6_unseen_wind.json")
+    for key in ("noise_multiplier", "sensor_delay_scale", "dropout"):
+        assert s6[key] == s4[key]
+    kinds = {c["type"]: c for c in s6["wind"]}
+    assert kinds["gust_train"]["amplitude_mm_s"] == 250.0
+    assert kinds["sinusoid"]["amplitude_mm_s"] == 100.0
