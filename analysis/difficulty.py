@@ -1,41 +1,55 @@
 import argparse
 import copy
 import csv
+import json
 import statistics
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
+
+import numpy as np
 
 from analysis.evaluate import RESULTS_DIR, parse_seeds
 from analysis.run import default_params, load_params, run_one
 from env.params import load_physics
 from env.scenario import load_scenario, validate_scenario
 
-SWEEP_CSV = RESULTS_DIR / "difficulty_sweep.csv"
+SWEEP_CSV = RESULTS_DIR / "difficulty_v2_sweep.csv"
+INT_KEYS = ("length_ticks",)
 FIELDS = (
-    "scenario", "lever", "value", "fixed", "controller", "seeds", "success_rate",
-    "mean_targets_hit", "timeouts", "out_of_bounds", "median_time_per_target_s",
-    "median_rms_cross_track_mm",
+    "mode", "scenario", "settings", "controller", "seeds", "success_rate", "mean_targets_hit",
+    "timeouts", "out_of_bounds", "median_time_per_target_s", "median_rms_cross_track_mm",
+    "ideal_success_rate", "ideal_timeouts", "ideal_out_of_bounds",
 )
 
 
 def set_lever(scenario: dict, lever: str, value: float) -> dict:
     out = copy.deepcopy(scenario)
     parts = lever.split(".")
-    if parts[0] == "noise_multiplier":
-        out["noise_multiplier"] = value
-    elif parts[0] == "wind" and len(parts) == 3:
-        out["wind"][int(parts[1])][parts[2]] = value
-    else:
-        raise ValueError(f"unknown lever {lever!r}, use noise_multiplier or wind.<i>.<key>")
+    node = out
+    for part in parts[:-1]:
+        if isinstance(node, list):
+            node = node[int(part)]
+        else:
+            node = node.setdefault(part, {})
+    key = parts[-1]
+    node[key] = round(value) if key in INT_KEYS else value
     validate_scenario(out)
     return out
 
 
-def apply_fixed(scenario: dict, fixed: list[str]) -> dict:
-    for item in fixed:
-        lever, value = item.split("=")
-        scenario = set_lever(scenario, lever, float(value))
+def apply_settings(scenario: dict, settings: dict[str, float]) -> dict:
+    for lever, value in settings.items():
+        scenario = set_lever(scenario, lever, value)
     return scenario
+
+
+def ideal_sensors(scenario: dict) -> dict:
+    out = copy.deepcopy(scenario)
+    out["sensor_delay_scale"] = 0.0
+    out["noise_multiplier"] = 0.0
+    out.pop("dropout", None)
+    validate_scenario(out)
+    return out
 
 
 def one_episode(job: tuple) -> dict:
@@ -57,41 +71,80 @@ def summarize(rows: list[dict]) -> dict:
     }
 
 
-def sweep(
-    base: dict, lever: str, values: list[float], controller: str, params: dict | None,
-    seeds: list[int], fixed: list[str], pool: ProcessPoolExecutor | None,
+def evaluate_settings(
+    base: dict, settings_list: list[dict], controller: str, params: dict | None,
+    seeds: list[int], ideal: bool, pool: ProcessPoolExecutor | None, mode: str,
 ) -> list[dict]:
+    scenarios = [apply_settings(base, s) for s in settings_list]
+    variants = [scenarios] + ([[ideal_sensors(s) for s in scenarios]] if ideal else [])
+    summaries = []
+    for group in variants:
+        work = [(s, controller, params, seed) for s in group for seed in seeds]
+        rows = list(pool.map(one_episode, work, chunksize=8)) if pool else [
+            one_episode(w) for w in work]
+        n = len(seeds)
+        summaries.append([summarize(rows[i * n:(i + 1) * n]) for i in range(len(group))])
     out = []
-    base = apply_fixed(base, fixed)
-    for value in values:
-        scenario = set_lever(base, lever, value)
-        work = [(scenario, controller, params, s) for s in seeds]
-        rows = list(pool.map(one_episode, work)) if pool else [one_episode(w) for w in work]
-        row = {"scenario": base["name"], "lever": lever, "value": value,
-               "fixed": " ".join(fixed), "controller": controller,
-               "seeds": f"{min(seeds)}-{max(seeds)}", **summarize(rows)}
-        print(f"{base['name']} {lever}={value:g} {row['fixed']}: success {row['success_rate']:.2f}"
-              f"  timeouts {row['timeouts']}  oob {row['out_of_bounds']}")
+    for i, settings in enumerate(settings_list):
+        row = {"mode": mode, "scenario": base["name"], "settings": json.dumps(settings),
+               "controller": controller, "seeds": f"{min(seeds)}-{max(seeds)}:{len(seeds)}",
+               **summaries[0][i]}
+        if ideal:
+            row["ideal_success_rate"] = summaries[1][i]["success_rate"]
+            row["ideal_timeouts"] = summaries[1][i]["timeouts"]
+            row["ideal_out_of_bounds"] = summaries[1][i]["out_of_bounds"]
         out.append(row)
     return out
+
+
+def parse_ranges(items: list[str]) -> dict[str, tuple[float, float]]:
+    ranges = {}
+    for item in items:
+        lever, span = item.split("=")
+        lo, hi = span.split(":")
+        ranges[lever] = (float(lo), float(hi))
+    return ranges
+
+
+def random_settings(
+    ranges: dict[str, tuple[float, float]], count: int, seed: int
+) -> list[dict[str, float]]:
+    rng = np.random.default_rng(seed)
+    return [{lever: as_setting(lever, float(rng.uniform(lo, hi)))
+             for lever, (lo, hi) in ranges.items()} for _ in range(count)]
+
+
+def as_setting(lever: str, value: float) -> float | int:
+    return round(value) if lever.split(".")[-1] in INT_KEYS else value
 
 
 def append_csv(rows: list[dict], path: Path) -> None:
     new = not path.exists()
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "a", encoding="utf-8", newline="\n") as f:
-        writer = csv.DictWriter(f, fieldnames=FIELDS, lineterminator="\n")
+        writer = csv.DictWriter(f, fieldnames=FIELDS, lineterminator="\n", extrasaction="ignore")
         if new:
             writer.writeheader()
         writer.writerows(rows)
 
 
+def print_rows(rows: list[dict]) -> None:
+    for r in rows:
+        ideal = f"  ideal {r['ideal_success_rate']:.2f}" if "ideal_success_rate" in r else ""
+        print(f"{r['scenario']} {r['settings']}: success {r['success_rate']:.2f}  "
+              f"timeouts {r['timeouts']}  oob {r['out_of_bounds']}{ideal}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--scenario", required=True)
-    parser.add_argument("--lever", required=True, help="noise_multiplier or wind.<i>.<key>")
-    parser.add_argument("--values", required=True, help="comma separated")
-    parser.add_argument("--fixed", nargs="*", default=[], help="lever=value held for the sweep")
+    parser.add_argument("--lever", help="dotted path, e.g. wind.0.speed_mm_s or dropout.p_start")
+    parser.add_argument("--values", help="comma separated values for --lever")
+    parser.add_argument("--random", type=int, default=0, help="number of random combinations")
+    parser.add_argument("--ranges", nargs="*", default=[], help="lever=lo:hi for --random")
+    parser.add_argument("--search-seed", type=int, default=0)
+    parser.add_argument("--fixed", default="{}", help="JSON of lever: value held for the run")
+    parser.add_argument("--ideal", action="store_true", help="add the ideal-sensor check")
     parser.add_argument("--controller", default="pid")
     parser.add_argument("--params")
     parser.add_argument("--seeds", default="0-49")
@@ -103,14 +156,26 @@ def main() -> None:
     if max(seeds) >= 1000:
         parser.error("calibration uses tuning seeds only")
     params = load_params(args.params) if args.params else default_params(args.controller)
-    values = [float(v) for v in args.values.split(",")]
+    fixed = json.loads(args.fixed)
+    if args.lever:
+        settings = [{**fixed, args.lever: as_setting(args.lever, float(v))}
+                    for v in args.values.split(",")]
+        mode = "sweep"
+    elif args.random:
+        drawn = random_settings(parse_ranges(args.ranges), args.random, args.search_seed)
+        settings = [{**fixed, **s} for s in drawn]
+        mode = "random"
+    else:
+        settings = [fixed]
+        mode = "check"
     pool = ProcessPoolExecutor(max_workers=args.jobs) if args.jobs > 1 else None
     try:
-        rows = sweep(load_scenario(args.scenario), args.lever, values, args.controller, params,
-                     seeds, args.fixed, pool)
+        rows = evaluate_settings(load_scenario(args.scenario), settings, args.controller, params,
+                                 seeds, args.ideal, pool, mode)
     finally:
         if pool:
             pool.shutdown()
+    print_rows(rows)
     append_csv(rows, Path(args.out))
 
 
