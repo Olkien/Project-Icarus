@@ -15,3 +15,4 @@
 | 2026-10-21 | Same tuning budget for every controller, counted in episodes | Fair comparison |
 | 2026-10-21 | Scenarios S5 and S6 are held out until all gains and mappings are frozen | No tuning on the test set |
 | 2026-10-21 | S1 to S4 made harder after PID calibration | The PID succeeded everywhere, so the comparison had no room |
+| 2026-10-22 | S1 to S4 recalibrated inside wind caps with sensor and actuator stress | Wind above top speed made success depend on target direction, not control |

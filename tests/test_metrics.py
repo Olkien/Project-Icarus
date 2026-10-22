@@ -131,3 +131,14 @@ def test_recovery_never_is_time_to_end():
 def test_recovery_only_with_gust():
     ticks = straight_run()
     assert compute_metrics(ticks, STILL, TICK_S)["recovery_time_s"] is None
+
+
+def test_wilson_interval_known_values():
+    from analysis.evaluate import wilson_interval
+
+    lo, hi = wilson_interval(45, 50)
+    assert lo == pytest.approx(0.7864, abs=1e-3)
+    assert hi == pytest.approx(0.9565, abs=1e-3)
+    assert wilson_interval(50, 50)[1] == pytest.approx(1.0)
+    assert wilson_interval(0, 20)[0] == pytest.approx(0.0)
+    assert wilson_interval(0, 0) == (0.0, 1.0)

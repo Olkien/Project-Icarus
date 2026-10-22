@@ -1,5 +1,6 @@
 import argparse
 import csv
+import math
 import statistics
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
@@ -56,15 +57,32 @@ def write_csv(rows: list[dict], path: Path) -> None:
         writer.writerows(rows)
 
 
+def wilson_interval(successes: int, n: int, z: float = 1.96) -> tuple[float, float]:
+    if n == 0:
+        return 0.0, 1.0
+    p = successes / n
+    denom = 1.0 + z * z / n
+    centre = (p + z * z / (2 * n)) / denom
+    half = z * math.sqrt(p * (1.0 - p) / n + z * z / (4 * n * n)) / denom
+    return max(0.0, centre - half), min(1.0, centre + half)
+
+
 def summarize(rows: list[dict]) -> list[dict]:
     out = []
     for name in dict.fromkeys(r["scenario"] for r in rows):
         group = [r for r in rows if r["scenario"] == name]
         times = [r["time_per_target_s"] for r in group if r["time_per_target_s"] is not None]
+        successes = sum(r["episode_success"] for r in group)
+        lo, hi = wilson_interval(successes, len(group))
+        oob = sum(r["out_of_bounds"] for r in group)
         out.append({
             "scenario": name,
             "runs": len(group),
-            "success_rate": sum(r["episode_success"] for r in group) / len(group),
+            "success_rate": successes / len(group),
+            "success_ci95_lo": lo,
+            "success_ci95_hi": hi,
+            "timeouts": len(group) - successes - oob,
+            "out_of_bounds": oob,
             "median_time_per_target_s": statistics.median(times) if times else None,
             "median_time_miss6_s": statistics.median(r["time_per_target_miss6_s"] for r in group),
             "median_rms_cross_track_mm": statistics.median(r["rms_cross_track_mm"] for r in group),
