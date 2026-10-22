@@ -33,6 +33,15 @@ def test_live_scenario_rejects_out_of_range(wind, noise):
         live_scenario("s2_crosswind", wind, noise)
 
 
+def test_live_scenario_respects_wind_caps():
+    s2 = load_scenario("s2_crosswind")
+    limit = 150.0 / s2["wind"][0]["speed_mm_s"]
+    if limit < 2.0:
+        with pytest.raises(ValueError):
+            live_scenario("s2_crosswind", min(2.0, limit + 0.1), None)
+    assert live_scenario("s2_crosswind", min(limit, 2.0), None)
+
+
 @pytest.fixture
 def server(tmp_path):
     handler = type("TestHandler", (Handler,), {"runs_dir": tmp_path})

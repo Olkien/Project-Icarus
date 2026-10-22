@@ -7,7 +7,7 @@ import numpy as np
 from env.sensors import Sensors, to_obs_dict, wrap_angle
 from env.wind import build_wind
 
-STREAMS = ("targets", "wind", "sensors", "start", "controller")
+STREAMS = ("targets", "wind", "sensors", "start", "controller", "actuators")
 
 
 def make_generators(seed: int) -> dict[str, np.random.Generator]:
@@ -59,7 +59,14 @@ class Sim:
         tcfg = scenario["targets"]
         self.targets = spawn_targets(tcfg, gens["targets"])
         self.hit_radius = tcfg["hit_radius_mm"]
-        self.sensors = Sensors(self.p["sensors"], scenario["noise_multiplier"], gens["sensors"])
+        self.sensors = Sensors(self.p["sensors"], scenario["noise_multiplier"], gens["sensors"],
+                               scenario.get("sensor_delay_scale", 1.0), scenario.get("dropout"))
+        self.tau_a = self.p["tau_a"] * scenario.get("actuator_lag_scale", 1.0)
+        act_noise = scenario.get("actuator_noise") or {}
+        self.thrust_sigma = float(act_noise.get("thrust_sigma", 0.0))
+        self.torque_sigma = float(act_noise.get("torque_sigma", 0.0))
+        self.act_rng = gens["actuators"]
+        self.command = (0.0, 0.0)
 
         self.x = self.y = self.z = 0.0
         self.vx = self.vy = self.vz = 0.0
@@ -108,7 +115,7 @@ class Sim:
     def step_physics(self, steps: int, thrust: float, yaw_torque: float) -> list[str]:
         p = self.p
         dt, m, inertia = self.dt, p["m"], p["I"]
-        c1, c2, c_r, tau_a = p["c1"], p["c2"], p["c_r"], p["tau_a"]
+        c1, c2, c_r, tau_a = p["c1"], p["c2"], p["c_r"], self.tau_a
         slew_T, slew_tau = p["slew_T"], p["slew_tau"]
         T_cmd = p["Tmax"] * thrust
         tau_cmd = p["taumax"] * yaw_torque
@@ -163,6 +170,11 @@ class Sim:
     def step_tick(self, action: dict) -> tuple[dict, list[str]]:
         thrust = clip(float(action.get("thrust", 0.0)), 0.0, 1.0)
         yaw = clip(float(action.get("yaw_torque", 0.0)), -1.0, 1.0)
+        if self.thrust_sigma > 0.0 or self.torque_sigma > 0.0:
+            n_thrust, n_torque = self.act_rng.standard_normal(2).tolist()
+            thrust = clip(thrust + self.thrust_sigma * n_thrust, 0.0, 1.0)
+            yaw = clip(yaw + self.torque_sigma * n_torque, -1.0, 1.0)
+        self.command = (thrust, yaw)
         events = self.step_physics(self.tick_steps, thrust, yaw)
         self.k += 1
         if not self.done and self.k >= self.ticks_limit:

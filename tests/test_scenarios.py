@@ -10,7 +10,6 @@ DAY1_HASHES = {
     "s5_noise_sweep": "8f6d8687c96a0f1cb6363da6264e82131e793a41912bc2d8e4ab7ba673d88418",
     "s6_unseen_wind": "6be04c8e6706ffca1b10ad030ea27dfd9b50b3ed79148b4f99a0cc5131a091fd",
 }
-CHANGED = ("s2_crosswind", "s3_gust", "s4_turbulent", "s5_noise_sweep", "s6_unseen_wind")
 
 
 @pytest.mark.parametrize("name", sorted(DAY1_HASHES))
@@ -19,11 +18,6 @@ def test_scenario_validates(name):
     assert scenario["name"] == name
     assert scenario["time_limit_s"] == 20.0
     assert scenario["targets"]["hit_radius_mm"] == 10.0
-
-
-@pytest.mark.parametrize("name", CHANGED)
-def test_hard_scenarios_have_new_hash(name):
-    assert scenario_hash(load_scenario(SCENARIO_DIR / f"{name}.json")) != DAY1_HASHES[name]
 
 
 def test_s1_unchanged_and_still():

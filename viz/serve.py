@@ -13,7 +13,7 @@ from analysis.run import default_params, make_header, run_one
 from controllers import REGISTRY
 from env.params import load_physics
 from env.runlog import RUNS_DIR, dumps, git_commit, run_path
-from env.scenario import SCENARIO_DIR, load_scenario
+from env.scenario import SCENARIO_DIR, load_scenario, validate_scenario
 
 VIZ_DIR = Path(__file__).resolve().parent
 SAMPLES_DIR = VIZ_DIR / "samples"
@@ -50,6 +50,7 @@ def live_scenario(name: str, wind_scale: float = 1.0, noise: float | None = None
         scenario["noise_multiplier"] = noise
     if wind_scale != 1.0 or scenario["noise_multiplier"] != base["noise_multiplier"]:
         scenario["name"] = f"{name}_w{wind_scale:g}_n{scenario['noise_multiplier']:g}"
+    validate_scenario(scenario)
     return scenario
 
 

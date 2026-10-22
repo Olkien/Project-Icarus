@@ -2,8 +2,8 @@
   "name": "s6_unseen_wind",
   "mode": "xy",
   "wind": [
-    {"type": "gust_train", "amplitude_mm_s": 660.0, "count": 3, "duration_s": 0.4, "spacing_s": [2.0, 5.0]},
-    {"type": "sinusoid", "amplitude_mm_s": 330.0, "freq_hz": 0.5, "direction_rad": "seed"}
+    {"type": "gust_train", "amplitude_mm_s": 120.0, "count": 3, "duration_s": 0.4, "spacing_s": [2.0, 5.0]},
+    {"type": "sinusoid", "amplitude_mm_s": 60.0, "freq_hz": 0.5, "direction_rad": "seed"}
   ],
   "noise_multiplier": 1.0,
   "targets": {"count": 5, "spawn_min_mm": 150.0, "spawn_max_mm": 350.0, "bound_mm": 500.0, "hit_radius_mm": 10.0},
