@@ -13,7 +13,7 @@ def test_set_lever_nested_paths():
     assert out["dropout"] == {"p_start": 0.02, "length_ticks": 7}
     assert out["actuator_noise"] == {"torque_sigma": 0.1}
     assert out["sensor_delay_scale"] == 3.0
-    assert s4["wind"][1]["sigma_mm_s"] == 40.0 and "dropout" not in s4
+    assert s4 == scenario("s4_turbulent")
 
 
 def test_set_lever_rejects_cap():

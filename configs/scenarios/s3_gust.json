@@ -2,10 +2,12 @@
   "name": "s3_gust",
   "mode": "xy",
   "wind": [
-    {"type": "steady", "speed_mm_s": 40.0, "direction_rad": "seed"},
-    {"type": "gust", "amplitude_mm_s": 150.0, "direction_rad": "seed", "t_start_s": 2.0, "duration_s": 0.4}
+    {"type": "steady", "speed_mm_s": 51.0, "direction_rad": "seed"},
+    {"type": "gust", "amplitude_mm_s": 283.0, "direction_rad": "seed", "t_start_s": 2.0, "duration_s": 0.26}
   ],
   "noise_multiplier": 1.0,
+  "sensor_delay_scale": 2.18,
+  "actuator_lag_scale": 4.99,
   "targets": {"count": 5, "spawn_min_mm": 150.0, "spawn_max_mm": 350.0, "bound_mm": 500.0, "hit_radius_mm": 10.0},
   "time_limit_s": 20.0
 }
