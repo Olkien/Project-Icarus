@@ -82,3 +82,17 @@ def test_shuffled_controller_uses_shuffle_seed():
     a = Shuffled({"shuffle_seed": 4})
     b = Shuffled({"shuffle_seed": 5})
     assert (a.net.weights != b.net.weights).nnz > 0
+
+
+@pytest.mark.parametrize("reference", [False, True])
+def test_fast_and_reference_keep_degrees_weights_signs(original, reference):
+    out = shuffle(original, seed=6, reference=reference)
+    out_a, in_a = degrees(original.weights)
+    out_b, in_b = degrees(out.weights)
+    assert np.array_equal(out_a, out_b) and np.array_equal(in_a, in_b)
+    _, _, w_a = edge_arrays(original.weights)
+    pre_b, post_b, w_b = edge_arrays(out.weights)
+    assert np.array_equal(np.sort(w_a), np.sort(w_b))
+    assert np.array_equal(np.sign(w_b), original.signs[pre_b])
+    assert not (pre_b == post_b).any()
+    assert out.shuffle_report["swaps_per_edge"] >= 10
