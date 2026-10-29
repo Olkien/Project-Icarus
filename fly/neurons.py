@@ -11,6 +11,7 @@ from fly.download_data import DATA_DIR, FILES
 
 REPORT_PATH = REPO_ROOT / "results" / "neuron_filter_report.txt"
 ANN_COLUMNS = ("bodyId", "statusLabel", "superclass", "class", "type", "somaSide")
+OPTIONAL_ANN_COLUMNS = ("rootSide", "entryNerve", "exitNerve")
 NT_COLUMNS = ("body", "consensus_nt", "celltype_predicted_nt", "predicted_nt")
 EXCLUDE_A = frozenset({
     "Orphan", "Orphan-artifact", "Orphan hotknife", "PRT Orphan", "RT Orphan", "Glia",
@@ -36,12 +37,17 @@ def read_columns(path: Path, columns: tuple[str, ...]):
 
 
 def load_annotations(data_dir: Path) -> dict[str, np.ndarray]:
-    table = read_columns(Path(data_dir) / FILES[0], ANN_COLUMNS)
+    path = Path(data_dir) / FILES[0]
+    present = open_feather(path).schema.names
+    optional = tuple(c for c in OPTIONAL_ANN_COLUMNS if c in present)
+    table = read_columns(path, ANN_COLUMNS + optional)
     ids = table["bodyId"].to_numpy()
     order = np.argsort(ids, kind="stable")
     ann = {"bodyId": ids[order]}
-    for col in ANN_COLUMNS[1:]:
+    for col in ANN_COLUMNS[1:] + optional:
         ann[col] = text_column(table[col].to_pylist())[order]
+    for col in OPTIONAL_ANN_COLUMNS:
+        ann.setdefault(col, np.full(ids.size, "", dtype=str))
     return ann
 
 

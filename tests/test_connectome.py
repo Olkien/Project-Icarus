@@ -33,14 +33,19 @@ KEPT_B = [10, 20, 30, 90, 100]
 SCALE = LIF_DEFAULTS["weight_mV_per_synapse"]
 
 
-def write_fake(path, neurons, edges):
+def write_fake(path, neurons, edges, root_side=None):
     path.mkdir(parents=True, exist_ok=True)
     cols = list(zip(*neurons))
-    feather.write_feather(pa.table({
+    ann = {
         "bodyId": pa.array(cols[0], pa.int64()), "statusLabel": list(cols[1]),
         "superclass": list(cols[2]), "class": list(cols[3]), "type": list(cols[4]),
         "somaSide": list(cols[5]),
-    }), path / FILES[0])
+    }
+    if root_side is not None:
+        ann["rootSide"] = [root_side.get(b) for b in cols[0]]
+        ann["entryNerve"] = [("AN" if b == 30 else None) for b in cols[0]]
+        ann["exitNerve"] = [("ProLN" if b == 100 else None) for b in cols[0]]
+    feather.write_feather(pa.table(ann), path / FILES[0])
     with_nt = [n for n in neurons if n[6] is not None]
     feather.write_feather(pa.table({
         "body": pa.array([n[0] for n in with_nt], pa.int64()),
@@ -229,3 +234,19 @@ def test_orientation_row_is_presynaptic(tmp_path):
         fired[label] = sum(int(1 in s) for s in spikes)
     assert fired["a_to_b"] > 0
     assert fired["b_to_a"] == 0
+
+
+def test_root_side_and_nerves_in_cache(tmp_path):
+    data = write_fake(tmp_path / "d", NEURONS, EDGES, root_side={30: "RHS", 10: "LHS"})
+    net = ConnectomeNetwork(build_cache(data, tmp_path / "cache"))
+    assert net.columns["rootSide"][index(30)] == "RHS"
+    assert net.columns["rootSide"][index(20)] == ""
+    assert net.group("rootSide=LHS").tolist() == [index(10)]
+    assert net.group("entryNerve=AN").tolist() == [index(30)]
+    assert net.group("exitNerve=ProLN").tolist() == [index(100)]
+
+
+def test_cache_without_side_columns_still_loads(fake_data, tmp_path):
+    net = ConnectomeNetwork(build_cache(fake_data, tmp_path / "cache"))
+    assert (net.columns["rootSide"] == "").all()
+    assert net.group("rootSide=LHS").size == 0

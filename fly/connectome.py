@@ -14,10 +14,12 @@ from fly.network import scale_weights
 from fly.neurons import keep_mask, load_annotations, load_nt, lookup
 
 CACHE_DIR = DATA_DIR / "network_cache"
-CACHE_COLUMNS = ("superclass", "class", "type", "somaSide", "statusLabel")
+CACHE_COLUMNS = ("superclass", "class", "type", "somaSide", "statusLabel", "rootSide",
+                 "entryNerve", "exitNerve")
 NT_CACHE_COLUMNS = ("consensus_nt", "celltype_predicted_nt")
 SIGN = {"acetylcholine": 1, "gaba": -1, "glutamate": -1, "histamine": -1}
-QUERY_FIELDS = {"superclass", "class", "type", "somaSide", "statusLabel", "consensus_nt",
+QUERY_FIELDS = {"superclass", "class", "type", "somaSide", "statusLabel", "rootSide",
+                "entryNerve", "exitNerve", "consensus_nt",
                 "celltype_predicted_nt"}
 
 
@@ -105,7 +107,8 @@ class ConnectomeNetwork:
             self.counts = csr_matrix((f["data"], f["indices"], f["indptr"]), shape=(n, n))
             self.sign = f["sign"]
             self.body_ids = f["body_ids"]
-            self.columns = {c: f[f"ann_{c}"] for c in CACHE_COLUMNS}
+            empty = np.full(n, "", dtype=str)
+            self.columns = {c: f.get(f"ann_{c}", empty) for c in CACHE_COLUMNS}
             self.columns.update({c: f[f"nt_{c}"] for c in NT_CACHE_COLUMNS})
         self.n = n
         weights = csc_matrix(self.counts.T, copy=True)

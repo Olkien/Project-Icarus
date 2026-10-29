@@ -21,8 +21,14 @@ def build_query(args) -> str:
         terms.append(f"superclass={args.superclass}")
     if args.side:
         terms.append(f"somaSide={args.side}")
+    if args.root_side:
+        terms.append(f"rootSide={args.root_side}")
+    if args.entry_nerve:
+        terms.append(f"entryNerve={args.entry_nerve}")
+    if args.exit_nerve:
+        terms.append(f"exitNerve={args.exit_nerve}")
     if not terms:
-        raise SystemExit("give at least one of --type, --like, --class, --superclass")
+        raise SystemExit("give at least one filter, e.g. --type, --like, --class, --superclass")
     return ",".join(terms)
 
 
@@ -48,6 +54,11 @@ def describe(net: ConnectomeNetwork, query: str, max_ids: int) -> list[str]:
     for side in side_names:
         row = [pairs[(side, n)] for n in nt_names]
         lines.append(f"{side:6s} " + "".join(f"{c:14d}" for c in row) + f"{sum(row):10d}")
+    roots = Counter(net.columns["rootSide"][idx].tolist())
+    lines.append("rootSide: " + ", ".join(f"{k or '-'} {v}" for k, v in sorted(roots.items())))
+    nerves = Counter(net.columns["entryNerve"][idx].tolist())
+    if set(nerves) - {""}:
+        lines.append("entryNerve: " + ", ".join(f"{k or '-'} {v}" for k, v in nerves.most_common(8)))
     types = Counter(net.columns["type"][idx].tolist())
     if len(types) > 1:
         lines.append("types: " + ", ".join(f"{t or '-'} {c}" for t, c in types.most_common(12)))
@@ -76,6 +87,9 @@ def main() -> None:
     parser.add_argument("--class", dest="cls")
     parser.add_argument("--superclass")
     parser.add_argument("--side", help="somaSide L, R or M")
+    parser.add_argument("--root-side", help="rootSide, e.g. L or R")
+    parser.add_argument("--entry-nerve")
+    parser.add_argument("--exit-nerve")
     parser.add_argument("--cache", default=str(DEFAULT_CACHE))
     parser.add_argument("--max-ids", type=int, default=50)
     args = parser.parse_args()
