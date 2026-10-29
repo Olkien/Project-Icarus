@@ -1,0 +1,8 @@
+T2 looming check: DNp01 (giant fiber) rate, weight scale 0.7, spike input 100 Hz, 1 s, Poisson seeds 0-19
+  condition           DNp01 L mean      sd  DNp01 R mean      sd   net_Hz
+  LPLC2 both                411.95    0.60        387.20    0.62    1.418
+  LPLC2 left only           400.60    0.82        296.60    2.39    1.057
+  LPLC2 right only          315.85    1.76        367.30    1.08    0.773
+  LC4 both                  378.10    1.71        344.00    1.95    0.902
+  LPLC2 + LC4 both          415.90    0.31        403.70    0.73    1.958
+peak memory (main) 44 MB, total 255 s
