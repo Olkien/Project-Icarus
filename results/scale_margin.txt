@@ -1,0 +1,62 @@
+scale margin: spike input 100 Hz, 1 s on, 1 s off, seeds 0-19, six inputs
+stable = after input stops, every 50 ms bin from 0.2 s on is under 0.5 Hz network mean; every drive bin is under 20 Hz; under 0.5% of neurons fire at >= 0.9 x the refractory ceiling during drive
+  orig  0.50 LPLC2 L  20/20  mean drive   0.479  worst drive bin   0.571  worst off   0.057  worst ceiling  0.000%
+  orig  0.50 LPLC2 R  20/20  mean drive   0.497  worst drive bin   0.586  worst off   0.057  worst ceiling  0.001%
+  orig  0.50 LC4 L    20/20  mean drive   0.398  worst drive bin   0.488  worst off   0.057  worst ceiling  0.001%
+  orig  0.50 LC4 R    20/20  mean drive   0.345  worst drive bin   0.393  worst off   0.000  worst ceiling  0.000%
+  orig  0.50 LC10 L   20/20  mean drive   0.710  worst drive bin   0.841  worst off   0.082  worst ceiling  0.003%
+  orig  0.50 LC10 R   20/20  mean drive   0.844  worst drive bin   0.917  worst off   0.059  worst ceiling  0.004%
+  orig scale 0.5: PASS (all six on all 20 seeds)
+  orig  0.60 LPLC2 L  20/20  mean drive   0.717  worst drive bin   0.891  worst off   0.079  worst ceiling  0.001%
+  orig  0.60 LPLC2 R  20/20  mean drive   0.666  worst drive bin   0.740  worst off   0.080  worst ceiling  0.001%
+  orig  0.60 LC4 L    20/20  mean drive   0.615  worst drive bin   0.701  worst off   0.079  worst ceiling  0.001%
+  orig  0.60 LC4 R    20/20  mean drive   0.498  worst drive bin   0.611  worst off   0.079  worst ceiling  0.000%
+  orig  0.60 LC10 L   20/20  mean drive   0.964  worst drive bin   1.195  worst off   0.116  worst ceiling  0.004%
+  orig  0.60 LC10 R   20/20  mean drive   1.242  worst drive bin   1.482  worst off   0.080  worst ceiling  0.004%
+  orig scale 0.6: PASS (all six on all 20 seeds)
+  orig  0.70 LPLC2 L  20/20  mean drive   1.057  worst drive bin   1.184  worst off   0.098  worst ceiling  0.002%
+  orig  0.70 LPLC2 R  20/20  mean drive   0.773  worst drive bin   0.875  worst off   0.097  worst ceiling  0.001%
+  orig  0.70 LC4 L    20/20  mean drive   0.797  worst drive bin   0.900  worst off   0.098  worst ceiling  0.001%
+  orig  0.70 LC4 R    20/20  mean drive   0.649  worst drive bin   0.764  worst off   0.097  worst ceiling  0.001%
+  orig  0.70 LC10 L   20/20  mean drive   1.475  worst drive bin   2.133  worst off   0.169  worst ceiling  0.004%
+  orig  0.70 LC10 R   19/20  mean drive   2.191  worst drive bin   7.845  worst off   7.098  worst ceiling  0.014%
+  orig scale 0.7: fail (all six on all 20 seeds)
+  glu   0.60 LPLC2 L   0/20  mean drive  54.754  worst drive bin  58.776  worst off  58.619  worst ceiling  0.608%
+  glu   0.60 LPLC2 R   0/20  mean drive  54.590  worst drive bin  58.712  worst off  58.624  worst ceiling  0.597%
+  glu   0.60 LC4 L     0/20  mean drive  54.696  worst drive bin  58.745  worst off  58.644  worst ceiling  0.599%
+  glu   0.60 LC4 R     0/20  mean drive  54.446  worst drive bin  58.706  worst off  58.633  worst ceiling  0.581%
+  glu   0.60 LC10 L    0/20  mean drive  54.806  worst drive bin  58.968  worst off  58.629  worst ceiling  0.569%
+  glu   0.60 LC10 R    0/20  mean drive  55.019  worst drive bin  59.077  worst off  58.642  worst ceiling  0.608%
+  glu scale 0.6: fail (all six on all 20 seeds)
+  glu   0.50 LPLC2 L   0/20  mean drive  41.797  worst drive bin  45.589  worst off  45.464  worst ceiling  0.272%
+  glu   0.50 LPLC2 R   0/20  mean drive  41.782  worst drive bin  45.564  worst off  45.464  worst ceiling  0.284%
+  glu   0.50 LC4 L     0/20  mean drive  41.692  worst drive bin  45.573  worst off  45.466  worst ceiling  0.257%
+  glu   0.50 LC4 R     0/20  mean drive  41.582  worst drive bin  45.539  worst off  45.454  worst ceiling  0.259%
+  glu   0.50 LC10 L    0/20  mean drive  42.198  worst drive bin  45.932  worst off  45.459  worst ceiling  0.273%
+  glu   0.50 LC10 R    0/20  mean drive  41.921  worst drive bin  45.863  worst off  45.467  worst ceiling  0.278%
+  glu scale 0.5: fail (all six on all 20 seeds)
+  glu   0.40 LPLC2 L   0/20  mean drive  29.264  worst drive bin  32.803  worst off  32.665  worst ceiling  0.065%
+  glu   0.40 LPLC2 R   0/20  mean drive  29.206  worst drive bin  32.793  worst off  32.664  worst ceiling  0.064%
+  glu   0.40 LC4 L     0/20  mean drive  29.061  worst drive bin  32.786  worst off  32.659  worst ceiling  0.057%
+  glu   0.40 LC4 R     0/20  mean drive  28.661  worst drive bin  32.752  worst off  32.661  worst ceiling  0.056%
+  glu   0.40 LC10 L    0/20  mean drive  29.458  worst drive bin  33.182  worst off  32.658  worst ceiling  0.083%
+  glu   0.40 LC10 R    0/20  mean drive  29.221  worst drive bin  33.219  worst off  32.655  worst ceiling  0.082%
+  glu scale 0.4: fail (all six on all 20 seeds)
+  glu   0.30 LPLC2 L   0/20  mean drive  13.246  worst drive bin  15.459  worst off  14.903  worst ceiling  0.001%
+  glu   0.30 LPLC2 R   0/20  mean drive  13.067  worst drive bin  15.521  worst off  14.907  worst ceiling  0.000%
+  glu   0.30 LC4 L     0/20  mean drive  12.447  worst drive bin  15.192  worst off  14.896  worst ceiling  0.000%
+  glu   0.30 LC4 R     0/20  mean drive  12.554  worst drive bin  15.146  worst off  14.895  worst ceiling  0.000%
+  glu   0.30 LC10 L    0/20  mean drive  13.602  worst drive bin  15.762  worst off  14.904  worst ceiling  0.009%
+  glu   0.30 LC10 R    0/20  mean drive  13.683  worst drive bin  15.835  worst off  14.896  worst ceiling  0.013%
+  glu scale 0.3: fail (all six on all 20 seeds)
+  glu   0.20 LPLC2 L  20/20  mean drive   0.137  worst drive bin   0.156  worst off   0.000  worst ceiling  0.000%
+  glu   0.20 LPLC2 R  20/20  mean drive   0.152  worst drive bin   0.183  worst off   0.000  worst ceiling  0.000%
+  glu   0.20 LC4 L    20/20  mean drive   0.132  worst drive bin   0.151  worst off   0.000  worst ceiling  0.000%
+  glu   0.20 LC4 R    20/20  mean drive   0.114  worst drive bin   0.136  worst off   0.000  worst ceiling  0.000%
+  glu   0.20 LC10 L   20/20  mean drive   0.645  worst drive bin   0.703  worst off   0.000  worst ceiling  0.000%
+  glu   0.20 LC10 R   20/20  mean drive   0.717  worst drive bin   0.778  worst off   0.000  worst ceiling  0.001%
+  glu scale 0.2: PASS (all six on all 20 seeds)
+original: largest scale passing on all 20 seeds: 0.6
+glutamate +1: largest passing scale from 0.6 down: 0.2
+wrote configs/fly_model.json: weight_scale 0.6, weight_scale_glu 0.2
+peak memory (main) 638 MB, total 4669 s
