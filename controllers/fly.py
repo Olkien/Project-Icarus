@@ -23,7 +23,7 @@ class Fly(Controller):
 
     @classmethod
     def default_params(cls) -> dict:
-        return {"mapping": str(DEFAULT_MAPPING)}
+        return {"mapping": str(DEFAULT_MAPPING), "stepper": "numpy"}
 
     @classmethod
     def param_space(cls) -> dict[str, tuple[float, float]]:
@@ -39,6 +39,10 @@ class Fly(Controller):
                     **{k: self.params[k] for k in TUNABLE_DECODING if k in self.params}}
         self.steps_per_tick = int(mapping["steps_per_tick"])
         self.net = network or build_network(mapping["network"])
+        if self.params.get("stepper") == "numba":
+            from fly.lif_numba import NumbaLIFStepper
+
+            self.net.lif = NumbaLIFStepper(self.net.weights, self.net.lif_params)
         roles = mapping["groups"]
         self.ids = {role: self.net.group(roles[role]) for role in INPUT_ROLES + OUTPUT_ROLES}
         self.log_roles = list(INPUT_ROLES + OUTPUT_ROLES)

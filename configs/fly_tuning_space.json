@@ -1,0 +1,9 @@
+{
+  "controller": "fly",
+  "evals": 40,
+  "scenarios": ["s1_still", "s2_crosswind", "s3_gust", "s4_turbulent"],
+  "seeds": [0, 1],
+  "search_seed": 0,
+  "params": ["bearing_hz", "range_hz", "air_hz", "gain_yaw", "gain_thrust", "thrust_base"],
+  "fixed": {"stepper": "numba"}
+}
