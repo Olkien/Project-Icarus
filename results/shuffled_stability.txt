@@ -1,0 +1,36 @@
+shuffled stability at the chosen weight scale 0.7, Poisson seed 0
+stable = after input stops, every 50 ms bin from 0.2 s on is under 0.5 Hz network mean; every drive bin is under 20 Hz; under 0.5% of neurons fire at >= 0.9 x the refractory ceiling during drive
+  scale input    pass   drive_Hz  drive_max  ceiling%  off_max_Hz  quiet_s driven_Hz  network
+   0.7  LPLC2 L  PASS      1.059     1.184    0.002%      0.097     0.05    201.1  original
+   0.7  LPLC2 R  PASS      0.777     0.825    0.001%      0.096     0.00    100.4  original
+   0.7  LC4 L    PASS      0.801     0.861    0.001%      0.097     0.00    131.6  original
+   0.7  LC4 R    PASS      0.639     0.683    0.000%      0.000     0.00    111.7  original
+   0.7  LC10 L   PASS      1.457     1.913    0.004%      0.097     0.10     99.7  original
+   0.7  LC10 R   PASS      1.931     2.412    0.004%      0.097     0.05     99.7  original
+-- shuffle seed 0: 10.37 swaps per edge, 105 s
+   0.7  LPLC2 L  PASS      0.069     0.082    0.000%      0.000     0.00    100.2  shuffle 0
+   0.7  LPLC2 R  PASS      0.079     0.093    0.000%      0.000     0.00     99.8  shuffle 0
+   0.7  LC4 L    PASS      0.071     0.088    0.000%      0.000     0.00    100.5  shuffle 0
+   0.7  LC4 R    PASS      0.054     0.069    0.000%      0.000     0.00    100.0  shuffle 0
+   0.7  LC10 L   PASS      0.449     0.481    0.000%      0.000     0.00     99.7  shuffle 0
+   0.7  LC10 R   PASS      0.501     0.550    0.000%      0.000     0.00     99.7  shuffle 0
+-- shuffle seed 1: 10.37 swaps per edge, 247 s
+   0.7  LPLC2 L  PASS      0.072     0.085    0.000%      0.000     0.00    100.2  shuffle 1
+   0.7  LPLC2 R  PASS      0.080     0.093    0.000%      0.000     0.00     99.8  shuffle 1
+   0.7  LC4 L    PASS      0.076     0.086    0.000%      0.000     0.00    100.7  shuffle 1
+   0.7  LC4 R    PASS      0.059     0.074    0.000%      0.000     0.00    100.0  shuffle 1
+   0.7  LC10 L   PASS      0.437     0.465    0.000%      0.000     0.00     99.8  shuffle 1
+   0.7  LC10 R   PASS      0.503     0.530    0.000%      0.000     0.00    100.0  shuffle 1
+-- shuffle seed 2: 10.37 swaps per edge, 244 s
+   0.7  LPLC2 L  PASS      0.069     0.082    0.000%      0.000     0.00    100.2  shuffle 2
+   0.7  LPLC2 R  PASS      0.077     0.087    0.000%      0.000     0.00    100.1  shuffle 2
+   0.7  LC4 L    PASS      0.070     0.084    0.000%      0.000     0.00    100.5  shuffle 2
+   0.7  LC4 R    PASS      0.059     0.074    0.000%      0.000     0.00    100.0  shuffle 2
+   0.7  LC10 L   PASS      0.431     0.450    0.000%      0.000     0.00     99.8  shuffle 2
+   0.7  LC10 R   PASS      0.459     0.489    0.000%      0.000     0.00     99.7  shuffle 2
+== Summary
+  original:  6 of 6 pass, worst drive bin 2.412 Hz, worst off 0.097 Hz
+  shuffle 0: 6 of 6 pass, worst drive bin 0.550 Hz, worst off 0.000 Hz
+  shuffle 1: 6 of 6 pass, worst drive bin 0.530 Hz, worst off 0.000 Hz
+  shuffle 2: 6 of 6 pass, worst drive bin 0.489 Hz, worst off 0.000 Hz
+peak memory 2017 MB, total 1067 s
