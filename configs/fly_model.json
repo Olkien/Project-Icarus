@@ -5,5 +5,10 @@
   "stability_rate_hz": 100.0,
   "cache": "network_A.npz",
   "weight_scale_glu": 0.2,
-  "stability_seeds": "0-19"
+  "stability_seeds": "0-19",
+  "shuffled_weight_scale": {
+    "0": null,
+    "1": null,
+    "2": null
+  }
 }
