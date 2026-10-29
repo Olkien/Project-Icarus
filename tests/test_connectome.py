@@ -171,3 +171,16 @@ def test_real_cache_counts():
     assert net.counts.nnz == pytest.approx(25_617_721, rel=0.01)
     assert set(np.unique(net.sign).tolist()) <= {-1, 0, 1}
     assert net.group("type=DNa02").size == 2
+
+
+def test_explorer_describes_group(fake_data, tmp_path):
+    from fly.explore import describe
+
+    net = ConnectomeNetwork(build_cache(fake_data, tmp_path / "cache"))
+    lines = describe(net, "superclass=cb_intrinsic", max_ids=10)
+    assert lines[0] == "query superclass=cb_intrinsic: 4 neurons"
+    text = "\n".join(lines)
+    assert "out degree (partners)" in text and "in synapses" in text
+    for body in (10, 40, 50, 90):
+        assert f"  {body}  index" in text
+    assert describe(net, "type=none", 5) == ["query type=none: 0 neurons"]
