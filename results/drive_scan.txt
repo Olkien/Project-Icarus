@@ -1,0 +1,1432 @@
+cache network_A.npz: 167526 neurons; stepper numba; 1 s per setting
+per-spike input adds the stated mV to g; peak membrane step and mean drive:
+  10 mV -> peak 1.59 mV; mean drive at 20 Hz 1.0 mV, 50 Hz 2.5 mV, 100 Hz 5.0 mV, 200 Hz 10.0 mV
+  25 mV -> peak 3.98 mV; mean drive at 20 Hz 2.5 mV, 50 Hz 6.2 mV, 100 Hz 12.5 mV, 200 Hz 25.0 mV
+  50 mV -> peak 6.97 mV; mean drive at 20 Hz 5.0 mV, 50 Hz 12.5 mV, 100 Hz 25.0 mV, 200 Hz 50.0 mV
+runaway means network mean rate above 50 Hz
+== LPLC2 L: 94 neurons (type=LPLC2,somaSide=L)
+   rate  w_mV  driven_Hz  fired(share)        downstream  DN_fired   DN_L_Hz   DN_R_Hz   net_Hz  wall_s  runaway
+     20    10       0.01       1 ( 0.00%)          0         0     0.000     0.000    0.000     1.9  no
+     50    10       0.62    7716 ( 4.61%)       7671       470     3.596     2.988    0.508     2.0  no
+    top firing DN types:
+      DNg33            mean  272.50 Hz   L  272.00   R  273.00
+      DNge138          mean   64.00 Hz   L    0.00   R    0.00
+      DNp20            mean   62.00 Hz   L   62.00   R   62.00
+      DNg70            mean   57.50 Hz   L   57.00   R   58.00
+      DNp26            mean   55.50 Hz   L   52.00   R   59.00
+      DNg66            mean   46.00 Hz   L    0.00   R    0.00
+      DNg56            mean   44.50 Hz   L   21.00   R   68.00
+      DNpe017          mean   40.50 Hz   L   60.00   R   21.00
+      DNg99            mean   40.50 Hz   L   35.00   R   46.00
+      DNp18            mean   37.50 Hz   L   50.00   R   25.00
+      DNp73            mean   36.50 Hz   L   32.00   R   41.00
+      DNpe053          mean   32.50 Hz   L   32.00   R   33.00
+      DNge152          mean   29.00 Hz   L    0.00   R    0.00
+      DNge033          mean   29.00 Hz   L   41.00   R   17.00
+      DNg94            mean   28.00 Hz   L   26.00   R   30.00
+      DNp21            mean   26.50 Hz   L   47.00   R    6.00
+      DNb06            mean   26.50 Hz   L   53.00   R    0.00
+      DNpe034          mean   24.00 Hz   L   23.00   R   25.00
+      DNge149          mean   24.00 Hz   L    0.00   R    0.00
+      DNge129          mean   24.00 Hz   L   24.00   R   24.00
+    100    10       2.98    8586 ( 5.13%)       8499       496     3.893     3.437    0.588     2.8  no
+    top firing DN types:
+      DNg33            mean  287.00 Hz   L  287.00   R  287.00
+      DNge138          mean   77.00 Hz   L    0.00   R    0.00
+      DNg70            mean   74.50 Hz   L   73.00   R   76.00
+      DNg66            mean   63.00 Hz   L    0.00   R    0.00
+      DNp20            mean   60.50 Hz   L   65.00   R   56.00
+      DNp26            mean   59.00 Hz   L   54.00   R   64.00
+      DNg99            mean   46.50 Hz   L   36.00   R   57.00
+      DNge033          mean   44.50 Hz   L   59.00   R   30.00
+      DNpe053          mean   41.50 Hz   L   43.00   R   40.00
+      DNg56            mean   41.50 Hz   L   19.00   R   64.00
+      DNpe017          mean   39.50 Hz   L   58.00   R   21.00
+      DNp73            mean   38.50 Hz   L   36.00   R   41.00
+      DNp18            mean   37.00 Hz   L   45.00   R   29.00
+      DNg98            mean   36.00 Hz   L   33.00   R   39.00
+      DNp21            mean   28.00 Hz   L   50.00   R    6.00
+      DNge152          mean   28.00 Hz   L    0.00   R    0.00
+      DNge150          mean   28.00 Hz   L    0.00   R    0.00
+      DNg94            mean   26.50 Hz   L   24.00   R   29.00
+      DNge149          mean   26.00 Hz   L    0.00   R    0.00
+      DNpe014          mean   25.00 Hz   L   26.00   R   24.00
+    200    10       9.28    7125 ( 4.25%)       7031       425     3.340     3.090    0.545     3.2  no
+    top firing DN types:
+      DNg33            mean  372.50 Hz   L  372.00   R  373.00
+      DNp20            mean   73.00 Hz   L   76.00   R   70.00
+      DNge138          mean   69.50 Hz   L    0.00   R    0.00
+      DNp26            mean   59.50 Hz   L   60.00   R   59.00
+      DNpe017          mean   53.00 Hz   L   84.00   R   22.00
+      DNg99            mean   53.00 Hz   L   41.00   R   65.00
+      DNp18            mean   43.50 Hz   L   58.00   R   29.00
+      DNg70            mean   42.00 Hz   L   44.00   R   40.00
+      DNp73            mean   41.00 Hz   L   36.00   R   46.00
+      DNp01            mean   40.00 Hz   L   59.00   R   21.00
+      DNg66            mean   39.00 Hz   L    0.00   R    0.00
+      DNg56            mean   38.50 Hz   L    8.00   R   69.00
+      DNp21            mean   33.00 Hz   L   59.00   R    7.00
+      DNpe014          mean   30.75 Hz   L   34.50   R   27.00
+      DNg41            mean   30.50 Hz   L   28.00   R   33.00
+      DNg11            mean   28.67 Hz   L   34.67   R   22.67
+      DNpe034          mean   28.50 Hz   L   28.00   R   29.00
+      DNg94            mean   28.50 Hz   L   27.00   R   30.00
+      DNp103           mean   27.50 Hz   L   46.00   R    9.00
+      DNpe053          mean   22.00 Hz   L   23.00   R   21.00
+     20    25       1.89    8321 ( 4.97%)       8245       422     3.791     3.360    0.856     3.2  no
+    top firing DN types:
+      DNg33            mean  306.50 Hz   L  306.00   R  307.00
+      DNge033          mean   94.00 Hz   L  104.00   R   84.00
+      DNg70            mean   89.50 Hz   L   91.00   R   88.00
+      DNge143          mean   87.50 Hz   L   98.00   R   77.00
+      DNp26            mean   70.50 Hz   L   67.00   R   74.00
+      DNg98            mean   67.00 Hz   L   60.00   R   74.00
+      DNg49            mean   56.50 Hz   L   69.00   R   44.00
+      DNp20            mean   52.50 Hz   L   53.00   R   52.00
+      DNge129          mean   42.50 Hz   L   41.00   R   44.00
+      DNge138          mean   40.50 Hz   L    0.00   R    0.00
+      DNg99            mean   39.50 Hz   L   28.00   R   51.00
+      DNbe001          mean   39.50 Hz   L   43.00   R   36.00
+      DNpe017          mean   36.50 Hz   L   58.00   R   15.00
+      DNg56            mean   34.00 Hz   L   10.00   R   58.00
+      DNp21            mean   31.00 Hz   L   54.00   R    8.00
+      DNp73            mean   30.00 Hz   L   23.00   R   37.00
+      DNpe014          mean   29.75 Hz   L   33.00   R   26.50
+      DNge046          mean   27.25 Hz   L   15.50   R   39.00
+      DNp32            mean   26.00 Hz   L    9.00   R   43.00
+      DNp18            mean   25.00 Hz   L   39.00   R   11.00
+     50    25       5.97    7418 ( 4.43%)       7324       495     3.864     3.458    0.533     3.2  no
+    top firing DN types:
+      DNg33            mean  341.00 Hz   L  341.00   R  341.00
+      DNge138          mean   71.50 Hz   L    0.00   R    0.00
+      DNp20            mean   65.50 Hz   L   63.00   R   68.00
+      DNg70            mean   59.50 Hz   L   60.00   R   59.00
+      DNp26            mean   59.00 Hz   L   57.00   R   61.00
+      DNpe017          mean   52.50 Hz   L   81.00   R   24.00
+      DNg99            mean   46.50 Hz   L   33.00   R   60.00
+      DNg66            mean   42.00 Hz   L    0.00   R    0.00
+      DNpe053          mean   38.50 Hz   L   35.00   R   42.00
+      DNp73            mean   38.50 Hz   L   28.00   R   49.00
+      DNg56            mean   36.00 Hz   L   11.00   R   61.00
+      DNp18            mean   35.00 Hz   L   50.00   R   20.00
+      DNp01            mean   35.00 Hz   L   54.00   R   16.00
+      DNg94            mean   33.00 Hz   L   28.00   R   38.00
+      DNp21            mean   31.00 Hz   L   58.00   R    4.00
+      DNge033          mean   31.00 Hz   L   39.00   R   23.00
+      DNg41            mean   29.50 Hz   L   39.00   R   20.00
+      DNg11            mean   28.67 Hz   L   37.00   R   20.33
+      DNge150          mean   28.00 Hz   L    0.00   R    0.00
+      DNpe014          mean   27.00 Hz   L   31.50   R   22.50
+    100    25      14.93   10413 ( 6.22%)      10319       575    27.930    28.326    2.254     3.0  no
+    top firing DN types:
+      DNg33            mean  381.50 Hz   L  381.00   R  382.00
+      DNge022          mean  326.50 Hz   L  323.00   R  330.00
+      DNge039          mean  321.50 Hz   L  318.00   R  325.00
+      DNge143          mean  320.00 Hz   L  321.00   R  319.00
+      DNg73            mean  313.50 Hz   L  310.00   R  317.00
+      DNge027          mean  311.50 Hz   L  304.00   R  319.00
+      DNge060          mean  300.50 Hz   L  287.00   R  314.00
+      DNge044          mean  290.00 Hz   L  294.00   R  286.00
+      DNg22            mean  271.50 Hz   L  273.00   R  270.00
+      DNg70            mean  267.00 Hz   L  267.00   R  267.00
+      DNge033          mean  265.50 Hz   L  253.00   R  278.00
+      DNg62            mean  260.00 Hz   L  275.00   R  245.00
+      DNge012          mean  259.00 Hz   L  264.00   R  254.00
+      DNg12_d          mean  258.00 Hz   L  235.00   R  281.00
+      DNge029          mean  257.50 Hz   L  250.00   R  265.00
+      DNg12_e          mean  253.33 Hz   L  238.33   R  268.33
+      DNg89            mean  248.50 Hz   L  248.00   R  249.00
+      DNg12_g          mean  248.50 Hz   L  232.00   R  265.00
+      DNg12_f          mean  246.75 Hz   L  233.50   R  260.00
+      DNg12_c          mean  243.12 Hz   L  243.50   R  242.75
+    200    25     255.57    6828 ( 4.08%)       6734       343    12.014    10.636    1.744     3.5  no
+    top firing DN types:
+      DNg33            mean  372.00 Hz   L  372.00   R  372.00
+      DNp01            mean  335.50 Hz   L  414.00   R  257.00
+      DNae004          mean  263.00 Hz   L  246.00   R  280.00
+      DNg40            mean  248.50 Hz   L  341.00   R  156.00
+      DNp103           mean  246.00 Hz   L  401.00   R   91.00
+      DNp04            mean  202.50 Hz   L  405.00   R    0.00
+      DNa05            mean  200.00 Hz   L  198.00   R  202.00
+      DNpe045          mean  197.00 Hz   L  252.00   R  142.00
+      DNpe056          mean  188.50 Hz   L  377.00   R    0.00
+      DNpe042          mean  187.00 Hz   L  276.00   R   98.00
+      DNp34            mean  160.50 Hz   L    0.00   R  321.00
+      DNge131          mean  158.00 Hz   L   78.00   R  238.00
+      DNp70            mean  157.50 Hz   L  187.00   R  128.00
+      DNpe025          mean  151.50 Hz   L  303.00   R    0.00
+      DNg44            mean  131.50 Hz   L  194.00   R   69.00
+      DNp71            mean  129.50 Hz   L  259.00   R    0.00
+      DNge104          mean  128.00 Hz   L    0.00   R  256.00
+      DNge047          mean  128.00 Hz   L  113.00   R  143.00
+      DNg42            mean  123.50 Hz   L  158.00   R   89.00
+      DNge152          mean  122.00 Hz   L    0.00   R    0.00
+     20    50       7.73   17001 (10.15%)      16907       513    11.623    11.150    9.036     3.5  no
+    top firing DN types:
+      DNg33            mean  345.50 Hz   L  345.00   R  346.00
+      DNb05            mean  325.50 Hz   L  326.00   R  325.00
+      DNg56            mean  264.00 Hz   L  248.00   R  280.00
+      DNp12            mean  239.50 Hz   L  228.00   R  251.00
+      DNge138          mean  226.50 Hz   L    0.00   R    0.00
+      DNp32            mean  213.00 Hz   L  226.00   R  200.00
+      DNp31            mean  209.50 Hz   L  200.00   R  219.00
+      DNp20            mean  199.50 Hz   L  206.00   R  193.00
+      DNp18            mean  181.50 Hz   L  204.00   R  159.00
+      DNpe017          mean  174.50 Hz   L  210.00   R  139.00
+      DNge149          mean  172.00 Hz   L    0.00   R    0.00
+      DNge054          mean  166.00 Hz   L  134.00   R  198.00
+      DNg99            mean  165.00 Hz   L  143.00   R  187.00
+      DNg66            mean  154.00 Hz   L    0.00   R    0.00
+      DNge150          mean  150.00 Hz   L    0.00   R    0.00
+      DNae006          mean  147.00 Hz   L  140.00   R  154.00
+      DNc02            mean  136.50 Hz   L   92.00   R  181.00
+      DNg70            mean  130.50 Hz   L  146.00   R  115.00
+      DNge141          mean  129.50 Hz   L  133.00   R  126.00
+      DNg34            mean  128.00 Hz   L  158.00   R   98.00
+     50    50      19.82   16812 (10.04%)      16718       438    10.925    10.872    9.268     3.5  no
+    top firing DN types:
+      DNg33            mean  386.00 Hz   L  386.00   R  386.00
+      DNb05            mean  319.00 Hz   L  320.00   R  318.00
+      DNg56            mean  249.50 Hz   L  237.00   R  262.00
+      DNp12            mean  241.00 Hz   L  231.00   R  251.00
+      DNge138          mean  216.00 Hz   L    0.00   R    0.00
+      DNp32            mean  212.00 Hz   L  224.00   R  200.00
+      DNp31            mean  201.00 Hz   L  194.00   R  208.00
+      DNp20            mean  189.00 Hz   L  190.00   R  188.00
+      DNp18            mean  175.00 Hz   L  195.00   R  155.00
+      DNpe017          mean  173.50 Hz   L  211.00   R  136.00
+      DNge054          mean  163.50 Hz   L  130.00   R  197.00
+      DNg99            mean  158.00 Hz   L  140.00   R  176.00
+      DNge149          mean  154.00 Hz   L    0.00   R    0.00
+      DNg66            mean  149.00 Hz   L    0.00   R    0.00
+      DNge150          mean  146.00 Hz   L    0.00   R    0.00
+      DNc02            mean  141.00 Hz   L   95.00   R  187.00
+      DNae006          mean  140.50 Hz   L  137.00   R  144.00
+      DNge141          mean  130.00 Hz   L  137.00   R  123.00
+      DNc01            mean  128.50 Hz   L  165.00   R   92.00
+      DNg34            mean  125.00 Hz   L  152.00   R   98.00
+    100    50     251.07    7395 ( 4.41%)       7301       372    11.828    10.429    1.719     3.6  no
+    top firing DN types:
+      DNg33            mean  368.50 Hz   L  368.00   R  369.00
+      DNp01            mean  333.50 Hz   L  413.00   R  254.00
+      DNae004          mean  264.50 Hz   L  250.00   R  279.00
+      DNp103           mean  245.50 Hz   L  400.00   R   91.00
+      DNg40            mean  245.50 Hz   L  338.00   R  153.00
+      DNp04            mean  202.50 Hz   L  405.00   R    0.00
+      DNa05            mean  201.00 Hz   L  203.00   R  199.00
+      DNpe045          mean  198.50 Hz   L  255.00   R  142.00
+      DNpe056          mean  187.50 Hz   L  375.00   R    0.00
+      DNpe042          mean  181.50 Hz   L  271.00   R   92.00
+      DNp34            mean  159.50 Hz   L    0.00   R  319.00
+      DNge131          mean  159.50 Hz   L   83.00   R  236.00
+      DNp70            mean  156.00 Hz   L  186.00   R  126.00
+      DNpe025          mean  149.50 Hz   L  299.00   R    0.00
+      DNg44            mean  134.00 Hz   L  192.00   R   76.00
+      DNg42            mean  131.00 Hz   L  169.00   R   93.00
+      DNge104          mean  128.50 Hz   L    0.00   R  257.00
+      DNge047          mean  125.00 Hz   L  112.00   R  138.00
+      DNp71            mean  124.50 Hz   L  249.00   R    0.00
+      DNge010          mean  118.50 Hz   L  237.00   R    0.00
+    200    50     290.05    9027 ( 5.39%)       8933       442    13.306    11.586    1.896     3.0  no
+    top firing DN types:
+      DNg33            mean  371.50 Hz   L  371.00   R  372.00
+      DNp01            mean  307.00 Hz   L  415.00   R  199.00
+      DNae004          mean  264.00 Hz   L  238.00   R  290.00
+      DNg40            mean  249.00 Hz   L  358.00   R  140.00
+      DNp103           mean  217.00 Hz   L  407.00   R   27.00
+      DNp04            mean  207.00 Hz   L  414.00   R    0.00
+      DNa05            mean  193.00 Hz   L  187.00   R  199.00
+      DNpe056          mean  192.00 Hz   L  384.00   R    0.00
+      DNpe045          mean  185.00 Hz   L  252.00   R  118.00
+      DNp34            mean  162.50 Hz   L    0.00   R  325.00
+      DNpe042          mean  161.50 Hz   L  263.00   R   60.00
+      DNpe025          mean  159.00 Hz   L  318.00   R    0.00
+      DNge131          mean  155.00 Hz   L   80.00   R  230.00
+      DNp71            mean  143.50 Hz   L  287.00   R    0.00
+      DNg98            mean  134.50 Hz   L  143.00   R  126.00
+      DNg44            mean  133.50 Hz   L  204.00   R   63.00
+      DNp06            mean  132.00 Hz   L   72.00   R  192.00
+      DNp70            mean  129.50 Hz   L  158.00   R  101.00
+      DNg70            mean  128.00 Hz   L  130.00   R  126.00
+      DNge104          mean  126.50 Hz   L    0.00   R  253.00
+== LPLC2 R: 91 neurons (type=LPLC2,somaSide=R)
+   rate  w_mV  driven_Hz  fired(share)        downstream  DN_fired   DN_L_Hz   DN_R_Hz   net_Hz  wall_s  runaway
+     20    10       0.01       1 ( 0.00%)          0         0     0.000     0.000    0.000     1.5  no
+     50    10       0.63    8003 ( 4.78%)       7960       452     3.534     3.085    0.549     2.9  no
+    top firing DN types:
+      DNg33            mean  340.00 Hz   L  340.00   R  340.00
+      DNg70            mean   83.50 Hz   L   84.00   R   83.00
+      DNge138          mean   61.50 Hz   L    0.00   R    0.00
+      DNg66            mean   60.00 Hz   L    0.00   R    0.00
+      DNpe053          mean   53.00 Hz   L   50.00   R   56.00
+      DNp26            mean   44.50 Hz   L   42.00   R   47.00
+      DNp20            mean   43.50 Hz   L   45.00   R   42.00
+      DNge033          mean   38.50 Hz   L   51.00   R   26.00
+      DNge150          mean   34.00 Hz   L    0.00   R    0.00
+      DNge149          mean   34.00 Hz   L    0.00   R    0.00
+      DNg98            mean   32.50 Hz   L   28.00   R   37.00
+      DNg99            mean   32.00 Hz   L   25.00   R   39.00
+      DNpe017          mean   31.00 Hz   L   48.00   R   14.00
+      DNg56            mean   30.50 Hz   L   15.00   R   46.00
+      DNge129          mean   29.50 Hz   L   29.00   R   30.00
+      DNge151          mean   27.00 Hz   L    0.00   R    0.00
+      DNge152          mean   26.00 Hz   L    0.00   R    0.00
+      DNpe040          mean   25.00 Hz   L   24.00   R   26.00
+      DNp73            mean   24.50 Hz   L   20.00   R   29.00
+      DNg22            mean   22.00 Hz   L   22.00   R   22.00
+    100    10       2.08    7122 ( 4.25%)       7046       432     3.703     3.356    0.585     3.8  no
+    top firing DN types:
+      DNg33            mean  352.00 Hz   L  352.00   R  352.00
+      DNge138          mean   81.00 Hz   L    0.00   R    0.00
+      DNp20            mean   77.00 Hz   L   81.00   R   73.00
+      DNg66            mean   68.00 Hz   L    0.00   R    0.00
+      DNp26            mean   67.50 Hz   L   70.00   R   65.00
+      DNg70            mean   60.50 Hz   L   61.00   R   60.00
+      DNg99            mean   57.50 Hz   L   46.00   R   69.00
+      DNp18            mean   56.50 Hz   L   77.00   R   36.00
+      DNg56            mean   54.00 Hz   L   18.00   R   90.00
+      DNpe017          mean   50.50 Hz   L   81.00   R   20.00
+      DNp73            mean   46.00 Hz   L   39.00   R   53.00
+      DNg94            mean   35.50 Hz   L   34.00   R   37.00
+      DNb06            mean   32.50 Hz   L   63.00   R    2.00
+      DNp21            mean   31.00 Hz   L   59.00   R    3.00
+      DNpe034          mean   30.00 Hz   L   30.00   R   30.00
+      DNge033          mean   28.50 Hz   L   35.00   R   22.00
+      DNg11            mean   28.33 Hz   L   34.00   R   22.67
+      DNpe014          mean   28.25 Hz   L   30.00   R   26.50
+      DNpe053          mean   28.00 Hz   L   29.00   R   27.00
+      DNg41            mean   27.00 Hz   L   26.00   R   28.00
+    200    10      11.14   16910 (10.09%)      16819       491    11.683    11.440    9.689     3.7  no
+    top firing DN types:
+      DNb05            mean  336.50 Hz   L  336.00   R  337.00
+      DNg33            mean  329.50 Hz   L  329.00   R  330.00
+      DNg56            mean  265.50 Hz   L  255.00   R  276.00
+      DNp12            mean  252.50 Hz   L  245.00   R  260.00
+      DNp32            mean  228.00 Hz   L  236.00   R  220.00
+      DNge138          mean  225.00 Hz   L    0.00   R    0.00
+      DNp31            mean  215.50 Hz   L  207.00   R  224.00
+      DNp20            mean  200.00 Hz   L  207.00   R  193.00
+      DNp18            mean  192.00 Hz   L  205.00   R  179.00
+      DNge149          mean  176.00 Hz   L    0.00   R    0.00
+      DNge054          mean  173.00 Hz   L  135.00   R  211.00
+      DNpe017          mean  171.00 Hz   L  209.00   R  133.00
+      DNg99            mean  164.00 Hz   L  145.00   R  183.00
+      DNg66            mean  162.00 Hz   L    0.00   R    0.00
+      DNge150          mean  161.00 Hz   L    0.00   R    0.00
+      DNae006          mean  149.50 Hz   L  143.00   R  156.00
+      DNc02            mean  146.50 Hz   L   99.00   R  194.00
+      DNge141          mean  138.50 Hz   L  141.00   R  136.00
+      DNg34            mean  138.00 Hz   L  170.00   R  106.00
+      DNpe027          mean  135.50 Hz   L  156.00   R  115.00
+     20    25       1.64    7598 ( 4.54%)       7524       441     4.125     3.637    0.625     3.2  no
+    top firing DN types:
+      DNg33            mean  356.00 Hz   L  356.00   R  356.00
+      DNge138          mean   92.00 Hz   L    0.00   R    0.00
+      DNp20            mean   81.50 Hz   L   82.00   R   81.00
+      DNp26            mean   67.50 Hz   L   65.00   R   70.00
+      DNg70            mean   66.50 Hz   L   66.00   R   67.00
+      DNg99            mean   61.00 Hz   L   49.00   R   73.00
+      DNpe017          mean   60.00 Hz   L   91.00   R   29.00
+      DNg56            mean   56.00 Hz   L   16.00   R   96.00
+      DNp18            mean   52.00 Hz   L   73.00   R   31.00
+      DNg66            mean   51.00 Hz   L    0.00   R    0.00
+      DNp73            mean   49.50 Hz   L   42.00   R   57.00
+      DNg94            mean   42.00 Hz   L   41.00   R   43.00
+      DNb06            mean   37.50 Hz   L   72.00   R    3.00
+      DNpe053          mean   36.00 Hz   L   37.00   R   35.00
+      DNp21            mean   36.00 Hz   L   64.00   R    8.00
+      DNge033          mean   36.00 Hz   L   49.00   R   23.00
+      DNpe014          mean   32.25 Hz   L   35.00   R   29.50
+      DNg41            mean   30.50 Hz   L   30.00   R   31.00
+      DNg11            mean   30.17 Hz   L   36.33   R   24.00
+      DNbe001          mean   29.50 Hz   L   34.00   R   25.00
+     50    25       7.53   15865 ( 9.47%)      15774       427    12.505    11.997   10.818     3.9  no
+    top firing DN types:
+      DNb05            mean  374.50 Hz   L  374.00   R  375.00
+      DNg33            mean  365.50 Hz   L  365.00   R  366.00
+      DNg56            mean  294.00 Hz   L  282.00   R  306.00
+      DNp12            mean  283.00 Hz   L  275.00   R  291.00
+      DNp32            mean  256.00 Hz   L  266.00   R  246.00
+      DNge138          mean  248.50 Hz   L    0.00   R    0.00
+      DNp31            mean  235.50 Hz   L  229.00   R  242.00
+      DNp20            mean  217.00 Hz   L  225.00   R  209.00
+      DNp18            mean  210.50 Hz   L  225.00   R  196.00
+      DNge054          mean  209.00 Hz   L  163.00   R  255.00
+      DNge149          mean  193.00 Hz   L    0.00   R    0.00
+      DNg66            mean  186.00 Hz   L    0.00   R    0.00
+      DNge150          mean  185.00 Hz   L    0.00   R    0.00
+      DNpe017          mean  182.50 Hz   L  226.00   R  139.00
+      DNg99            mean  177.50 Hz   L  155.00   R  200.00
+      DNc02            mean  165.50 Hz   L  112.00   R  219.00
+      DNae006          mean  165.50 Hz   L  159.00   R  172.00
+      DNg70            mean  155.00 Hz   L  170.00   R  140.00
+      DNpe027          mean  154.00 Hz   L  173.00   R  135.00
+      DNge141          mean  152.00 Hz   L  156.00   R  148.00
+    100    25      12.37   16295 ( 9.73%)      16204       445    11.838    11.431    9.605     3.9  no
+    top firing DN types:
+      DNg33            mean  352.50 Hz   L  352.00   R  353.00
+      DNb05            mean  332.00 Hz   L  332.00   R  332.00
+      DNg56            mean  261.00 Hz   L  250.00   R  272.00
+      DNp12            mean  250.50 Hz   L  242.00   R  259.00
+      DNp32            mean  225.50 Hz   L  234.00   R  217.00
+      DNge138          mean  222.00 Hz   L    0.00   R    0.00
+      DNp31            mean  212.00 Hz   L  205.00   R  219.00
+      DNp20            mean  204.50 Hz   L  211.00   R  198.00
+      DNp18            mean  195.50 Hz   L  214.00   R  177.00
+      DNpe017          mean  178.50 Hz   L  219.00   R  138.00
+      DNge054          mean  174.00 Hz   L  134.00   R  214.00
+      DNg99            mean  167.50 Hz   L  147.00   R  188.00
+      DNg66            mean  163.00 Hz   L    0.00   R    0.00
+      DNge149          mean  159.00 Hz   L    0.00   R    0.00
+      DNge150          mean  156.00 Hz   L    0.00   R    0.00
+      DNae006          mean  147.00 Hz   L  140.00   R  154.00
+      DNc02            mean  146.00 Hz   L   99.00   R  193.00
+      DNg70            mean  136.50 Hz   L  153.00   R  120.00
+      DNge141          mean  135.00 Hz   L  137.00   R  133.00
+      DNc01            mean  131.00 Hz   L  170.00   R   92.00
+    200    25      43.89    5846 ( 3.49%)       5755       340     5.517     5.375    0.809     4.0  no
+    top firing DN types:
+      DNg33            mean  380.00 Hz   L  380.00   R  380.00
+      DNp01            mean  208.50 Hz   L  189.00   R  228.00
+      DNp103           mean  119.50 Hz   L   21.00   R  218.00
+      DNp04            mean  109.00 Hz   L    0.00   R  218.00
+      DNp70            mean  101.50 Hz   L   80.00   R  123.00
+      DNge040          mean   99.50 Hz   L  108.00   R   91.00
+      DNge010          mean   88.50 Hz   L   32.00   R  145.00
+      DNg70            mean   86.00 Hz   L   84.00   R   88.00
+      DNg49            mean   85.00 Hz   L   88.00   R   82.00
+      DNg109           mean   73.50 Hz   L   93.00   R   54.00
+      DNp34            mean   71.50 Hz   L  143.00   R    0.00
+      DNg98            mean   68.50 Hz   L   64.00   R   73.00
+      DNpe045          mean   66.00 Hz   L   26.00   R  106.00
+      DNge047          mean   62.00 Hz   L   52.00   R   72.00
+      DNpe042          mean   59.00 Hz   L   52.00   R   66.00
+      DNge142          mean   54.50 Hz   L   47.00   R   62.00
+      DNpe056          mean   44.00 Hz   L    0.00   R   88.00
+      DNge131          mean   44.00 Hz   L   84.00   R    4.00
+      DNp26            mean   43.00 Hz   L   19.00   R   67.00
+      DNpe053          mean   41.00 Hz   L   47.00   R   35.00
+     20    50       7.62   16657 ( 9.94%)      16566       479    12.832    12.528   10.845     3.9  no
+    top firing DN types:
+      DNb05            mean  375.50 Hz   L  374.00   R  377.00
+      DNg33            mean  366.50 Hz   L  366.00   R  367.00
+      DNg56            mean  295.00 Hz   L  282.00   R  308.00
+      DNp12            mean  283.50 Hz   L  275.00   R  292.00
+      DNp32            mean  254.50 Hz   L  263.00   R  246.00
+      DNge138          mean  253.50 Hz   L    0.00   R    0.00
+      DNp31            mean  245.00 Hz   L  240.00   R  250.00
+      DNp20            mean  222.50 Hz   L  231.00   R  214.00
+      DNp18            mean  216.00 Hz   L  237.00   R  195.00
+      DNge054          mean  200.50 Hz   L  156.00   R  245.00
+      DNge149          mean  197.00 Hz   L    0.00   R    0.00
+      DNpe017          mean  189.00 Hz   L  231.00   R  147.00
+      DNg66            mean  188.00 Hz   L    0.00   R    0.00
+      DNge150          mean  185.00 Hz   L    0.00   R    0.00
+      DNg99            mean  181.00 Hz   L  156.00   R  206.00
+      DNae006          mean  167.50 Hz   L  160.00   R  175.00
+      DNc02            mean  164.50 Hz   L  111.00   R  218.00
+      DNge141          mean  154.00 Hz   L  157.00   R  151.00
+      DNg34            mean  153.50 Hz   L  188.00   R  119.00
+      DNg70            mean  153.00 Hz   L  170.00   R  136.00
+     50    50      12.67   16630 ( 9.93%)      16539       461    10.915    10.832    8.470     3.2  no
+    top firing DN types:
+      DNg33            mean  364.50 Hz   L  364.00   R  365.00
+      DNb05            mean  300.00 Hz   L  299.00   R  301.00
+      DNg56            mean  232.50 Hz   L  224.00   R  241.00
+      DNp12            mean  217.00 Hz   L  211.00   R  223.00
+      DNp32            mean  198.50 Hz   L  206.00   R  191.00
+      DNge138          mean  194.50 Hz   L    0.00   R    0.00
+      DNp31            mean  187.00 Hz   L  180.00   R  194.00
+      DNp20            mean  172.00 Hz   L  180.00   R  164.00
+      DNp18            mean  169.50 Hz   L  184.00   R  155.00
+      DNge149          mean  147.00 Hz   L    0.00   R    0.00
+      DNpe017          mean  145.00 Hz   L  178.00   R  112.00
+      DNge054          mean  144.00 Hz   L  117.00   R  171.00
+      DNg99            mean  142.00 Hz   L  124.00   R  160.00
+      DNge150          mean  141.00 Hz   L    0.00   R    0.00
+      DNg66            mean  140.00 Hz   L    0.00   R    0.00
+      DNg74_a          mean  130.50 Hz   L  131.00   R  130.00
+      DNae006          mean  130.50 Hz   L  125.00   R  136.00
+      DNc02            mean  128.50 Hz   L   87.00   R  170.00
+      DNge141          mean  117.50 Hz   L  120.00   R  115.00
+      DNc01            mean  115.00 Hz   L  150.00   R   80.00
+    100    50      41.87    6031 ( 3.60%)       5940       347     5.617     5.574    0.827     4.0  no
+    top firing DN types:
+      DNg33            mean  377.50 Hz   L  377.00   R  378.00
+      DNp01            mean  229.00 Hz   L  196.00   R  262.00
+      DNp103           mean  126.50 Hz   L   28.00   R  225.00
+      DNp70            mean  109.50 Hz   L   83.00   R  136.00
+      DNp04            mean  105.00 Hz   L    0.00   R  210.00
+      DNpe042          mean   80.00 Hz   L   68.00   R   92.00
+      DNg70            mean   78.00 Hz   L   79.00   R   77.00
+      DNg98            mean   76.00 Hz   L   70.00   R   82.00
+      DNge040          mean   73.00 Hz   L   95.00   R   51.00
+      DNp34            mean   66.00 Hz   L  132.00   R    0.00
+      DNge010          mean   66.00 Hz   L   20.00   R  112.00
+      DNpe045          mean   65.50 Hz   L   26.00   R  105.00
+      DNg49            mean   51.00 Hz   L   53.00   R   49.00
+      DNg109           mean   50.00 Hz   L   66.00   R   34.00
+      DNpe017          mean   49.00 Hz   L   92.00   R    6.00
+      DNb01            mean   47.00 Hz   L   93.00   R    1.00
+      DNge047          mean   46.00 Hz   L   40.00   R   52.00
+      DNpe056          mean   43.00 Hz   L    0.00   R   86.00
+      DNp26            mean   41.50 Hz   L    9.00   R   74.00
+      DNbe006          mean   41.50 Hz   L   83.00   R    0.00
+    200    50     262.22    6724 ( 4.01%)       6633       343     9.936    12.887    1.798     3.4  no
+    top firing DN types:
+      DNg33            mean  372.00 Hz   L  372.00   R  372.00
+      DNp01            mean  324.50 Hz   L  235.00   R  414.00
+      DNp103           mean  209.00 Hz   L    4.00   R  414.00
+      DNg40            mean  198.50 Hz   L    9.00   R  388.00
+      DNp04            mean  197.00 Hz   L    0.00   R  394.00
+      DNae004          mean  191.00 Hz   L  227.00   R  155.00
+      DNpe056          mean  190.50 Hz   L    0.00   R  381.00
+      DNp06            mean  177.00 Hz   L   85.00   R  269.00
+      DNge040          mean  173.50 Hz   L  199.00   R  148.00
+      DNp34            mean  166.00 Hz   L  332.00   R    0.00
+      DNge010          mean  165.50 Hz   L   54.00   R  277.00
+      DNpe025          mean  163.00 Hz   L    0.00   R  326.00
+      DNp70            mean  160.50 Hz   L   95.00   R  226.00
+      DNpe042          mean  158.00 Hz   L   66.00   R  250.00
+      DNge131          mean  154.50 Hz   L  253.00   R   56.00
+      DNpe045          mean  145.50 Hz   L   34.00   R  257.00
+      DNg109           mean  143.50 Hz   L  163.00   R  124.00
+      DNge047          mean  136.00 Hz   L  103.00   R  169.00
+      DNge104          mean  135.50 Hz   L  271.00   R    0.00
+      DNg44            mean  126.00 Hz   L  104.00   R  148.00
+== LC4 L: 71 neurons (type=LC4,somaSide=L)
+   rate  w_mV  driven_Hz  fired(share)        downstream  DN_fired   DN_L_Hz   DN_R_Hz   net_Hz  wall_s  runaway
+     20    10       0.01       1 ( 0.00%)          0         0     0.000     0.000    0.000     1.6  no
+     50    10       0.93     330 ( 0.20%)        284        19     0.055     0.028    0.006     1.6  no
+    top firing DN types:
+      DNp04            mean   12.00 Hz   L   24.00   R    0.00
+      DNge119          mean    2.50 Hz   L    0.00   R    5.00
+      DNp01            mean    2.00 Hz   L    1.00   R    3.00
+      DNge099          mean    2.00 Hz   L    2.00   R    2.00
+      DNpe017          mean    1.00 Hz   L    1.00   R    1.00
+      DNp35            mean    1.00 Hz   L    2.00   R    0.00
+      DNp103           mean    1.00 Hz   L    1.00   R    1.00
+      DNge054          mean    1.00 Hz   L    2.00   R    0.00
+      DNg74_a          mean    1.00 Hz   L    2.00   R    0.00
+      DNa16            mean    1.00 Hz   L    0.00   R    2.00
+      DNp57            mean    0.50 Hz   L    0.00   R    1.00
+      DNp06            mean    0.50 Hz   L    0.00   R    1.00
+      DNge036          mean    0.50 Hz   L    0.00   R    1.00
+      DNg40            mean    0.50 Hz   L    0.00   R    1.00
+      DNae004          mean    0.50 Hz   L    1.00   R    0.00
+    100    10      11.35    5248 ( 3.13%)       5177       342     3.834     2.898    0.626     2.3  no
+    top firing DN types:
+      DNg33            mean  323.50 Hz   L  323.00   R  324.00
+      DNp04            mean   92.50 Hz   L  185.00   R    0.00
+      DNg66            mean   72.00 Hz   L    0.00   R    0.00
+      DNge138          mean   66.50 Hz   L    0.00   R    0.00
+      DNp26            mean   55.00 Hz   L   57.00   R   53.00
+      DNg70            mean   50.50 Hz   L   53.00   R   48.00
+      DNpe017          mean   49.50 Hz   L   82.00   R   17.00
+      DNp20            mean   40.00 Hz   L   27.00   R   53.00
+      DNg41            mean   39.50 Hz   L   65.00   R   14.00
+      DNg99            mean   39.00 Hz   L   19.00   R   59.00
+      DNp02            mean   36.00 Hz   L   72.00   R    0.00
+      DNg94            mean   36.00 Hz   L   24.00   R   48.00
+      DNge119          mean   34.50 Hz   L    0.00   R   69.00
+      DNg11            mean   31.33 Hz   L   37.67   R   25.00
+      DNge054          mean   28.50 Hz   L   57.00   R    0.00
+      DNge033          mean   26.50 Hz   L   46.00   R    7.00
+      DNp73            mean   26.00 Hz   L   25.00   R   27.00
+      DNpe034          mean   25.50 Hz   L   25.00   R   26.00
+      DNge006          mean   25.00 Hz   L   50.00   R    0.00
+      DNge099          mean   24.00 Hz   L   19.00   R   29.00
+    200    10     108.45   14899 ( 8.89%)      14828       335    10.088    10.514   10.312     4.2  no
+    top firing DN types:
+      DNg33            mean  363.50 Hz   L  363.00   R  364.00
+      DNb05            mean  357.00 Hz   L  358.00   R  356.00
+      DNp12            mean  247.50 Hz   L  244.00   R  251.00
+      DNg56            mean  239.00 Hz   L  217.00   R  261.00
+      DNp32            mean  235.50 Hz   L  242.00   R  229.00
+      DNge138          mean  233.50 Hz   L    0.00   R    0.00
+      DNge054          mean  219.00 Hz   L  223.00   R  215.00
+      DNp04            mean  205.00 Hz   L  410.00   R    0.00
+      DNae004          mean  187.00 Hz   L  115.00   R  259.00
+      DNp02            mean  186.50 Hz   L  373.00   R    0.00
+      DNp11            mean  176.00 Hz   L  352.00   R    0.00
+      DNge149          mean  171.00 Hz   L    0.00   R    0.00
+      DNge150          mean  166.00 Hz   L    0.00   R    0.00
+      DNg66            mean  164.00 Hz   L    0.00   R    0.00
+      DNc02            mean  164.00 Hz   L  115.00   R  213.00
+      DNp01            mean  163.00 Hz   L  319.00   R    7.00
+      DNp03            mean  149.50 Hz   L  299.00   R    0.00
+      DNg34            mean  148.00 Hz   L  182.00   R  114.00
+      DNae006          mean  147.50 Hz   L  155.00   R  140.00
+      DNc01            mean  146.50 Hz   L  189.00   R  104.00
+     20    25       4.31    5217 ( 3.11%)       5146       348     1.427     1.039    0.174     2.4  no
+    top firing DN types:
+      DNg33            mean   45.50 Hz   L   45.00   R   46.00
+      DNp04            mean   44.50 Hz   L   89.00   R    0.00
+      DNge099          mean   28.50 Hz   L   29.00   R   28.00
+      DNge119          mean   24.50 Hz   L    0.00   R   49.00
+      DNpe017          mean   22.00 Hz   L   30.00   R   14.00
+      DNp63            mean   17.50 Hz   L   18.00   R   17.00
+      DNge138          mean   16.50 Hz   L    0.00   R    0.00
+      DNg70            mean   16.50 Hz   L   17.00   R   16.00
+      DNge033          mean   16.00 Hz   L   21.00   R   11.00
+      DNb06            mean   14.50 Hz   L   29.00   R    0.00
+      DNae010          mean   14.00 Hz   L   12.00   R   16.00
+      DNp26            mean   13.00 Hz   L   12.00   R   14.00
+      DNge152          mean   12.00 Hz   L    0.00   R    0.00
+      DNge054          mean   11.50 Hz   L   23.00   R    0.00
+      DNpe053          mean   10.50 Hz   L   10.00   R   11.00
+      DNbe005          mean   10.50 Hz   L    8.00   R   13.00
+      DNge070          mean   10.00 Hz   L    7.00   R   13.00
+      DNp21            mean    9.50 Hz   L   19.00   R    0.00
+      DNp20            mean    9.50 Hz   L   11.00   R    8.00
+      DNge151          mean    9.00 Hz   L    0.00   R    0.00
+     50    25      14.69   15831 ( 9.45%)      15760       398    12.314    11.815   10.388     3.9  no
+    top firing DN types:
+      DNb05            mean  360.00 Hz   L  361.00   R  359.00
+      DNg33            mean  345.50 Hz   L  345.00   R  346.00
+      DNg56            mean  276.50 Hz   L  264.00   R  289.00
+      DNp12            mean  270.00 Hz   L  263.00   R  277.00
+      DNge138          mean  244.50 Hz   L    0.00   R    0.00
+      DNp32            mean  241.00 Hz   L  252.00   R  230.00
+      DNp31            mean  223.00 Hz   L  217.00   R  229.00
+      DNge054          mean  209.00 Hz   L  180.00   R  238.00
+      DNp20            mean  201.50 Hz   L  207.00   R  196.00
+      DNp18            mean  192.50 Hz   L  212.00   R  173.00
+      DNge149          mean  187.00 Hz   L    0.00   R    0.00
+      DNpe017          mean  184.00 Hz   L  223.00   R  145.00
+      DNg99            mean  174.50 Hz   L  152.00   R  197.00
+      DNge150          mean  172.00 Hz   L    0.00   R    0.00
+      DNg66            mean  164.00 Hz   L    0.00   R    0.00
+      DNae006          mean  163.50 Hz   L  156.00   R  171.00
+      DNc02            mean  159.50 Hz   L  108.00   R  211.00
+      DNge141          mean  148.00 Hz   L  153.00   R  143.00
+      DNg34            mean  147.00 Hz   L  179.00   R  115.00
+      DNc01            mean  143.50 Hz   L  186.00   R  101.00
+    100    25     128.90   14682 ( 8.76%)      14611       317    10.444    10.898   10.367     4.0  no
+    top firing DN types:
+      DNb05            mean  360.00 Hz   L  361.00   R  359.00
+      DNg33            mean  343.00 Hz   L  343.00   R  343.00
+      DNp12            mean  247.50 Hz   L  244.00   R  251.00
+      DNp32            mean  237.50 Hz   L  245.00   R  230.00
+      DNg56            mean  237.50 Hz   L  214.00   R  261.00
+      DNge138          mean  234.00 Hz   L    0.00   R    0.00
+      DNge054          mean  215.50 Hz   L  223.00   R  208.00
+      DNae004          mean  213.00 Hz   L  139.00   R  287.00
+      DNp04            mean  206.50 Hz   L  413.00   R    0.00
+      DNp02            mean  192.50 Hz   L  385.00   R    0.00
+      DNp01            mean  186.50 Hz   L  369.00   R    4.00
+      DNp11            mean  183.50 Hz   L  367.00   R    0.00
+      DNge149          mean  177.00 Hz   L    0.00   R    0.00
+      DNp03            mean  166.50 Hz   L  333.00   R    0.00
+      DNc02            mean  165.50 Hz   L  116.00   R  215.00
+      DNge150          mean  165.00 Hz   L    0.00   R    0.00
+      DNg66            mean  163.00 Hz   L    0.00   R    0.00
+      DNae006          mean  154.00 Hz   L  163.00   R  145.00
+      DNg34            mean  149.50 Hz   L  183.00   R  116.00
+      DNc01            mean  148.00 Hz   L  190.00   R  106.00
+    200    25     196.90   15026 ( 8.97%)      14955       307    10.706    11.224    7.035     2.9  no
+    top firing DN types:
+      DNg33            mean  372.50 Hz   L  372.00   R  373.00
+      DNae004          mean  250.50 Hz   L  175.00   R  326.00
+      DNp06            mean  225.00 Hz   L  267.00   R  183.00
+      DNb05            mean  218.50 Hz   L  220.00   R  217.00
+      DNp04            mean  216.00 Hz   L  432.00   R    0.00
+      DNp01            mean  210.50 Hz   L  412.00   R    9.00
+      DNp02            mean  203.00 Hz   L  406.00   R    0.00
+      DNp11            mean  198.00 Hz   L  396.00   R    0.00
+      DNp03            mean  190.50 Hz   L  381.00   R    0.00
+      DNge054          mean  154.00 Hz   L  199.00   R  109.00
+      DNp12            mean  146.00 Hz   L  144.00   R  148.00
+      DNp05            mean  146.00 Hz   L  292.00   R    0.00
+      DNp32            mean  145.00 Hz   L  151.00   R  139.00
+      DNb09            mean  141.50 Hz   L    1.00   R  282.00
+      DNge152          mean  139.00 Hz   L    0.00   R    0.00
+      DNg55            mean  139.00 Hz   L    0.00   R    0.00
+      DNa05            mean  137.50 Hz   L   47.00   R  228.00
+      DNge138          mean  132.50 Hz   L    0.00   R    0.00
+      DNg56            mean  132.50 Hz   L  116.00   R  149.00
+      DNae006          mean  128.00 Hz   L  129.00   R  127.00
+     20    50      10.24   15862 ( 9.47%)      15791       413    11.534    11.423   10.570     3.4  no
+    top firing DN types:
+      DNb05            mean  366.00 Hz   L  367.00   R  365.00
+      DNg33            mean  337.50 Hz   L  337.00   R  338.00
+      DNg56            mean  283.00 Hz   L  271.00   R  295.00
+      DNp12            mean  273.50 Hz   L  266.00   R  281.00
+      DNp32            mean  245.00 Hz   L  255.00   R  235.00
+      DNge138          mean  237.50 Hz   L    0.00   R    0.00
+      DNp31            mean  220.00 Hz   L  212.00   R  228.00
+      DNge054          mean  204.50 Hz   L  163.00   R  246.00
+      DNp20            mean  195.00 Hz   L  200.00   R  190.00
+      DNp18            mean  190.50 Hz   L  203.00   R  178.00
+      DNge149          mean  180.00 Hz   L    0.00   R    0.00
+      DNg66            mean  176.00 Hz   L    0.00   R    0.00
+      DNge150          mean  173.00 Hz   L    0.00   R    0.00
+      DNpe017          mean  169.50 Hz   L  205.00   R  134.00
+      DNg99            mean  169.00 Hz   L  146.00   R  192.00
+      DNc02            mean  163.00 Hz   L  110.00   R  216.00
+      DNae006          mean  161.50 Hz   L  155.00   R  168.00
+      DNg34            mean  148.50 Hz   L  180.00   R  117.00
+      DNc01            mean  146.50 Hz   L  190.00   R  103.00
+      DNge141          mean  146.00 Hz   L  152.00   R  140.00
+     50    50      95.48   15325 ( 9.15%)      15254       362     9.835     9.739    9.642     4.0  no
+    top firing DN types:
+      DNg33            mean  384.50 Hz   L  384.00   R  385.00
+      DNb05            mean  334.50 Hz   L  336.00   R  333.00
+      DNp12            mean  232.50 Hz   L  229.00   R  236.00
+      DNg56            mean  232.50 Hz   L  215.00   R  250.00
+      DNp32            mean  219.00 Hz   L  227.00   R  211.00
+      DNge054          mean  218.50 Hz   L  228.00   R  209.00
+      DNge138          mean  214.00 Hz   L    0.00   R    0.00
+      DNp04            mean  201.50 Hz   L  403.00   R    0.00
+      DNp02            mean  178.50 Hz   L  357.00   R    0.00
+      DNp11            mean  163.50 Hz   L  327.00   R    0.00
+      DNge150          mean  156.00 Hz   L    0.00   R    0.00
+      DNg66            mean  154.00 Hz   L    0.00   R    0.00
+      DNc02            mean  153.00 Hz   L  106.00   R  200.00
+      DNge149          mean  151.00 Hz   L    0.00   R    0.00
+      DNc01            mean  137.00 Hz   L  176.00   R   98.00
+      DNg34            mean  135.50 Hz   L  165.00   R  106.00
+      DNae006          mean  133.00 Hz   L  138.00   R  128.00
+      DNae004          mean  129.00 Hz   L   65.00   R  193.00
+      DNp44            mean  127.00 Hz   L  139.00   R  115.00
+      DNp31            mean  122.00 Hz   L   97.00   R  147.00
+    100    50     188.38   14897 ( 8.89%)      14826       305    11.738    12.485   10.577     3.7  no
+    top firing DN types:
+      DNg33            mean  387.00 Hz   L  387.00   R  387.00
+      DNb05            mean  354.50 Hz   L  356.00   R  353.00
+      DNae004          mean  249.50 Hz   L  179.00   R  320.00
+      DNp12            mean  242.50 Hz   L  239.00   R  246.00
+      DNp32            mean  236.00 Hz   L  243.00   R  229.00
+      DNge138          mean  223.50 Hz   L    0.00   R    0.00
+      DNg56            mean  220.50 Hz   L  195.00   R  246.00
+      DNp04            mean  216.00 Hz   L  432.00   R    0.00
+      DNp06            mean  208.50 Hz   L  192.00   R  225.00
+      DNge054          mean  208.50 Hz   L  232.00   R  185.00
+      DNp01            mean  206.00 Hz   L  408.00   R    4.00
+      DNp02            mean  201.00 Hz   L  402.00   R    0.00
+      DNp11            mean  197.00 Hz   L  394.00   R    0.00
+      DNp03            mean  187.50 Hz   L  375.00   R    0.00
+      DNge149          mean  170.00 Hz   L    0.00   R    0.00
+      DNae006          mean  164.50 Hz   L  173.00   R  156.00
+      DNc02            mean  161.50 Hz   L  113.00   R  210.00
+      DNge152          mean  159.00 Hz   L    0.00   R    0.00
+      DNge150          mean  156.00 Hz   L    0.00   R    0.00
+      DNg66            mean  150.00 Hz   L    0.00   R    0.00
+    200    50     242.28    7851 ( 4.69%)       7780       295     9.564     9.446    1.821     2.3  no
+    top firing DN types:
+      DNg33            mean  374.00 Hz   L  374.00   R  374.00
+      DNp06            mean  268.00 Hz   L  354.00   R  182.00
+      DNae004          mean  240.50 Hz   L  148.00   R  333.00
+      DNg40            mean  220.50 Hz   L  329.00   R  112.00
+      DNp04            mean  216.50 Hz   L  433.00   R    0.00
+      DNp01            mean  212.00 Hz   L  416.00   R    8.00
+      DNp02            mean  207.00 Hz   L  414.00   R    0.00
+      DNp11            mean  205.50 Hz   L  411.00   R    0.00
+      DNp03            mean  198.50 Hz   L  397.00   R    0.00
+      DNp05            mean  156.50 Hz   L  313.00   R    0.00
+      DNa05            mean  152.00 Hz   L   53.00   R  251.00
+      DNg55            mean  142.00 Hz   L    0.00   R    0.00
+      DNge048          mean  133.00 Hz   L  129.00   R  137.00
+      DNb09            mean  122.00 Hz   L    0.00   R  244.00
+      DNb01            mean  122.00 Hz   L    1.00   R  243.00
+      DNge152          mean  105.00 Hz   L    0.00   R    0.00
+      DNge119          mean  104.50 Hz   L    2.00   R  207.00
+      DNg70            mean  104.50 Hz   L  112.00   R   97.00
+      DNg12_a          mean   98.00 Hz   L   81.25   R  114.75
+      DNg01_b          mean   92.00 Hz   L    8.00   R  176.00
+== LC4 R: 55 neurons (type=LC4,somaSide=R)
+   rate  w_mV  driven_Hz  fired(share)        downstream  DN_fired   DN_L_Hz   DN_R_Hz   net_Hz  wall_s  runaway
+     20    10       0.02       1 ( 0.00%)          0         0     0.000     0.000    0.000     1.6  no
+     50    10       1.02     185 ( 0.11%)        152        11     0.014     0.051    0.004     1.6  no
+    top firing DN types:
+      DNp04            mean    8.00 Hz   L    0.00   R   16.00
+      DNp01            mean    4.00 Hz   L    6.00   R    2.00
+      DNge119          mean    2.50 Hz   L    0.00   R    5.00
+      DNp11            mean    2.00 Hz   L    0.00   R    4.00
+      DNge099          mean    2.00 Hz   L    2.00   R    2.00
+      DNp35            mean    1.00 Hz   L    0.00   R    2.00
+      DNp103           mean    0.50 Hz   L    0.00   R    1.00
+      DNg74_a          mean    0.50 Hz   L    1.00   R    0.00
+      DNg108           mean    0.50 Hz   L    0.00   R    1.00
+    100    10       1.45   16455 ( 9.82%)      16408       459    11.787    11.761   10.162     3.8  no
+    top firing DN types:
+      DNb05            mean  353.50 Hz   L  353.00   R  354.00
+      DNg33            mean  345.50 Hz   L  345.00   R  346.00
+      DNg56            mean  278.00 Hz   L  267.00   R  289.00
+      DNp12            mean  265.50 Hz   L  258.00   R  273.00
+      DNge138          mean  239.50 Hz   L    0.00   R    0.00
+      DNp32            mean  237.50 Hz   L  248.00   R  227.00
+      DNp31            mean  224.00 Hz   L  220.00   R  228.00
+      DNp20            mean  209.50 Hz   L  218.00   R  201.00
+      DNp18            mean  193.00 Hz   L  212.00   R  174.00
+      DNge054          mean  188.00 Hz   L  141.00   R  235.00
+      DNge149          mean  187.00 Hz   L    0.00   R    0.00
+      DNpe017          mean  172.00 Hz   L  210.00   R  134.00
+      DNge150          mean  171.00 Hz   L    0.00   R    0.00
+      DNg66            mean  170.00 Hz   L    0.00   R    0.00
+      DNg99            mean  168.00 Hz   L  147.00   R  189.00
+      DNae006          mean  156.00 Hz   L  149.00   R  163.00
+      DNc02            mean  154.00 Hz   L  104.00   R  204.00
+      DNg34            mean  147.00 Hz   L  179.00   R  115.00
+      DNge141          mean  145.00 Hz   L  149.00   R  141.00
+      DNpe027          mean  140.50 Hz   L  158.00   R  123.00
+    200    10      12.25   16090 ( 9.60%)      16035       387    12.284    12.427   10.751     3.7  no
+    top firing DN types:
+      DNb05            mean  370.50 Hz   L  371.00   R  370.00
+      DNg33            mean  344.50 Hz   L  344.00   R  345.00
+      DNg56            mean  286.50 Hz   L  276.00   R  297.00
+      DNp12            mean  278.50 Hz   L  270.00   R  287.00
+      DNge138          mean  250.50 Hz   L    0.00   R    0.00
+      DNp32            mean  250.00 Hz   L  264.00   R  236.00
+      DNp31            mean  235.00 Hz   L  229.00   R  241.00
+      DNge054          mean  219.50 Hz   L  156.00   R  283.00
+      DNp20            mean  206.50 Hz   L  215.00   R  198.00
+      DNp18            mean  200.00 Hz   L  219.00   R  181.00
+      DNge149          mean  192.00 Hz   L    0.00   R    0.00
+      DNpe017          mean  184.00 Hz   L  225.00   R  143.00
+      DNg99            mean  183.50 Hz   L  166.00   R  201.00
+      DNge150          mean  179.00 Hz   L    0.00   R    0.00
+      DNg66            mean  179.00 Hz   L    0.00   R    0.00
+      DNae006          mean  166.00 Hz   L  160.00   R  172.00
+      DNc02            mean  164.50 Hz   L  111.00   R  218.00
+      DNge141          mean  152.00 Hz   L  156.00   R  148.00
+      DNg34            mean  151.00 Hz   L  184.00   R  118.00
+      DNc01            mean  147.50 Hz   L  191.00   R  104.00
+     20    25       3.53    4518 ( 2.70%)       4465       265     1.494     1.415    0.344     3.6  no
+    top firing DN types:
+      DNg33            mean  311.00 Hz   L  311.00   R  311.00
+      DNg66            mean   64.00 Hz   L    0.00   R    0.00
+      DNg70            mean   46.00 Hz   L   47.00   R   45.00
+      DNp01            mean   33.00 Hz   L   49.00   R   17.00
+      DNge129          mean   31.00 Hz   L   26.00   R   36.00
+      DNp04            mean   29.50 Hz   L    0.00   R   59.00
+      DNpe034          mean   23.50 Hz   L   23.00   R   24.00
+      DNpe053          mean   18.00 Hz   L   12.00   R   24.00
+      DNp11            mean   17.50 Hz   L    0.00   R   35.00
+      DNge119          mean   16.00 Hz   L    0.00   R   32.00
+      DNp58            mean   15.00 Hz   L   20.00   R   10.00
+      DNge033          mean   14.50 Hz   L   22.00   R    7.00
+      DNg98            mean   13.50 Hz   L   13.00   R   14.00
+      DNg49            mean   10.50 Hz   L   16.00   R    5.00
+      DNg22            mean   10.50 Hz   L   11.00   R   10.00
+      DNge152          mean    9.00 Hz   L    0.00   R    0.00
+      DNge149          mean    9.00 Hz   L    0.00   R    0.00
+      DNa06            mean    9.00 Hz   L   17.00   R    1.00
+      DNge006          mean    8.50 Hz   L   17.00   R    0.00
+      DNg89            mean    8.50 Hz   L   14.00   R    3.00
+     50    25       4.15   15436 ( 9.21%)      15383       391    12.052    11.955   10.517     3.5  no
+    top firing DN types:
+      DNb05            mean  363.50 Hz   L  363.00   R  364.00
+      DNg33            mean  336.50 Hz   L  336.00   R  337.00
+      DNg56            mean  282.50 Hz   L  271.00   R  294.00
+      DNp12            mean  273.00 Hz   L  265.00   R  281.00
+      DNp32            mean  244.00 Hz   L  255.00   R  233.00
+      DNge138          mean  241.00 Hz   L    0.00   R    0.00
+      DNp31            mean  236.00 Hz   L  231.00   R  241.00
+      DNge054          mean  214.00 Hz   L  161.00   R  267.00
+      DNp20            mean  207.50 Hz   L  217.00   R  198.00
+      DNp18            mean  197.00 Hz   L  212.00   R  182.00
+      DNpe017          mean  185.50 Hz   L  225.00   R  146.00
+      DNge149          mean  182.00 Hz   L    0.00   R    0.00
+      DNg99            mean  174.50 Hz   L  153.00   R  196.00
+      DNge150          mean  169.00 Hz   L    0.00   R    0.00
+      DNg66            mean  169.00 Hz   L    0.00   R    0.00
+      DNae006          mean  164.50 Hz   L  157.00   R  172.00
+      DNc02            mean  160.00 Hz   L  108.00   R  212.00
+      DNge141          mean  149.50 Hz   L  153.00   R  146.00
+      DNg34            mean  147.00 Hz   L  179.00   R  115.00
+      DNpe027          mean  145.00 Hz   L  163.00   R  127.00
+    100    25      20.09   16136 ( 9.63%)      16081       386    11.863    12.208   10.784     3.7  no
+    top firing DN types:
+      DNb05            mean  372.50 Hz   L  373.00   R  372.00
+      DNg33            mean  341.50 Hz   L  341.00   R  342.00
+      DNg56            mean  286.00 Hz   L  277.00   R  295.00
+      DNp12            mean  275.50 Hz   L  267.00   R  284.00
+      DNp32            mean  252.00 Hz   L  265.00   R  239.00
+      DNge138          mean  245.50 Hz   L    0.00   R    0.00
+      DNp31            mean  232.50 Hz   L  227.00   R  238.00
+      DNge054          mean  217.00 Hz   L  151.00   R  283.00
+      DNge150          mean  195.00 Hz   L    0.00   R    0.00
+      DNp20            mean  190.50 Hz   L  201.00   R  180.00
+      DNge149          mean  189.00 Hz   L    0.00   R    0.00
+      DNp18            mean  186.50 Hz   L  201.00   R  172.00
+      DNg66            mean  185.00 Hz   L    0.00   R    0.00
+      DNpe017          mean  175.50 Hz   L  217.00   R  134.00
+      DNg99            mean  175.50 Hz   L  156.00   R  195.00
+      DNae006          mean  167.00 Hz   L  163.00   R  171.00
+      DNc02            mean  165.00 Hz   L  110.00   R  220.00
+      DNg34            mean  153.50 Hz   L  187.00   R  120.00
+      DNp44            mean  148.50 Hz   L  162.00   R  135.00
+      DNc01            mean  148.50 Hz   L  192.00   R  105.00
+    200    25     119.11   15088 ( 9.01%)      15033       331     9.383    11.867   10.761     3.6  no
+    top firing DN types:
+      DNb05            mean  375.50 Hz   L  376.00   R  375.00
+      DNg33            mean  346.50 Hz   L  346.00   R  347.00
+      DNg56            mean  267.00 Hz   L  264.00   R  270.00
+      DNp32            mean  249.00 Hz   L  262.00   R  236.00
+      DNge138          mean  249.00 Hz   L    0.00   R    0.00
+      DNp12            mean  248.50 Hz   L  237.00   R  260.00
+      DNge150          mean  208.00 Hz   L    0.00   R    0.00
+      DNp04            mean  201.00 Hz   L    0.00   R  402.00
+      DNg66            mean  197.00 Hz   L    0.00   R    0.00
+      DNge054          mean  189.50 Hz   L  121.00   R  258.00
+      DNp02            mean  184.00 Hz   L    0.00   R  368.00
+      DNge149          mean  176.00 Hz   L    0.00   R    0.00
+      DNp11            mean  174.00 Hz   L    0.00   R  348.00
+      DNc02            mean  171.50 Hz   L  120.00   R  223.00
+      DNge129          mean  171.00 Hz   L  178.00   R  164.00
+      DNae004          mean  167.00 Hz   L  259.00   R   75.00
+      DNg70            mean  165.00 Hz   L  180.00   R  150.00
+      DNp31            mean  161.00 Hz   L  133.00   R  189.00
+      DNg34            mean  156.50 Hz   L  189.00   R  124.00
+      DNc01            mean  152.50 Hz   L  196.00   R  109.00
+     20    50       4.73   16191 ( 9.66%)      16137       431    11.409    11.255    9.596     3.5  no
+    top firing DN types:
+      DNg33            mean  337.50 Hz   L  337.00   R  338.00
+      DNb05            mean  332.50 Hz   L  333.00   R  332.00
+      DNg56            mean  260.50 Hz   L  250.00   R  271.00
+      DNp12            mean  250.50 Hz   L  243.00   R  258.00
+      DNge138          mean  231.00 Hz   L    0.00   R    0.00
+      DNp32            mean  223.50 Hz   L  234.00   R  213.00
+      DNp31            mean  209.00 Hz   L  203.00   R  215.00
+      DNp20            mean  198.00 Hz   L  210.00   R  186.00
+      DNp18            mean  184.50 Hz   L  200.00   R  169.00
+      DNge149          mean  178.00 Hz   L    0.00   R    0.00
+      DNge054          mean  176.00 Hz   L  134.00   R  218.00
+      DNpe017          mean  171.00 Hz   L  214.00   R  128.00
+      DNge150          mean  165.00 Hz   L    0.00   R    0.00
+      DNg99            mean  164.50 Hz   L  145.00   R  184.00
+      DNg66            mean  163.00 Hz   L    0.00   R    0.00
+      DNae006          mean  151.00 Hz   L  143.00   R  159.00
+      DNc02            mean  146.00 Hz   L   99.00   R  193.00
+      DNge141          mean  140.00 Hz   L  144.00   R  136.00
+      DNg34            mean  138.50 Hz   L  169.00   R  108.00
+      DNpe027          mean  132.50 Hz   L  150.00   R  115.00
+     50    50      22.49   15962 ( 9.53%)      15907       384    12.285    12.534   10.904     3.7  no
+    top firing DN types:
+      DNb05            mean  375.00 Hz   L  374.00   R  376.00
+      DNg33            mean  344.50 Hz   L  344.00   R  345.00
+      DNg56            mean  289.50 Hz   L  279.00   R  300.00
+      DNp12            mean  280.00 Hz   L  272.00   R  288.00
+      DNp32            mean  252.50 Hz   L  265.00   R  240.00
+      DNge138          mean  252.50 Hz   L    0.00   R    0.00
+      DNp31            mean  231.50 Hz   L  220.00   R  243.00
+      DNge054          mean  218.00 Hz   L  152.00   R  284.00
+      DNp20            mean  207.00 Hz   L  216.00   R  198.00
+      DNp18            mean  198.00 Hz   L  211.00   R  185.00
+      DNge149          mean  194.00 Hz   L    0.00   R    0.00
+      DNpe017          mean  187.50 Hz   L  230.00   R  145.00
+      DNg99            mean  181.00 Hz   L  162.00   R  200.00
+      DNge150          mean  180.00 Hz   L    0.00   R    0.00
+      DNg66            mean  173.00 Hz   L    0.00   R    0.00
+      DNae006          mean  167.50 Hz   L  162.00   R  173.00
+      DNc02            mean  166.00 Hz   L  112.00   R  220.00
+      DNg34            mean  154.00 Hz   L  188.00   R  120.00
+      DNge141          mean  153.00 Hz   L  156.00   R  150.00
+      DNc01            mean  149.50 Hz   L  194.00   R  105.00
+    100    50     128.67    6303 ( 3.76%)       6248       318     6.470     9.184    1.401     3.1  no
+    top firing DN types:
+      DNg33            mean  304.50 Hz   L  304.00   R  305.00
+      DNp01            mean  216.00 Hz   L   42.00   R  390.00
+      DNp04            mean  203.00 Hz   L    0.00   R  406.00
+      DNp02            mean  190.00 Hz   L    0.00   R  380.00
+      DNg40            mean  182.50 Hz   L   61.00   R  304.00
+      DNp11            mean  181.50 Hz   L    0.00   R  363.00
+      DNae004          mean  170.00 Hz   L  286.00   R   54.00
+      DNge119          mean  142.00 Hz   L    1.00   R  283.00
+      DNg70            mean  125.50 Hz   L  134.00   R  117.00
+      DNp03            mean  121.00 Hz   L    0.00   R  242.00
+      DNp06            mean  112.00 Hz   L   25.00   R  199.00
+      DNge138          mean   99.00 Hz   L    0.00   R    0.00
+      pIP1             mean   87.50 Hz   L    0.00   R  175.00
+      DNpe017          mean   86.00 Hz   L  163.00   R    9.00
+      DNa05            mean   84.00 Hz   L  168.00   R    0.00
+      DNge146          mean   79.00 Hz   L  108.00   R   50.00
+      DNge054          mean   77.00 Hz   L    0.00   R  154.00
+      DNpe053          mean   71.00 Hz   L   63.00   R   79.00
+      DNp27            mean   70.50 Hz   L   77.00   R   64.00
+      DNge150          mean   69.00 Hz   L    0.00   R    0.00
+    200    50     209.35   14860 ( 8.87%)      14805       321    11.790    13.478   10.801     4.0  no
+    top firing DN types:
+      DNg33            mean  387.50 Hz   L  387.00   R  388.00
+      DNb05            mean  362.00 Hz   L  363.00   R  361.00
+      DNp32            mean  242.50 Hz   L  255.00   R  230.00
+      DNg56            mean  239.50 Hz   L  242.00   R  237.00
+      DNp12            mean  239.00 Hz   L  235.00   R  243.00
+      DNge138          mean  236.50 Hz   L    0.00   R    0.00
+      DNae004          mean  225.00 Hz   L  318.00   R  132.00
+      DNp04            mean  208.00 Hz   L    0.00   R  416.00
+      DNp01            mean  204.50 Hz   L    7.00   R  402.00
+      DNp06            mean  201.00 Hz   L  152.00   R  250.00
+      DNp02            mean  200.50 Hz   L    0.00   R  401.00
+      DNp11            mean  193.50 Hz   L    0.00   R  387.00
+      DNge150          mean  190.00 Hz   L    0.00   R    0.00
+      DNge149          mean  185.00 Hz   L    0.00   R    0.00
+      DNge054          mean  177.00 Hz   L  103.00   R  251.00
+      DNge152          mean  167.00 Hz   L    0.00   R    0.00
+      DNc02            mean  165.50 Hz   L  117.00   R  214.00
+      DNg66            mean  163.00 Hz   L    0.00   R    0.00
+      DNg34            mean  155.00 Hz   L  191.00   R  119.00
+      DNc01            mean  146.50 Hz   L  189.00   R  104.00
+== LC10 L: 479 neurons (type^=LC10,somaSide=L)
+   rate  w_mV  driven_Hz  fired(share)        downstream  DN_fired   DN_L_Hz   DN_R_Hz   net_Hz  wall_s  runaway
+     20    10       0.01       4 ( 0.00%)          0         0     0.000     0.000    0.000     1.6  no
+     50    10       0.60     249 ( 0.15%)         36         5     0.008     0.000    0.002     1.8  no
+    top firing DN types:
+      DNge086          mean    0.50 Hz   L    1.00   R    0.00
+      DNge033          mean    0.50 Hz   L    1.00   R    0.00
+      DNge006          mean    0.50 Hz   L    1.00   R    0.00
+      DNa06            mean    0.50 Hz   L    1.00   R    0.00
+      DNa02            mean    0.50 Hz   L    1.00   R    0.00
+    100    10       2.52   16028 ( 9.57%)      15704       391    11.930    11.838   10.659     3.7  no
+    top firing DN types:
+      DNb05            mean  371.50 Hz   L  370.00   R  373.00
+      DNg33            mean  338.00 Hz   L  338.00   R  338.00
+      DNg56            mean  290.50 Hz   L  277.00   R  304.00
+      DNp12            mean  277.50 Hz   L  269.00   R  286.00
+      DNp32            mean  250.50 Hz   L  262.00   R  239.00
+      DNge138          mean  247.50 Hz   L    0.00   R    0.00
+      DNp31            mean  228.50 Hz   L  219.00   R  238.00
+      DNp20            mean  205.00 Hz   L  211.00   R  199.00
+      DNge054          mean  204.00 Hz   L  158.00   R  250.00
+      DNp18            mean  199.50 Hz   L  215.00   R  184.00
+      DNge149          mean  196.00 Hz   L    0.00   R    0.00
+      DNg66            mean  186.00 Hz   L    0.00   R    0.00
+      DNg99            mean  179.00 Hz   L  158.00   R  200.00
+      DNge150          mean  178.00 Hz   L    0.00   R    0.00
+      DNpe017          mean  174.50 Hz   L  216.00   R  133.00
+      DNc02            mean  163.00 Hz   L  110.00   R  216.00
+      DNae006          mean  161.50 Hz   L  155.00   R  168.00
+      DNg34            mean  152.50 Hz   L  187.00   R  118.00
+      DNge141          mean  150.00 Hz   L  154.00   R  146.00
+      DNc01            mean  146.50 Hz   L  190.00   R  103.00
+    200    10      10.01    8791 ( 5.25%)       8389       482     5.195     4.691    0.743     3.7  no
+    top firing DN types:
+      DNg33            mean  375.00 Hz   L  375.00   R  375.00
+      DNge138          mean  114.00 Hz   L    0.00   R    0.00
+      DNp20            mean   94.00 Hz   L   99.00   R   89.00
+      DNg70            mean   78.50 Hz   L   80.00   R   77.00
+      DNb06            mean   68.50 Hz   L  135.00   R    2.00
+      DNg99            mean   63.50 Hz   L   46.00   R   81.00
+      DNg56            mean   58.50 Hz   L   18.00   R   99.00
+      DNp26            mean   57.00 Hz   L   57.00   R   57.00
+      DNpe017          mean   55.50 Hz   L   84.00   R   27.00
+      DNg94            mean   54.50 Hz   L   53.00   R   56.00
+      DNpe053          mean   54.00 Hz   L   57.00   R   51.00
+      DNp73            mean   51.00 Hz   L   44.00   R   58.00
+      DNp21            mean   49.00 Hz   L   79.00   R   19.00
+      DNp18            mean   48.00 Hz   L   55.00   R   41.00
+      DNg66            mean   48.00 Hz   L    0.00   R    0.00
+      DNge033          mean   47.50 Hz   L   64.00   R   31.00
+      DNg41            mean   40.50 Hz   L   47.00   R   34.00
+      DNp12            mean   39.00 Hz   L    2.00   R   76.00
+      DNge149          mean   38.00 Hz   L    0.00   R    0.00
+      DNg11            mean   35.17 Hz   L   41.33   R   29.00
+     20    25       1.88    8259 ( 4.93%)       7893       454     3.942     3.435    0.623     2.4  no
+    top firing DN types:
+      DNg33            mean  360.50 Hz   L  360.00   R  361.00
+      DNg70            mean   82.00 Hz   L   84.00   R   80.00
+      DNg66            mean   82.00 Hz   L    0.00   R    0.00
+      DNge138          mean   79.50 Hz   L    0.00   R    0.00
+      DNp26            mean   70.00 Hz   L   73.00   R   67.00
+      DNp20            mean   64.00 Hz   L   68.00   R   60.00
+      DNg99            mean   53.00 Hz   L   41.00   R   65.00
+      DNg56            mean   47.50 Hz   L   20.00   R   75.00
+      DNpe053          mean   45.00 Hz   L   40.00   R   50.00
+      DNpe017          mean   40.00 Hz   L   66.00   R   14.00
+      DNp18            mean   40.00 Hz   L   56.00   R   24.00
+      DNp73            mean   39.50 Hz   L   34.00   R   45.00
+      DNge033          mean   36.00 Hz   L   41.00   R   31.00
+      DNg98            mean   35.50 Hz   L   32.00   R   39.00
+      DNge150          mean   33.00 Hz   L    0.00   R    0.00
+      DNge149          mean   31.00 Hz   L    0.00   R    0.00
+      DNge129          mean   30.50 Hz   L   32.00   R   29.00
+      DNge152          mean   30.00 Hz   L    0.00   R    0.00
+      DNp21            mean   28.50 Hz   L   52.00   R    5.00
+      DNg94            mean   28.00 Hz   L   29.00   R   27.00
+     50    25       7.41    9730 ( 5.81%)       9281       518     6.971     6.323    1.037     2.5  no
+    top firing DN types:
+      DNg33            mean  373.50 Hz   L  373.00   R  374.00
+      DNg70            mean  133.00 Hz   L  127.00   R  139.00
+      DNge138          mean  124.00 Hz   L    0.00   R    0.00
+      DNp13            mean  117.50 Hz   L  126.00   R  109.00
+      DNg66            mean  117.00 Hz   L    0.00   R    0.00
+      DNg98            mean  109.50 Hz   L  100.00   R  119.00
+      DNp36            mean   98.50 Hz   L  107.00   R   90.00
+      DNg13            mean   94.00 Hz   L   95.00   R   93.00
+      DNpe053          mean   80.00 Hz   L   93.00   R   67.00
+      DNg56            mean   73.50 Hz   L   53.00   R   94.00
+      DNp20            mean   71.50 Hz   L   71.00   R   72.00
+      DNge033          mean   71.00 Hz   L   71.00   R   71.00
+      DNge152          mean   69.00 Hz   L    0.00   R    0.00
+      DNge129          mean   66.00 Hz   L   61.00   R   71.00
+      DNp26            mean   57.00 Hz   L   53.00   R   61.00
+      DNp31            mean   56.50 Hz   L   60.00   R   53.00
+      DNge010          mean   55.00 Hz   L   50.00   R   60.00
+      DNp18            mean   51.50 Hz   L   52.00   R   51.00
+      DNge151          mean   51.00 Hz   L    0.00   R    0.00
+      DNp73            mean   50.00 Hz   L   43.00   R   57.00
+    100    25      14.75   10180 ( 6.08%)       9749       532     7.323     5.616    1.001     2.8  no
+    top firing DN types:
+      DNg33            mean  376.00 Hz   L  376.00   R  376.00
+      DNg70            mean  124.00 Hz   L  123.00   R  125.00
+      DNge138          mean  107.50 Hz   L    0.00   R    0.00
+      DNpe053          mean   87.00 Hz   L   90.00   R   84.00
+      DNge033          mean   83.50 Hz   L  119.00   R   48.00
+      DNg66            mean   79.00 Hz   L    0.00   R    0.00
+      DNge152          mean   77.00 Hz   L    0.00   R    0.00
+      DNge149          mean   75.00 Hz   L    0.00   R    0.00
+      DNp26            mean   74.00 Hz   L   79.00   R   69.00
+      DNg56            mean   74.00 Hz   L   59.00   R   89.00
+      DNg98            mean   70.50 Hz   L   64.00   R   77.00
+      DNg99            mean   61.50 Hz   L   54.00   R   69.00
+      DNp20            mean   60.00 Hz   L   63.00   R   57.00
+      DNae009          mean   59.50 Hz   L   61.00   R   58.00
+      DNge150          mean   58.00 Hz   L    0.00   R    0.00
+      DNpe040          mean   50.00 Hz   L   48.00   R   52.00
+      DNge151          mean   46.00 Hz   L    0.00   R    0.00
+      DNge006          mean   46.00 Hz   L   92.00   R    0.00
+      DNg89            mean   44.50 Hz   L   69.00   R   20.00
+      DNa16            mean   44.00 Hz   L   53.00   R   35.00
+    200    25      33.82   18310 (10.93%)      17852       523     9.541     8.398    3.315     2.9  no
+    top firing DN types:
+      DNg33            mean  383.50 Hz   L  383.00   R  384.00
+      DNp31            mean  172.50 Hz   L  170.00   R  175.00
+      DNge138          mean  148.00 Hz   L    0.00   R    0.00
+      DNg70            mean  147.00 Hz   L  147.00   R  147.00
+      DNg56            mean  142.50 Hz   L  124.00   R  161.00
+      DNp20            mean  128.50 Hz   L  134.00   R  123.00
+      DNb06            mean  125.50 Hz   L  249.00   R    2.00
+      DNb05            mean  112.00 Hz   L  126.00   R   98.00
+      DNg99            mean  108.50 Hz   L   95.00   R  122.00
+      DNae006          mean  106.00 Hz   L   80.00   R  132.00
+      DNp12            mean  105.00 Hz   L   68.00   R  142.00
+      DNg66            mean   97.00 Hz   L    0.00   R    0.00
+      DNb04            mean   88.00 Hz   L   96.00   R   80.00
+      DNpe053          mean   87.00 Hz   L   87.00   R   87.00
+      DNp18            mean   84.50 Hz   L   62.00   R  107.00
+      DNg94            mean   79.50 Hz   L   84.00   R   75.00
+      DNg22            mean   72.50 Hz   L   70.00   R   75.00
+      DNge033          mean   72.00 Hz   L   91.00   R   53.00
+      DNp32            mean   71.00 Hz   L   81.00   R   61.00
+      DNp21            mean   70.00 Hz   L   95.00   R   45.00
+     20    50       6.87    9758 ( 5.82%)       9323       501     6.793     5.718    0.993     2.9  no
+    top firing DN types:
+      DNg33            mean  374.50 Hz   L  374.00   R  375.00
+      DNge138          mean  124.50 Hz   L    0.00   R    0.00
+      DNg70            mean  114.00 Hz   L  110.00   R  118.00
+      DNg66            mean   97.00 Hz   L    0.00   R    0.00
+      DNp26            mean   88.50 Hz   L   85.00   R   92.00
+      DNg98            mean   87.00 Hz   L   81.00   R   93.00
+      DNp13            mean   81.50 Hz   L   86.00   R   77.00
+      DNge033          mean   79.50 Hz   L   93.00   R   66.00
+      DNge152          mean   72.00 Hz   L    0.00   R    0.00
+      DNpe053          mean   71.00 Hz   L   75.00   R   67.00
+      DNg13            mean   68.00 Hz   L   69.00   R   67.00
+      DNp36            mean   66.00 Hz   L   70.00   R   62.00
+      DNp20            mean   64.50 Hz   L   63.00   R   66.00
+      DNg56            mean   63.00 Hz   L   48.00   R   78.00
+      DNge149          mean   60.00 Hz   L    0.00   R    0.00
+      DNg22            mean   56.00 Hz   L   57.00   R   55.00
+      DNge129          mean   55.50 Hz   L   54.00   R   57.00
+      DNae009          mean   53.50 Hz   L   55.00   R   52.00
+      DNg99            mean   49.50 Hz   L   46.00   R   53.00
+      DNge150          mean   48.00 Hz   L    0.00   R    0.00
+     50    50      16.05    9528 ( 5.69%)       9080       517     7.390     5.792    1.004     3.2  no
+    top firing DN types:
+      DNg33            mean  379.50 Hz   L  379.00   R  380.00
+      DNg70            mean  141.50 Hz   L  141.00   R  142.00
+      DNge138          mean  123.00 Hz   L    0.00   R    0.00
+      DNge152          mean  108.00 Hz   L    0.00   R    0.00
+      DNge033          mean  107.00 Hz   L  138.00   R   76.00
+      DNp26            mean   98.00 Hz   L   93.00   R  103.00
+      DNpe053          mean   92.00 Hz   L   87.00   R   97.00
+      DNge149          mean   89.00 Hz   L    0.00   R    0.00
+      DNg66            mean   82.00 Hz   L    0.00   R    0.00
+      DNae009          mean   81.50 Hz   L   81.00   R   82.00
+      DNg56            mean   76.50 Hz   L   58.00   R   95.00
+      DNg98            mean   73.00 Hz   L   65.00   R   81.00
+      DNge150          mean   71.00 Hz   L    0.00   R    0.00
+      DNg99            mean   66.50 Hz   L   54.00   R   79.00
+      DNge129          mean   64.00 Hz   L   64.00   R   64.00
+      DNp20            mean   63.50 Hz   L   66.00   R   61.00
+      DNg22            mean   60.50 Hz   L   61.00   R   60.00
+      DNpe040          mean   57.50 Hz   L   54.00   R   61.00
+      DNg89            mean   57.00 Hz   L   76.00   R   38.00
+      DNa06            mean   54.00 Hz   L   91.00   R   17.00
+    100    50      36.68   11228 ( 6.70%)      10751       527    12.826     9.290    1.689     2.4  no
+    top firing DN types:
+      DNg33            mean  380.50 Hz   L  380.00   R  381.00
+      DNp31            mean  216.50 Hz   L  232.00   R  201.00
+      DNg70            mean  174.00 Hz   L  174.00   R  174.00
+      DNge138          mean  155.50 Hz   L    0.00   R    0.00
+      DNb04            mean  137.50 Hz   L  150.00   R  125.00
+      DNb06            mean  127.00 Hz   L  254.00   R    0.00
+      DNg56            mean  122.00 Hz   L  110.00   R  134.00
+      DNae006          mean  122.00 Hz   L   97.00   R  147.00
+      DNge033          mean  119.00 Hz   L  195.00   R   43.00
+      DNg66            mean  115.00 Hz   L    0.00   R    0.00
+      DNpe053          mean  114.00 Hz   L  115.00   R  113.00
+      DNge152          mean   96.00 Hz   L    0.00   R    0.00
+      DNg89            mean   93.50 Hz   L  145.00   R   42.00
+      DNp20            mean   92.50 Hz   L   97.00   R   88.00
+      DNg22            mean   87.50 Hz   L   85.00   R   90.00
+      DNp13            mean   85.50 Hz   L   92.00   R   79.00
+      DNge006          mean   83.00 Hz   L  164.00   R    2.00
+      DNg99            mean   83.00 Hz   L   86.00   R   80.00
+      DNg94            mean   82.50 Hz   L   86.00   R   79.00
+      DNg98            mean   82.00 Hz   L   83.00   R   81.00
+    200    50      79.26   18753 (11.19%)      18274       506    16.471    14.502    9.885     3.7  no
+    top firing DN types:
+      DNg33            mean  385.50 Hz   L  385.00   R  386.00
+      DNb05            mean  347.00 Hz   L  364.00   R  330.00
+      DNp31            mean  309.50 Hz   L  307.00   R  312.00
+      DNg56            mean  293.00 Hz   L  283.00   R  303.00
+      DNge138          mean  255.00 Hz   L    0.00   R    0.00
+      DNp18            mean  254.50 Hz   L  259.00   R  250.00
+      DNp12            mean  244.50 Hz   L  228.00   R  261.00
+      DNp20            mean  206.00 Hz   L  211.00   R  201.00
+      DNp32            mean  204.50 Hz   L  215.00   R  194.00
+      DNg66            mean  186.00 Hz   L    0.00   R    0.00
+      DNg99            mean  182.50 Hz   L  171.00   R  194.00
+      DNb04            mean  181.50 Hz   L  192.00   R  171.00
+      DNae006          mean  177.00 Hz   L  173.00   R  181.00
+      DNge054          mean  176.00 Hz   L  154.00   R  198.00
+      DNge149          mean  167.00 Hz   L    0.00   R    0.00
+      DNge150          mean  149.00 Hz   L    0.00   R    0.00
+      DNb06            mean  149.00 Hz   L  283.00   R   15.00
+      DNpe017          mean  136.50 Hz   L  185.00   R   88.00
+      DNge141          mean  136.50 Hz   L  137.00   R  136.00
+      DNc02            mean  136.50 Hz   L   93.00   R  180.00
+== LC10 R: 481 neurons (type^=LC10,somaSide=R)
+   rate  w_mV  driven_Hz  fired(share)        downstream  DN_fired   DN_L_Hz   DN_R_Hz   net_Hz  wall_s  runaway
+     20    10       0.01       6 ( 0.00%)          0         0     0.000     0.000    0.000     1.6  no
+     50    10       0.49     211 ( 0.13%)         24         5     0.000     0.023    0.002     1.9  no
+    top firing DN types:
+      DNge026          mean    2.50 Hz   L    0.00   R    5.00
+      DNa02            mean    2.50 Hz   L    0.00   R    5.00
+      DNg90            mean    1.00 Hz   L    0.00   R    2.00
+      DNde002          mean    1.00 Hz   L    0.00   R    2.00
+      DNp31            mean    0.50 Hz   L    0.00   R    1.00
+    100    10       2.81    9152 ( 5.46%)       8764       500     4.715     4.406    0.659     2.2  no
+    top firing DN types:
+      DNg33            mean  319.50 Hz   L  319.00   R  320.00
+      DNge138          mean   86.00 Hz   L    0.00   R    0.00
+      DNg70            mean   83.50 Hz   L   84.00   R   83.00
+      DNp20            mean   65.50 Hz   L   70.00   R   61.00
+      DNg56            mean   62.00 Hz   L   36.00   R   88.00
+      DNpe053          mean   60.00 Hz   L   58.00   R   62.00
+      DNge149          mean   56.00 Hz   L    0.00   R    0.00
+      DNp26            mean   53.50 Hz   L   49.00   R   58.00
+      DNge033          mean   50.50 Hz   L   52.00   R   49.00
+      DNg99            mean   48.50 Hz   L   34.00   R   63.00
+      DNg98            mean   47.00 Hz   L   41.00   R   53.00
+      DNge129          mean   43.00 Hz   L   43.00   R   43.00
+      DNg66            mean   43.00 Hz   L    0.00   R    0.00
+      DNge150          mean   41.00 Hz   L    0.00   R    0.00
+      DNpe017          mean   40.00 Hz   L   62.00   R   18.00
+      DNge152          mean   40.00 Hz   L    0.00   R    0.00
+      DNge151          mean   36.00 Hz   L    0.00   R    0.00
+      DNpe040          mean   35.50 Hz   L   34.00   R   37.00
+      DNp73            mean   34.00 Hz   L   26.00   R   42.00
+      DNg22            mean   34.00 Hz   L   35.00   R   33.00
+    200    10       8.77   18031 (10.76%)      17636       538     6.380     7.039    1.580     2.5  no
+    top firing DN types:
+      DNg33            mean  368.00 Hz   L  368.00   R  368.00
+      DNge138          mean  131.50 Hz   L    0.00   R    0.00
+      DNg70            mean  108.00 Hz   L  107.00   R  109.00
+      DNg66            mean  102.00 Hz   L    0.00   R    0.00
+      DNp20            mean   92.00 Hz   L   93.00   R   91.00
+      DNg56            mean   91.50 Hz   L   58.00   R  125.00
+      DNg98            mean   84.00 Hz   L   76.00   R   92.00
+      DNp13            mean   80.50 Hz   L   85.00   R   76.00
+      DNg99            mean   77.50 Hz   L   56.00   R   99.00
+      DNge033          mean   75.00 Hz   L   60.00   R   90.00
+      DNpe053          mean   72.50 Hz   L   75.00   R   70.00
+      DNp36            mean   71.00 Hz   L   74.00   R   68.00
+      DNp31            mean   66.50 Hz   L   60.00   R   73.00
+      DNg13            mean   65.50 Hz   L   56.00   R   75.00
+      DNp26            mean   64.00 Hz   L   45.00   R   83.00
+      DNb05            mean   62.50 Hz   L   47.00   R   78.00
+      DNp18            mean   56.50 Hz   L   75.00   R   38.00
+      DNp73            mean   50.00 Hz   L   40.00   R   60.00
+      DNge149          mean   50.00 Hz   L    0.00   R    0.00
+      DNb06            mean   50.00 Hz   L   99.00   R    1.00
+     20    25       1.24   17261 (10.30%)      16969       502    10.343    10.069    8.392     3.2  no
+    top firing DN types:
+      DNg33            mean  324.50 Hz   L  324.00   R  325.00
+      DNb05            mean  296.00 Hz   L  296.00   R  296.00
+      DNg56            mean  235.50 Hz   L  225.00   R  246.00
+      DNp12            mean  218.00 Hz   L  211.00   R  225.00
+      DNge138          mean  203.50 Hz   L    0.00   R    0.00
+      DNp32            mean  199.50 Hz   L  211.00   R  188.00
+      DNp31            mean  183.50 Hz   L  177.00   R  190.00
+      DNp20            mean  173.00 Hz   L  180.00   R  166.00
+      DNge149          mean  165.00 Hz   L    0.00   R    0.00
+      DNp18            mean  164.50 Hz   L  180.00   R  149.00
+      DNge054          mean  152.50 Hz   L  121.00   R  184.00
+      DNge150          mean  152.00 Hz   L    0.00   R    0.00
+      DNg66            mean  144.00 Hz   L    0.00   R    0.00
+      DNg99            mean  142.00 Hz   L  124.00   R  160.00
+      DNpe017          mean  141.50 Hz   L  171.00   R  112.00
+      DNc02            mean  128.00 Hz   L   87.00   R  169.00
+      DNae006          mean  127.00 Hz   L  121.00   R  133.00
+      DNg70            mean  123.50 Hz   L  138.00   R  109.00
+      DNg34            mean  123.50 Hz   L  153.00   R   94.00
+      DNge141          mean  119.50 Hz   L  123.00   R  116.00
+     50    25       5.43    9088 ( 5.42%)       8668       489     5.088     4.940    0.797     2.7  no
+    top firing DN types:
+      DNg33            mean  370.50 Hz   L  370.00   R  371.00
+      DNge138          mean  105.00 Hz   L    0.00   R    0.00
+      DNg70            mean  102.00 Hz   L  100.00   R  104.00
+      DNg66            mean  100.00 Hz   L    0.00   R    0.00
+      DNp20            mean   93.00 Hz   L   92.00   R   94.00
+      DNg56            mean   68.50 Hz   L   29.00   R  108.00
+      DNp26            mean   67.50 Hz   L   59.00   R   76.00
+      DNg99            mean   62.00 Hz   L   50.00   R   74.00
+      DNg98            mean   56.50 Hz   L   55.00   R   58.00
+      DNp73            mean   55.00 Hz   L   44.00   R   66.00
+      DNpe053          mean   52.50 Hz   L   55.00   R   50.00
+      DNp18            mean   48.50 Hz   L   70.00   R   27.00
+      DNge129          mean   47.00 Hz   L   45.00   R   49.00
+      DNb06            mean   45.00 Hz   L   89.00   R    1.00
+      DNpe017          mean   43.00 Hz   L   70.00   R   16.00
+      DNp31            mean   42.50 Hz   L   35.00   R   50.00
+      DNge152          mean   40.00 Hz   L    0.00   R    0.00
+      DNg94            mean   39.50 Hz   L   39.00   R   40.00
+      DNg22            mean   39.50 Hz   L   39.00   R   40.00
+      DNp21            mean   38.50 Hz   L   69.00   R    8.00
+    100    25      11.62    9081 ( 5.42%)       8650       486     4.486     5.028    0.880     3.5  no
+    top firing DN types:
+      DNg33            mean  370.50 Hz   L  370.00   R  371.00
+      DNg70            mean  111.50 Hz   L  109.00   R  114.00
+      DNg98            mean   83.00 Hz   L   75.00   R   91.00
+      DNge033          mean   81.50 Hz   L   70.00   R   93.00
+      DNp31            mean   79.00 Hz   L   66.00   R   92.00
+      DNge143          mean   67.00 Hz   L   75.00   R   59.00
+      DNp20            mean   65.00 Hz   L   69.00   R   61.00
+      DNge138          mean   64.00 Hz   L    0.00   R    0.00
+      DNg99            mean   54.50 Hz   L   35.00   R   74.00
+      DNp26            mean   52.00 Hz   L   41.00   R   63.00
+      DNge129          mean   51.00 Hz   L   47.00   R   55.00
+      DNg66            mean   47.00 Hz   L    0.00   R    0.00
+      DNg56            mean   43.00 Hz   L   14.00   R   72.00
+      DNpe014          mean   39.75 Hz   L   46.00   R   33.50
+      DNp73            mean   38.50 Hz   L   33.00   R   44.00
+      DNp21            mean   38.00 Hz   L   63.00   R   13.00
+      DNb06            mean   38.00 Hz   L   74.00   R    2.00
+      DNge046          mean   37.00 Hz   L   20.00   R   54.00
+      DNg94            mean   35.00 Hz   L   35.00   R   35.00
+      DNpe053          mean   34.00 Hz   L   37.00   R   31.00
+    200    25      26.70   18244 (10.89%)      17791       493    14.613    14.052   10.679     3.7  no
+    top firing DN types:
+      DNg33            mean  385.50 Hz   L  385.00   R  386.00
+      DNb05            mean  367.00 Hz   L  360.00   R  374.00
+      DNp31            mean  303.00 Hz   L  293.00   R  313.00
+      DNg56            mean  298.00 Hz   L  280.00   R  316.00
+      DNp12            mean  281.00 Hz   L  270.00   R  292.00
+      DNge138          mean  275.00 Hz   L    0.00   R    0.00
+      DNp32            mean  247.00 Hz   L  257.00   R  237.00
+      DNp20            mean  239.50 Hz   L  247.00   R  232.00
+      DNge149          mean  219.00 Hz   L    0.00   R    0.00
+      DNp18            mean  199.00 Hz   L  253.00   R  145.00
+      DNp10            mean  197.50 Hz   L  169.00   R  226.00
+      DNg99            mean  192.50 Hz   L  168.00   R  217.00
+      DNae006          mean  179.50 Hz   L  169.00   R  190.00
+      DNg66            mean  177.00 Hz   L    0.00   R    0.00
+      DNge150          mean  175.00 Hz   L    0.00   R    0.00
+      DNpe017          mean  171.00 Hz   L  224.00   R  118.00
+      DNge141          mean  161.50 Hz   L  166.00   R  157.00
+      DNg34            mean  159.50 Hz   L  195.00   R  124.00
+      DNc02            mean  154.50 Hz   L  105.00   R  204.00
+      DNb06            mean  154.50 Hz   L  299.00   R   10.00
+     20    50       4.35   16212 ( 9.68%)      15825       415    12.793    12.438   11.157     3.8  no
+    top firing DN types:
+      DNb05            mean  387.50 Hz   L  387.00   R  388.00
+      DNg33            mean  376.00 Hz   L  376.00   R  376.00
+      DNg56            mean  305.50 Hz   L  292.00   R  319.00
+      DNp12            mean  292.00 Hz   L  284.00   R  300.00
+      DNge138          mean  266.00 Hz   L    0.00   R    0.00
+      DNp32            mean  263.00 Hz   L  276.00   R  250.00
+      DNp31            mean  243.50 Hz   L  238.00   R  249.00
+      DNp20            mean  228.00 Hz   L  233.00   R  223.00
+      DNge054          mean  215.50 Hz   L  172.00   R  259.00
+      DNp18            mean  214.00 Hz   L  242.00   R  186.00
+      DNge149          mean  205.00 Hz   L    0.00   R    0.00
+      DNge150          mean  191.00 Hz   L    0.00   R    0.00
+      DNpe017          mean  187.00 Hz   L  228.00   R  146.00
+      DNg99            mean  181.50 Hz   L  157.00   R  206.00
+      DNg66            mean  179.00 Hz   L    0.00   R    0.00
+      DNc02            mean  170.50 Hz   L  115.00   R  226.00
+      DNae006          mean  169.50 Hz   L  163.00   R  176.00
+      DNg34            mean  162.00 Hz   L  198.00   R  126.00
+      DNge141          mean  159.50 Hz   L  164.00   R  155.00
+      DNc01            mean  154.50 Hz   L  200.00   R  109.00
+     50    50      12.11   17616 (10.52%)      17176       456    13.021    12.688   11.181     3.8  no
+    top firing DN types:
+      DNb05            mean  385.50 Hz   L  382.00   R  389.00
+      DNg33            mean  379.50 Hz   L  379.00   R  380.00
+      DNg56            mean  304.00 Hz   L  289.00   R  319.00
+      DNp12            mean  291.50 Hz   L  283.00   R  300.00
+      DNge138          mean  269.00 Hz   L    0.00   R    0.00
+      DNp32            mean  259.00 Hz   L  269.00   R  249.00
+      DNp31            mean  246.50 Hz   L  239.00   R  254.00
+      DNp20            mean  220.50 Hz   L  225.00   R  216.00
+      DNge149          mean  207.00 Hz   L    0.00   R    0.00
+      DNp18            mean  206.00 Hz   L  240.00   R  172.00
+      DNge054          mean  201.00 Hz   L  165.00   R  237.00
+      DNge150          mean  189.00 Hz   L    0.00   R    0.00
+      DNg99            mean  186.00 Hz   L  165.00   R  207.00
+      DNg66            mean  186.00 Hz   L    0.00   R    0.00
+      DNpe017          mean  182.50 Hz   L  225.00   R  140.00
+      DNc02            mean  170.00 Hz   L  116.00   R  224.00
+      DNae006          mean  167.00 Hz   L  160.00   R  174.00
+      DNge141          mean  162.00 Hz   L  167.00   R  157.00
+      DNg34            mean  161.50 Hz   L  197.00   R  126.00
+      DNc01            mean  156.00 Hz   L  202.00   R  110.00
+    100    50      27.38   17840 (10.65%)      17369       488    14.076    13.221   11.195     3.8  no
+    top firing DN types:
+      DNg33            mean  385.50 Hz   L  385.00   R  386.00
+      DNb05            mean  385.00 Hz   L  383.00   R  387.00
+      DNg56            mean  308.00 Hz   L  294.00   R  322.00
+      DNp12            mean  294.50 Hz   L  286.00   R  303.00
+      DNp31            mean  286.50 Hz   L  279.00   R  294.00
+      DNge138          mean  277.50 Hz   L    0.00   R    0.00
+      DNp32            mean  259.00 Hz   L  270.00   R  248.00
+      DNp20            mean  229.50 Hz   L  237.00   R  222.00
+      DNge149          mean  216.00 Hz   L    0.00   R    0.00
+      DNp18            mean  211.50 Hz   L  264.00   R  159.00
+      DNge054          mean  189.50 Hz   L  172.00   R  207.00
+      DNge150          mean  187.00 Hz   L    0.00   R    0.00
+      DNg99            mean  187.00 Hz   L  160.00   R  214.00
+      DNg66            mean  179.00 Hz   L    0.00   R    0.00
+      DNae006          mean  177.00 Hz   L  171.00   R  183.00
+      DNc02            mean  168.50 Hz   L  115.00   R  222.00
+      DNpe017          mean  167.50 Hz   L  226.00   R  109.00
+      DNge141          mean  163.00 Hz   L  169.00   R  157.00
+      DNg34            mean  163.00 Hz   L  199.00   R  127.00
+      DNb06            mean  156.00 Hz   L  283.00   R   29.00
+    200    50      70.43   17586 (10.50%)      17105       449    15.331    15.761   11.907     3.9  no
+    top firing DN types:
+      DNb05            mean  397.50 Hz   L  394.00   R  401.00
+      DNg33            mean  387.50 Hz   L  387.00   R  388.00
+      DNp31            mean  340.50 Hz   L  327.00   R  354.00
+      DNg56            mean  313.50 Hz   L  299.00   R  328.00
+      DNp12            mean  299.50 Hz   L  291.00   R  308.00
+      DNge138          mean  285.00 Hz   L    0.00   R    0.00
+      DNp32            mean  255.00 Hz   L  269.00   R  241.00
+      DNp18            mean  237.00 Hz   L  274.00   R  200.00
+      DNp20            mean  223.50 Hz   L  235.00   R  212.00
+      DNge149          mean  213.00 Hz   L    0.00   R    0.00
+      DNge054          mean  201.50 Hz   L  188.00   R  215.00
+      DNb04            mean  197.00 Hz   L  206.00   R  188.00
+      DNae006          mean  192.00 Hz   L  186.00   R  198.00
+      DNg99            mean  187.00 Hz   L  162.00   R  212.00
+      DNg66            mean  185.00 Hz   L    0.00   R    0.00
+      DNge150          mean  179.00 Hz   L    0.00   R    0.00
+      DNc02            mean  174.50 Hz   L  119.00   R  230.00
+      DNg34            mean  170.00 Hz   L  203.00   R  137.00
+      DNge141          mean  167.50 Hz   L  171.00   R  164.00
+      DNb06            mean  162.50 Hz   L  320.00   R    5.00
+anything downstream fired: yes
+peak memory 620 MB, total 226 s
