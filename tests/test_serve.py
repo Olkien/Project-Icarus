@@ -90,3 +90,15 @@ def test_options_lists_controllers(server):
     assert status == 200
     assert "shuffled" in options["controllers"] and "pid" in options["controllers"]
     assert "s5_noise_sweep" not in options["scenarios"]
+
+
+def test_live_sliders_never_write_scenario_files(server):
+    base, _ = server
+    from env.scenario import SCENARIO_DIR
+
+    before = {p.name: p.read_bytes() for p in SCENARIO_DIR.glob("*.json")}
+    status, _ = get(f"{base}/api/live?scenario=s4_turbulent&controller=straight&seed=2"
+                    "&wind=0.3&noise=0.5")
+    assert status == 200
+    after = {p.name: p.read_bytes() for p in SCENARIO_DIR.glob("*.json")}
+    assert after == before

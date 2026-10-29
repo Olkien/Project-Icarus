@@ -144,3 +144,39 @@ test("clampToArena keeps points on the frame", function () {
   assert.deepStrictEqual(P.clampToArena(950, -900, 800), { x: 800, y: -800, outside: true });
   assert.strictEqual(P.clampToArena(800, 0, 800).outside, false);
 });
+
+test("tileRects overlay is one tile", function () {
+  const region = { x: 0, y: 0, w: 1000, h: 800 };
+  assert.deepStrictEqual(P.tileRects(region, 3, "overlay"), [region]);
+  assert.deepStrictEqual(P.tileRects(region, 1, "side"), [region]);
+});
+
+test("tileRects splits two runs along the long side", function () {
+  const wide = P.tileRects({ x: 0, y: 0, w: 1006, h: 500 }, 2, "side");
+  assert.deepStrictEqual(wide, [{ x: 0, y: 0, w: 500, h: 500 }, { x: 506, y: 0, w: 500, h: 500 }]);
+  const tall = P.tileRects({ x: 0, y: 0, w: 400, h: 806 }, 2, "side");
+  assert.strictEqual(tall[1].y, 406);
+  assert.strictEqual(tall[0].w, 400);
+});
+
+test("tileRects puts three and four runs in a 2 by 2 grid", function () {
+  const region = { x: 10, y: 20, w: 806, h: 606 };
+  const four = P.tileRects(region, 4, "side");
+  assert.strictEqual(four.length, 4);
+  assert.deepStrictEqual(four[3], { x: 416, y: 326, w: 400, h: 300 });
+  assert.strictEqual(P.tileRects(region, 3, "side").length, 3);
+  assert.strictEqual(P.tileRects(region, 9, "side").length, 4);
+  for (const t of four) {
+    assert.ok(t.x >= region.x && t.y >= region.y);
+    assert.ok(t.x + t.w <= region.x + region.w + 1e-9 && t.y + t.h <= region.y + region.h + 1e-9);
+  }
+});
+
+test("arenaView fits the world on the short side", function () {
+  const v = P.arenaView({ x: 100, y: 0, w: 1000, h: 820 }, 820);
+  assert.strictEqual(v.s, 0.5);
+  assert.strictEqual(v.cx, 600);
+  assert.strictEqual(v.cy, 410);
+  assert.strictEqual(v.halfH, 820);
+  assert.strictEqual(v.halfW, 1000);
+});

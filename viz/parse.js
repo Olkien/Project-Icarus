@@ -165,6 +165,36 @@
     return { total: total, t: Math.min(Math.max(t, 0), total), ends: ends };
   }
 
+  function tileRects(region, n, mode, gap) {
+    const g = gap === undefined ? 6 : gap;
+    if (mode !== "side" || n <= 1) return [region];
+    const r = region;
+    if (n === 2) {
+      if (r.w >= r.h) {
+        const w = (r.w - g) / 2;
+        return [{ x: r.x, y: r.y, w: w, h: r.h }, { x: r.x + w + g, y: r.y, w: w, h: r.h }];
+      }
+      const h = (r.h - g) / 2;
+      return [{ x: r.x, y: r.y, w: r.w, h: h }, { x: r.x, y: r.y + h + g, w: r.w, h: h }];
+    }
+    const w = (r.w - g) / 2;
+    const h = (r.h - g) / 2;
+    const cells = [
+      { x: r.x, y: r.y, w: w, h: h }, { x: r.x + w + g, y: r.y, w: w, h: h },
+      { x: r.x, y: r.y + h + g, w: w, h: h }, { x: r.x + w + g, y: r.y + h + g, w: w, h: h },
+    ];
+    return cells.slice(0, Math.min(n, 4));
+  }
+
+  function arenaView(rect, worldMm) {
+    const s = Math.min(rect.w, rect.h) / (2 * worldMm);
+    return {
+      x: rect.x, y: rect.y, w: rect.w, h: rect.h, s: s,
+      cx: rect.x + rect.w / 2, cy: rect.y + rect.h / 2,
+      halfW: rect.w / (2 * s), halfH: rect.h / (2 * s),
+    };
+  }
+
   function clampToArena(x, y, limit) {
     const cx = Math.max(-limit, Math.min(limit, x));
     const cy = Math.max(-limit, Math.min(limit, y));
@@ -183,5 +213,7 @@
     endedOutOfBounds: endedOutOfBounds,
     timeline: timeline,
     clampToArena: clampToArena,
+    tileRects: tileRects,
+    arenaView: arenaView,
   };
 });

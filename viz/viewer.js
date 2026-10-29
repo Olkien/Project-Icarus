@@ -16,6 +16,7 @@
   const ui = {
     file: el("file"), play: el("play"), restart: el("restart"), scrub: el("scrub"),
     clock: el("clock"), speed: el("speed"), png: el("png"), legend: el("legend"),
+    compare: el("compare"),
     status: el("status"), live: el("live"), liveScenario: el("live-scenario"),
     liveController: el("live-controller"), liveSeed: el("live-seed"), liveStart: el("live-start"),
     liveWind: el("live-wind"), liveWindVal: el("live-wind-val"),
@@ -31,6 +32,7 @@
     last: null,
     live: null,
     source: null,
+    compare: "overlay",
   };
 
   // theme
@@ -171,33 +173,36 @@
   function layout(w, h) {
     const wide = w >= 760;
     const panelW = wide ? Math.min(340, Math.max(260, w * 0.28)) : w;
-    const size = wide ? Math.min(h, w - panelW) : Math.min(w, h * 0.6);
-    const arena = { x: wide ? (w - panelW - size) / 2 : (w - size) / 2, y: wide ? (h - size) / 2 : 0, size: size };
+    const arenaH = wide ? h : Math.min(w, h * 0.6);
+    const arena = { x: 0, y: 0, w: wide ? w - panelW : w, h: arenaH };
     const panel = wide
       ? { x: w - panelW, y: 0, w: panelW, h: h }
-      : { x: 0, y: size, w: w, h: h - size };
+      : { x: 0, y: arenaH, w: w, h: h - arenaH };
     return { arena: arena, panel: panel };
   }
 
   function toPx(a, x, y) {
-    const s = a.size / (2 * WORLD_MM);
-    return [a.x + (x + WORLD_MM) * s, a.y + (WORLD_MM - y) * s];
+    return [a.cx + x * a.s, a.cy - y * a.s];
   }
 
   function drawArena(a, tick) {
-    const s = a.size / (2 * WORLD_MM);
+    const s = a.s;
     ctx.fillStyle = css("--bg-arena");
-    ctx.fillRect(a.x, a.y, a.size, a.size);
+    ctx.fillRect(a.x, a.y, a.w, a.h);
     ctx.lineWidth = 1;
     ctx.strokeStyle = css("--grid");
     ctx.beginPath();
-    for (let g = -ARENA_MM; g <= ARENA_MM; g += 100) {
+    const gxMax = Math.ceil(a.halfW / 100) * 100;
+    const gyMax = Math.ceil(a.halfH / 100) * 100;
+    for (let g = -gxMax; g <= gxMax; g += 100) {
       const [gx] = toPx(a, g, 0);
+      ctx.moveTo(gx, a.y);
+      ctx.lineTo(gx, a.y + a.h);
+    }
+    for (let g = -gyMax; g <= gyMax; g += 100) {
       const [, gy] = toPx(a, 0, g);
-      ctx.moveTo(gx, a.y + (WORLD_MM - ARENA_MM) * s);
-      ctx.lineTo(gx, a.y + (WORLD_MM + ARENA_MM) * s);
-      ctx.moveTo(a.x + (WORLD_MM - ARENA_MM) * s, gy);
-      ctx.lineTo(a.x + (WORLD_MM + ARENA_MM) * s, gy);
+      ctx.moveTo(a.x, gy);
+      ctx.lineTo(a.x + a.w, gy);
     }
     ctx.stroke();
     ctx.strokeStyle = css("--edge");
@@ -222,8 +227,10 @@
     ctx.globalAlpha = Math.min(0.8, 0.25 + speed / 300);
     ctx.lineWidth = 1;
     ctx.beginPath();
-    for (let gx = -600; gx <= 600; gx += 200) {
-      for (let gy = -600; gy <= 600; gy += 200) {
+    const wxMax = Math.floor(a.halfW / 200) * 200;
+    const wyMax = Math.floor(a.halfH / 200) * 200;
+    for (let gx = -wxMax; gx <= wxMax; gx += 200) {
+      for (let gy = -wyMax; gy <= wyMax; gy += 200) {
         const [x0, y0] = toPx(a, gx - ux * lenMm / 2, gy - uy * lenMm / 2);
         const [x1, y1] = toPx(a, gx + ux * lenMm / 2, gy + uy * lenMm / 2);
         ctx.moveTo(x0, y0);
@@ -240,7 +247,7 @@
   }
 
   function drawTargets(a, run, t) {
-    const s = a.size / (2 * WORLD_MM);
+    const s = a.s;
     run.targets.forEach(function (target, i) {
       if (!target || target.appearT > t) return;
       const [x, y] = toPx(a, target.x, target.y);
@@ -291,7 +298,7 @@
     ctx.globalAlpha = 1;
     const st = ticks[idx].state;
     const [x, y] = arenaPx(a, st);
-    const size = Math.max(7, a.size / 90);
+    const size = Math.max(7, Math.min(a.w, a.h) / 90);
     const end = P.timeline([run], state.t).ends[0];
     const clamped = P.clampToArena(st.x, st.y, ARENA_MM);
     if ((end.ended && end.oob) || clamped.outside) {
@@ -317,7 +324,7 @@
   }
 
   function drawOutOfBounds(a, entry, x, y) {
-    const r = Math.max(6, a.size / 110);
+    const r = Math.max(6, Math.min(a.w, a.h) / 110);
     ctx.strokeStyle = entry.color;
     ctx.lineWidth = 2;
     ctx.beginPath();
@@ -329,17 +336,22 @@
     ctx.stroke();
     ctx.font = "11px " + css("--font");
     ctx.fillStyle = entry.color;
-    const cx = a.x + a.size / 2;
-    const cy = a.y + a.size / 2;
+    const cx = a.cx;
+    const cy = a.cy;
     ctx.textAlign = x > cx ? "right" : "left";
     ctx.fillText("out of bounds", x + (x > cx ? -1 : 1) * (r + 6), y + (y > cy ? -r - 6 : r + 14));
     ctx.textAlign = "left";
   }
 
-  function drawArenaHud(a, entry, tick, idx) {
+  function drawArenaHud(a, entry, tick, idx, withLabel) {
     const run = entry.run;
     const pad = 10;
     ctx.font = "12px " + css("--font");
+    if (withLabel) {
+      ctx.fillStyle = entry.color;
+      ctx.fillText(runLabel(entry), a.x + pad, a.y + pad + 12);
+      a = { ...a, y: a.y + 16 };
+    }
     ctx.fillStyle = css("--text");
     const wind = tick.wind;
     const ws = Math.hypot(wind[0], wind[1]);
@@ -503,32 +515,52 @@
     const L = layout(w, h);
     const primary = state.runs[state.primary];
     const pIdx = primary ? P.indexAt(primary.run, state.t) : -1;
-    drawArena(L.arena, pIdx >= 0 ? primary.run.ticks[pIdx] : null);
+    const side = state.compare === "side" && state.runs.length > 1;
+    const views = P.tileRects(L.arena, state.runs.length, side ? "side" : "overlay")
+      .map(function (r) { return P.arenaView(r, WORLD_MM); });
     if (!primary || pIdx < 0) {
+      drawArena(views[0], null);
       ctx.fillStyle = css("--muted");
       ctx.font = "13px " + css("--font");
       ctx.fillText("Open a run file, or start a live run.", L.arena.x + 20, L.arena.y + 30);
       return;
     }
-    drawTargets(L.arena, primary.run, state.t);
-    state.runs.forEach(function (entry, i) {
-      if (i === state.primary) return;
-      const idx = P.indexAt(entry.run, state.t);
-      if (idx >= 0) drawFly(L.arena, entry, idx);
-    });
-    drawFly(L.arena, primary, pIdx);
-    drawArenaHud(L.arena, primary, primary.run.ticks[pIdx], pIdx);
+    if (side) {
+      state.runs.slice(0, views.length).forEach(function (entry, i) {
+        const v = views[i];
+        const idx = P.indexAt(entry.run, state.t);
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(v.x, v.y, v.w, v.h);
+        ctx.clip();
+        drawArena(v, entry.run.ticks[idx]);
+        drawTargets(v, entry.run, state.t);
+        drawFly(v, entry, idx);
+        drawArenaHud(v, entry, entry.run.ticks[idx], idx, true);
+        ctx.restore();
+      });
+    } else {
+      const v = views[0];
+      drawArena(v, primary.run.ticks[pIdx]);
+      drawTargets(v, primary.run, state.t);
+      state.runs.forEach(function (entry, i) {
+        if (i === state.primary) return;
+        const idx = P.indexAt(entry.run, state.t);
+        if (idx >= 0) drawFly(v, entry, idx);
+      });
+      drawFly(v, primary, pIdx);
+      drawArenaHud(v, primary, primary.run.ticks[pIdx], pIdx, false);
+      drawLegendOnCanvas(v);
+    }
     drawPanel(L.panel, primary, pIdx);
-    drawLegendOnCanvas(L);
   }
 
-  function drawLegendOnCanvas(L) {
+  function drawLegendOnCanvas(a) {
     if (state.runs.length < 2) return;
-    const a = L.arena;
     const tl = P.timeline(state.runs.map(function (e) { return e.run; }), state.t);
     ctx.font = "11px " + css("--font");
     state.runs.forEach(function (entry, i) {
-      const y = a.y + a.size - 14 - (state.runs.length - 1 - i) * 15;
+      const y = a.y + a.h - 14 - (state.runs.length - 1 - i) * 15;
       const end = tl.ends[i];
       const note = end.duration.toFixed(2) + " s" + (end.ended ? (end.oob ? "  ended, out of bounds" : "  ended") : "");
       ctx.fillStyle = entry.color;
@@ -611,6 +643,11 @@
     state.last = null;
   };
   ui.speed.onchange = function () { state.speed = parseFloat(ui.speed.value); };
+  function setCompare(mode) {
+    state.compare = mode;
+    ui.compare.textContent = mode === "side" ? "Overlay" : "Side by side";
+  }
+  ui.compare.onclick = function () { setCompare(state.compare === "side" ? "overlay" : "side"); };
   ui.png.onclick = function () {
     const link = document.createElement("a");
     const primary = state.runs[state.primary];
@@ -646,6 +683,7 @@
   }).then(function () {
     state.primary = 0;
     state.t = Math.max(0, parseFloat(params.get("t")) || 0);
+    if (params.get("compare") === "side") setCompare("side");
     renderLegend();
   });
   requestAnimationFrame(tickFrame);
