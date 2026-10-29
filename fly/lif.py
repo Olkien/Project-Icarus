@@ -13,8 +13,23 @@ LIF_DEFAULTS = {
     "tau_syn_ms": 5.0,
     "tau_m_ms": 20.0,
     "weight_mV_per_synapse": 0.275,
-    "input_weight_mV": 10.0,
+    "input_weight_mV": 10.0,  # added to g per input spike, not to v
 }
+
+
+def psp_peak_mV(weight_mV: float, params: dict | None = None) -> float:
+    lif = LIFStepper(csc_matrix((1, 1), dtype=np.float32), params)
+    lif.g[0] = weight_mV
+    peak = 0.0
+    for _ in range(round(10 * lif.p["tau_m_ms"] / lif.dt_ms)):
+        lif.step()
+        peak = max(peak, float(lif.v[0] - lif.v_rest))
+    return peak
+
+
+def mean_drive_mV(rate_hz: float, weight_mV: float, params: dict | None = None) -> float:
+    p = {**LIF_DEFAULTS, **(params or {})}
+    return weight_mV * rate_hz * p["tau_syn_ms"] / 1000.0
 
 
 class LIFStepper:

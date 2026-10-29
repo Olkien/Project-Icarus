@@ -7,6 +7,7 @@ import numpy as np
 from fly.bench import peak_memory_mb
 from fly.check_load import REPO_ROOT, Report
 from fly.connectome import CACHE_DIR, ConnectomeNetwork
+from fly.lif import mean_drive_mV, psp_peak_mV
 
 OUT_PATH = REPO_ROOT / "results" / "fly_firing_check.txt"
 INPUT_GROUP = "superclass=ol_sensory,class=visual"
@@ -38,6 +39,10 @@ def run(cache: Path, seconds: float, rate_hz: float, seed: int, stepper: str, ou
     rep.say(f"cache {cache.name}: {net.n} neurons, {net.weights.nnz} nonzero weights, "
             f"loaded in {load_s:.1f} s")
     rep.say(f"input {INPUT_GROUP}: {inputs.size} neurons at {rate_hz:g} Hz Poisson")
+    w_in = net.lif_params["input_weight_mV"]
+    rep.say(f"input units: each neuron gets its own Poisson train; each input spike adds "
+            f"{w_in:g} mV to g (peak membrane step {psp_peak_mV(w_in):.2f} mV); "
+            f"mean drive {mean_drive_mV(rate_hz, w_in):.2f} mV, threshold is 7 mV above rest")
     rep.say(f"stepper {stepper}, {steps} steps of {net.dt_ms} ms ({seconds:g} s model time)")
 
     counts = np.zeros(net.n, dtype=np.int64)

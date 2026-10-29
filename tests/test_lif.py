@@ -174,3 +174,16 @@ def test_numba_stepper_matches_numpy():
     assert total > 0
     assert np.array_equal(a.lif.v, b.lif.v)
     assert np.array_equal(a.lif.g, b.lif.g)
+
+
+def test_input_units():
+    from fly.lif import mean_drive_mV, psp_peak_mV
+
+    p = LIF_DEFAULTS
+    tm, ts = p["tau_m_ms"], p["tau_syn_ms"]
+    t_peak = math.log(tm / ts) * tm * ts / (tm - ts)
+    analytic = ts / (tm - ts) * (math.exp(-t_peak / tm) - math.exp(-t_peak / ts))
+    assert psp_peak_mV(10.0) == pytest.approx(10.0 * analytic, rel=0.03)
+    assert psp_peak_mV(0.275) == pytest.approx(0.275 * analytic, rel=0.03)
+    assert mean_drive_mV(20.0, 10.0) == pytest.approx(1.0)
+    assert mean_drive_mV(200.0, 10.0) == pytest.approx(10.0)
