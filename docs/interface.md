@@ -24,6 +24,8 @@ Units are mm, s and rad. Left is positive (counter-clockwise).
 
 Noise and delay are applied before the controller sees these. Values are in `configs/physics.json`.
 
+Some scenarios scale the sensor delay and add short dropouts, where `bearing` and `range` freeze at their last values. The controller gets no flag.
+
 Gym vector order: `bearing, range, vel_body[0], vel_body[1], yaw_rate, air_rel[0], air_rel[1]`. Raw units. Normalizing is up to each controller.
 
 A controller never sees true position, wind, or the target position.
@@ -36,6 +38,8 @@ A controller never sees true position, wind, or the target position.
 | `yaw_torque` | -1 to 1 | Turn torque. Positive turns left. |
 
 Actions go through an actuator lag (about 20 ms) and a slew limit before they reach the body.
+
+Some scenarios scale the actuator lag and add noise to `thrust` and `yaw_torque` before the lag.
 
 ## Reward (training only)
 
@@ -64,5 +68,5 @@ A target is hit when the distance to it drops below 10 mm. The next target appea
 - Same observations, same actions, same seeds, same scenarios.
 - A controller gets `reset(seed, scenario)` once per episode and `act(obs, t)` once per tick.
 - Tuning uses scenarios S1 to S4 and tuning seeds 0 to 49 only.
-- Scoring uses seeds 1000 to 1019 or more. S5 and S6 are held out.
+- Scoring uses seeds 1000 to 1049 for PID and ML, and 1000 to 1019 for the fly arms, so results pair by seed. S5 and S6 are held out.
 - Failures are counted, not dropped.
