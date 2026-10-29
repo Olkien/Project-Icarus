@@ -1,0 +1,543 @@
+cache network_A.npz, 167526 neurons, Rule A
+== Cholinergic visual_projection types (consensus_nt acetylcholine)
+  type                         L     R    M  none  total
+  LC12                       256   242    0     0    498
+  LC17                       178   175    0     0    353
+  LLPC1                      143   142    0     0    285
+  LC10a                      135   140    0     0    275
+  LLPC2                      125   125    0     0    250
+  MeTu1                      125   124    0     0    249
+  LPC1                       115   109    0     0    224
+  LC9                        104   115    0     0    219
+  LLPC3                      107   112    0     0    219
+  LC10d                      108   106    0     0    214
+  LC18                       104   104    0     0    208
+  LPLC2                       94    91    0     0    185
+  LC16                        88    94    0     0    182
+  LC13                        83    94    0     0    177
+  MeTu3c                      82    91    0     0    173
+  LPC2                        75    79    0     0    154
+  LC21                        75    78    0     0    153
+  LC11                        68    75    0     0    143
+  LPLC1                       68    66    0     0    134
+  LC10c-1                     64    66    0     0    130
+  LC15                        61    65    0     0    126
+  LC4                         71    55    0     0    126
+  LC10c-2                     59    66    0     0    125
+  LC6                         59    65    0     0    124
+  MeVP1                       63    59    0     0    122
+  LC10e                       62    48    0     0    110
+  LPLC4                       48    49    0     0     97
+  LC10b                       47    48    0     0     95
+  MeTu4a                      46    49    0     0     95
+  LC24                        40    54    0     0     94
+  MeTu4c                      46    41    0     0     87
+  MeTu3b                      42    38    0     0     80
+  MeVP2                       40    36    0     0     76
+  LC26                        38    37    0     0     75
+  LC22                        38    35    0     0     73
+  MeTu2a                      34    36    0     0     70
+  MeVP3                       34    35    0     0     69
+  LC20a                       32    30    0     0     62
+  LC28                        31    31    0     0     62
+  MeVP10                      28    33    0     0     61
+  MeTu4f                      28    28    0     0     56
+  MeVP11                      25    30    0     0     55
+  MeTu4e                      26    25    0     0     51
+  LC27                        23    23    0     0     46
+  LoVP12                      23    19    0     0     42
+  MeTu3a                      20    22    0     0     42
+  aMe5                        25    17    0     0     42
+  LC29                        21    19    0     0     40
+  LPT100                      21    19    0     0     40
+  MeTu4d                      20    20    0     0     40
+  MeVP4                       18    22    0     0     40
+  LC40                        19    15    0     0     34
+  MeVP14                      16    17    0     0     33
+  LC31a                       16    16    0     0     32
+  LC36                        16    16    0     0     32
+  MeTu4b                      16    16    0     0     32
+  MeTu2b                      15    16    0     0     31
+  LoVP5                       15    12    0     0     27
+  MeVP12                       9    18    0     0     27
+  MeVP15                      13    11    0     0     24
+  MeVP7                       11    12    0     0     23
+  LoVP6                       11    11    0     0     22
+  LoVP8                       13     9    0     0     22
+  LoVP14                      10     9    0     0     19
+  VS                           9     9    0     0     18
+  MeVP5                        8     9    0     0     17
+  LoVP10                       6     9    0     0     15
+  LC19                         6     8    0     0     14
+  LC43                         8     6    0     0     14
+  MeVPLo2                      7     7    0     0     14
+  LC41                         7     6    0     0     13
+  LoVP9                        7     6    0     0     13
+  LoVP92                       7     6    0     0     13
+  MeVP8                        7     6    0     0     13
+  LoVP18                       6     6    0     0     12
+  LoVP26                       6     6    0     0     12
+  LoVP4                        7     5    0     0     12
+  LoVP93                       6     6    0     0     12
+  LoVP_unclear                10     2    0     0     12
+  MeVP9                        7     5    0     0     12
+  LC23                         5     6    0     0     11
+  LPT101                       5     6    0     0     11
+  LT81                         5     6    0     0     11
+  LoVP16                       6     5    0     0     11
+  LC10_unclear                 3     7    0     0     10
+  LC31b                        4     6    0     0     10
+  LC34                         4     6    0     0     10
+  LC35a                        5     5    0     0     10
+  LC46b                        5     5    0     0     10
+  LoVP27                       5     5    0     0     10
+  LPT31                        4     4    0     0      8
+  LoVP11                       4     4    0     0      8
+  LoVP17                       4     4    0     0      8
+  LoVP24                       4     4    0     0      8
+  s-LNv                        4     4    0     0      8
+  LoVP50                       3     4    0     0      7
+  LoVP83                       4     3    0     0      7
+  LoVP84                       3     4    0     0      7
+  VST2                         3     4    0     0      7
+  LLPC4                        3     3    0     0      6
+  LPT23                        3     3    0     0      6
+  LoVP23                       3     3    0     0      6
+  LoVP25                       3     3    0     0      6
+  LoVP32                       3     3    0     0      6
+  MeVP21                       3     3    0     0      6
+  MeVP62                       3     3    0     0      6
+  aMe12                        4     2    0     0      6
+  aMe26                        3     3    0     0      6
+  LC44                         2     3    0     0      5
+  LoVP75                       2     3    0     0      5
+  LoVP89                       3     2    0     0      5
+  VST1                         2     3    0     0      5
+  5thsLNv_LNd6                 2     2    0     0      4
+  LT63                         2     2    0     0      4
+  LT80                         2     2    0     0      4
+  LT82a                        2     2    0     0      4
+  LoVP21                       2     2    0     0      4
+  LoVP22                       2     2    0     0      4
+  LoVP39                       2     2    0     0      4
+  LoVP55                       2     2    0     0      4
+  LoVP62                       2     2    0     0      4
+  LoVP71                       2     2    0     0      4
+  LoVP74                       2     2    0     0      4
+  LoVP80                       2     2    0     0      4
+  LoVP82                       2     2    0     0      4
+  MeVP34                       2     2    0     0      4
+  MeVP59                       2     2    0     0      4
+  Nod1                         2     2    0     0      4
+  OCG02c                       2     2    0     0      4
+  VSm                          2     2    0     0      4
+  aMe9                         2     2    0     0      4
+  LoVP78                       2     1    0     0      3
+  aMe10                        1     2    0     0      3
+  H2                           1     1    0     0      2
+  HSE                          1     1    0     0      2
+  HSN                          1     1    0     0      2
+  HSS                          1     1    0     0      2
+  HST                          1     1    0     0      2
+  LC35b                        1     1    0     0      2
+  LPC_unclear                  0     2    0     0      2
+  LPT21                        1     1    0     0      2
+  LPT26                        1     1    0     0      2
+  LPT27                        1     1    0     0      2
+  LPT28                        1     1    0     0      2
+  LPT29                        1     1    0     0      2
+  LPT30                        1     1    0     0      2
+  LPT49                        1     1    0     0      2
+  LPT52                        1     1    0     0      2
+  LPT54                        1     1    0     0      2
+  LT1a                         1     1    0     0      2
+  LT1b                         1     1    0     0      2
+  LT1c                         1     1    0     0      2
+  LT1d                         1     1    0     0      2
+  LT47                         1     1    0     0      2
+  LT59                         1     1    0     0      2
+  LT60                         1     1    0     0      2
+  LT61a                        1     1    0     0      2
+  LT61b                        1     1    0     0      2
+  LT62                         1     1    0     0      2
+  LT64                         1     1    0     0      2
+  LT65                         1     1    0     0      2
+  LT66                         1     1    0     0      2
+  LT67                         1     1    0     0      2
+  LT69                         1     1    0     0      2
+  LT72                         1     1    0     0      2
+  LT75                         1     1    0     0      2
+  LT76                         1     1    0     0      2
+  LT79                         1     1    0     0      2
+  LT82b                        1     1    0     0      2
+  LT83                         1     1    0     0      2
+  LT84                         1     1    0     0      2
+  LT85                         1     1    0     0      2
+  LT86                         1     1    0     0      2
+  LT87                         1     1    0     0      2
+  LoVP100                      1     1    0     0      2
+  LoVP101                      1     1    0     0      2
+  LoVP102                      1     1    0     0      2
+  LoVP103                      1     1    0     0      2
+  LoVP106                      1     1    0     0      2
+  LoVP107                      1     1    0     0      2
+  LoVP19                       1     1    0     0      2
+  LoVP20                       1     1    0     0      2
+  LoVP28                       1     1    0     0      2
+  LoVP34                       1     1    0     0      2
+  LoVP35                       1     1    0     0      2
+  LoVP41                       1     1    0     0      2
+  LoVP42                       1     1    0     0      2
+  LoVP43                       1     1    0     0      2
+  LoVP44                       1     1    0     0      2
+  LoVP48                       1     1    0     0      2
+  LoVP49                       1     1    0     0      2
+  LoVP51                       1     1    0     0      2
+  LoVP52                       1     1    0     0      2
+  LoVP53                       1     1    0     0      2
+  LoVP54                       1     1    0     0      2
+  LoVP57                       1     1    0     0      2
+  LoVP58                       1     1    0     0      2
+  LoVP59                       1     1    0     0      2
+  LoVP60                       1     1    0     0      2
+  LoVP63                       1     1    0     0      2
+  LoVP65                       1     1    0     0      2
+  LoVP66                       1     1    0     0      2
+  LoVP67                       1     1    0     0      2
+  LoVP68                       1     1    0     0      2
+  LoVP69                       1     1    0     0      2
+  LoVP70                       1     1    0     0      2
+  LoVP72                       1     1    0     0      2
+  LoVP73                       1     1    0     0      2
+  LoVP77                       1     1    0     0      2
+  LoVP79                       1     1    0     0      2
+  LoVP85                       1     1    0     0      2
+  LoVP86                       1     1    0     0      2
+  LoVP88                       1     1    0     0      2
+  LoVP90a                      1     1    0     0      2
+  LoVP90b                      1     1    0     0      2
+  LoVP90c                      1     1    0     0      2
+  LoVP98                       1     1    0     0      2
+  MeTu4_unclear                0     2    0     0      2
+  MeVP24                       1     1    0     0      2
+  MeVP25                       1     1    0     0      2
+  MeVP27                       1     1    0     0      2
+  MeVP28                       1     1    0     0      2
+  MeVP29                       1     1    0     0      2
+  MeVP30                       1     1    0     0      2
+  MeVP31                       1     1    0     0      2
+  MeVP32                       1     1    0     0      2
+  MeVP33                       1     1    0     0      2
+  MeVP36                       1     1    0     0      2
+  MeVP38                       1     1    0     0      2
+  MeVP40                       1     1    0     0      2
+  MeVP41                       1     1    0     0      2
+  MeVP42                       1     1    0     0      2
+  MeVP43                       1     1    0     0      2
+  MeVP45                       1     1    0     0      2
+  MeVP47                       1     1    0     0      2
+  MeVP50                       1     1    0     0      2
+  MeVP52                       1     1    0     0      2
+  MeVPLp1                      1     1    0     0      2
+  MeVPaMe1                     1     1    0     0      2
+  Nod3                         1     1    0     0      2
+  Nod4                         1     1    0     0      2
+  Nod5                         1     1    0     0      2
+  OCG01b                       1     1    0     0      2
+  OCG01d                       1     1    0     0      2
+  OCG01e                       1     1    0     0      2
+  OCG02b                       1     1    0     0      2
+  OCG03                        1     1    0     0      2
+  aMe20                        1     1    0     0      2
+  aMe6a                        1     1    0     0      2
+  vCal3                        1     1    0     0      2
+  LLPC_unclear                 0     1    0     0      1
+  LPLC_unclear                 0     1    0     0      1
+  LoVP109                      1     0    0     0      1
+  LoVP31                       0     1    0     0      1
+  OLVp_unclear                 1     0    0     0      1
+  255 types, 7889 neurons
+== Cholinergic optic lobe intrinsic types (superclass ol_intrinsic, acetylcholine)
+  type                         L     R    M  none  total
+  Tm3                       1017  1037    0     0   2054
+  T3                         964   976    0     0   1940
+  T2a                        932   939    0     0   1871
+  L5                         889   898    0     0   1787
+  L2                         886   893    0     0   1779
+  T4c                        895   883    0     0   1778
+  Tm1                        886   890    0     0   1776
+  Mi1                        886   887    0     0   1773
+  L3                         880   892    0     0   1772
+  Tm9                        884   887    0     0   1771
+  L4                         877   891    0     0   1768
+  Tm2                        883   883    0     0   1766
+  Tm20                       886   876    0     0   1762
+  T5c                        862   858    0     0   1720
+  T5b                        863   852    0     0   1715
+  T4d                        850   859    0     0   1709
+  T4b                        844   846    0     0   1690
+  T4a                        835   849    0     0   1684
+  Tm4                        837   833    0     0   1670
+  T5a                        826   838    0     0   1664
+  T2                         808   822    0     0   1630
+  T5d                        812   808    0     0   1620
+  Tm6                        756   770    0     0   1526
+  Dm2                        726   726    0     0   1452
+  TmY18                      673   694    0     0   1367
+  Mi15                       569   582    0     0   1151
+  Tm12                       473   494    0     0    967
+  Tm5Y                       435   463    0     0    898
+  TmY3                       415   409    0     0    824
+  Y3                         305   322    0     0    627
+  Tm5a                       317   307    0     0    624
+  TmY4                       274   288    0     0    562
+  TmY10                      274   278    0     0    552
+  Tm5b                       260   262    0     0    522
+  TmY9b                      249   266    0     0    515
+  Cm1                        241   231    0     0    472
+  TmY9a                      241   230    0     0    471
+  Mi10                       222   222    0     0    444
+  TmY13                      221   211    0     0    432
+  Tm39                       226   200    0     0    426
+  Tm16                       199   197    0     0    396
+  TmY17                      195   200    0     0    395
+  Cm2                        180   203    0     0    383
+  Lawf2                      195   188    0     0    383
+  TmY21                      183   189    0     0    372
+  Lawf1                      177   184    0     0    361
+  TmY20                      176   167    0     0    343
+  Tm33                       141   139    0     0    280
+  Tm24                       130   115    0     0    245
+  Tm38                       107   116    0     0    223
+  Li21                       102   105    0     0    207
+  Tm40                        97    83    0     0    180
+  Tm36                        78    77    0     0    155
+  MeLo2                       74    71    0     0    145
+  MeLo1                       60    63    0     0    123
+  Li23                        59    60    0     0    119
+  MeLo3a                      50    57    0     0    107
+  Tm26                        53    50    0     0    103
+  MeLo7                       48    48    0     0     96
+  MeLo3b                      41    40    0     0     81
+  Cm11a                       35    40    0     0     75
+  MeLo4                       34    34    0     0     68
+  MeLo6                       32    30    0     0     62
+  Cm11b                       26    30    0     0     56
+  Cm11c                       21    23    0     0     44
+  LC14b                       21    22    0     0     43
+  MeLo5                       18    19    0     0     37
+  LC14a-1                     15    15    0     0     30
+  Cm11d                        9     9    0     0     18
+  LC14a-2                      7     8    0     0     15
+  Cm-DRA                       4     3    0     0      7
+  MeVPMe12                     2     2    0     0      4
+  TmY_unclear                  3     1    0     0      4
+  Tm_unclear                   3     1    0     0      4
+  LA_ME_unclear                0     3    0     0      3
+  T4_unclear                   2     1    0     0      3
+  Li33                         1     1    0     0      2
+  MeVPMe13                     1     1    0     0      2
+  MeVPOL1                      1     1    0     0      2
+  aMe6b                        1     1    0     0      2
+  Cm_unclear                   0     1    0     0      1
+  LO_LOP_unclear               1     0    0     0      1
+  Tm3_unclear                  1     0    0     0      1
+  Y_unclear                    0     1    0     0      1
+  84 types, 57713 neurons
+== Named candidates, any transmitter
+-- LC10*
+  type                         L     R    M  none  total  transmitter
+  LC10a                      135   140    0     0    275  acetylcholine 275
+  LC10d                      108   106    0     0    214  acetylcholine 214
+  LC10c-1                     64    66    0     0    130  acetylcholine 130
+  LC10c-2                     59    66    0     0    125  acetylcholine 125
+  LC10e                       62    48    0     0    110  acetylcholine 110
+  LC10b                       47    48    0     0     95  acetylcholine 95
+  LC10_unclear                 4     7    0     0     11  acetylcholine 11
+  7 types, 960 neurons
+-- LC11
+  type                         L     R    M  none  total  transmitter
+  LC11                        68    75    0     0    143  acetylcholine 143
+  1 types, 143 neurons
+-- LC4
+  type                         L     R    M  none  total  transmitter
+  LC4                         71    55    0     0    126  acetylcholine 126
+  1 types, 126 neurons
+-- LPLC2
+  type                         L     R    M  none  total  transmitter
+  LPLC2                       94    91    0     0    185  acetylcholine 185
+  1 types, 185 neurons
+-- LPLC1
+  type                         L     R    M  none  total  transmitter
+  LPLC1                       68    66    0     0    134  acetylcholine 134
+  1 types, 134 neurons
+-- lamina types (L1-L5, Lai, Lawf, C2, C3, T1)
+  type                         L     R    M  none  total  transmitter
+  L5                         889   898    0     0   1787  acetylcholine 1787
+  C3                         887   892    0     0   1779  gaba 1779
+  L2                         886   893    0     0   1779  acetylcholine 1779
+  T1                         884   892    0     0   1776  histamine 1776
+  L1                         881   892    0     0   1773  glutamate 1773
+  L3                         880   892    0     0   1772  acetylcholine 1772
+  L4                         877   891    0     0   1768  acetylcholine 1768
+  C2                         871   874    0     0   1745  gaba 1745
+  Lawf2                      195   188    0     0    383  acetylcholine 383
+  Lawf1                      177   184    0     0    361  acetylcholine 361
+  Lai                         36    48    0     1     85  glutamate 85
+  11 types, 15008 neurons
+-- medulla types (Mi, Tm, TmY, Dm, Pm, Mt)
+  type                         L     R    M  none  total  transmitter
+  Tm3                       1017  1037    0     0   2054  acetylcholine 2054
+  Tm1                        886   890    0     0   1776  acetylcholine 1776
+  Mi9                        886   889    0     0   1775  glutamate 1775
+  Mi1                        886   887    0     0   1773  acetylcholine 1773
+  Mi4                        883   889    0     0   1772  gaba 1772
+  Tm9                        884   887    0     0   1771  acetylcholine 1771
+  Tm2                        883   883    0     0   1766  acetylcholine 1766
+  Tm20                       886   876    0     0   1762  acetylcholine 1762
+  Tm4                        837   833    0     0   1670  acetylcholine 1670
+  Tm6                        756   770    0     0   1526  acetylcholine 1526
+  Dm2                        726   726    0     0   1452  acetylcholine 1452
+  TmY18                      673   694    0     0   1367  acetylcholine 1367
+  TmY5a                      686   678    0     0   1364  glutamate 1364
+  Mi15                       569   582    0     0   1151  acetylcholine 1151
+  Mi2                        494   492    0     0    986  glutamate 986
+  Tm12                       473   494    0     0    967  acetylcholine 967
+  Mi13                       457   453    0     0    910  glutamate 910
+  TmY3                       415   409    0     0    824  acetylcholine 824
+  Tm5c                       376   374    0     0    750  glutamate 750
+  Dm10                       315   311    0     0    626  gaba 626
+  Tm5a                       317   307    0     0    624  acetylcholine 624
+  TmY4                       274   288    0     0    562  acetylcholine 562
+  Tm37                       291   268    0     0    559  glutamate 559
+  TmY10                      274   278    0     0    552  acetylcholine 552
+  Tm29                       268   276    0     0    544  glutamate 544
+  Tm5b                       260   262    0     0    522  acetylcholine 522
+  TmY9b                      249   266    0     0    515  acetylcholine 515
+  Dm15                       243   242    0     0    485  glutamate 485
+  TmY14                      243   234    0     0    477  unclear 477
+  TmY9a                      241   230    0     0    471  acetylcholine 471
+  Mi10                       222   222    0     0    444  acetylcholine 444
+  TmY13                      221   211    0     0    432  acetylcholine 432
+  Tm39                       226   200    0     0    426  acetylcholine 426
+  Tm16                       199   197    0     0    396  acetylcholine 396
+  TmY17                      195   200    0     0    395  acetylcholine 395
+  TmY21                      183   189    0     0    372  acetylcholine 372
+  TmY20                      176   167    0     0    343  acetylcholine 343
+  Mi14                       160   155    0     0    315  glutamate 315
+  Tm33                       141   139    0     0    280  acetylcholine 280
+  Dm12                       139   137    0     0    276  glutamate 276
+  Dm9                        138   135    0     0    273  glutamate 273
+  Pm1                        125   121    0     0    246  gaba 246
+  Tm24                       130   115    0     0    245  acetylcholine 245
+  Tm38                       107   116    0     0    223  acetylcholine 223
+  TmY15                       99   110    0     0    209  gaba 209
+  Mi16                        90   101    0     0    191  gaba 191
+  Mi17                        92    97    0     0    189  gaba 189
+  Pm5                         88    94    0     0    182  gaba 182
+  Tm40                        97    83    0     0    180  acetylcholine 180
+  Tm34                        86    88    0     0    174  glutamate 174
+  Pm4                         83    85    0     0    168  gaba 168
+  TmY16                       88    80    0     0    168  glutamate 168
+  Dm11                        76    82    0     0    158  glutamate 158
+  Tm36                        78    77    0     0    155  acetylcholine 155
+  Dm16                        76    75    0     0    151  glutamate 151
+  Tm32                        66    59    0     0    125  glutamate 125
+  Tm30                        63    61    0     0    124  gaba 124
+  Tm31                        65    55    0     0    120  gaba 120
+  Tm26                        53    50    0     0    103  acetylcholine 103
+  Dm4                         51    48    0     0     99  glutamate 99
+  Dm20                        50    48    0     0     98  glutamate 98
+  Tm35                        43    43    0     0     86  glutamate 86
+  TmY19a                      43    43    0     0     86  gaba 86
+  Dm1                         41    39    0     0     80  glutamate 80
+  Pm10                        37    37    0     0     74  gaba 74
+  Mi18                        33    36    0     0     69  gaba 69
+  Pm3                         33    36    0     0     69  gaba 69
+  Dm6                         33    29    0     0     62  glutamate 62
+  Dm18                        31    27    0     0     58  gaba 58
+  Pm9                         27    27    0     0     54  gaba 54
+  Dm13                        25    28    0     0     53  gaba 53
+  Pm6                         26    24    0     0     50  gaba 50
+  Pm8                         19    20    0     0     39  gaba 39
+  TmY19b                      19    17    0     0     36  gaba 36
+  Dm14                        18    16    0     0     34  glutamate 34
+  Tm23                        17    16    0     0     33  gaba 33
+  Dm19                        15    15    0     0     30  glutamate 30
+  Pm7                         14    14    0     0     28  gaba 28
+  Mi19                         7     5    0     0     12  unclear 12
+  Dm17                         4     4    0     0      8  glutamate 8
+  Pm11                         2     2    0     0      4  gaba 4
+  Pm12                         2     2    0     0      4  gaba 4
+  Mi20                         1     1    0     0      2  glutamate 2
+  Pm13                         1     1    0     0      2  glutamate 2
+  84 types, 41586 neurons
+== Mechanosensory class (antennal JO types marked)
+  type                         L     R    M  none  total  transmitter
+  BM_InOm                      0     0    0   718    718  acetylcholine 718
+  JO-unclear                   0     0    0   102    102  acetylcholine 68, - 34   <- JO
+  JO-FV                        0     0    0    70     70  acetylcholine 70   <- JO
+  BM                           0     0    0    69     69  acetylcholine 69
+  JO-EV1                       0     0    0    50     50  acetylcholine 50   <- JO
+  TPMN1                        0     0    0    48     48  acetylcholine 48
+  JO-EV3                       0     0    0    45     45  acetylcholine 45   <- JO
+  BM_Taste                     0     0    0    40     40  acetylcholine 40
+  JO-ED2_a                     0     0    0    38     38  acetylcholine 38   <- JO
+  JO-EV2                       0     0    0    36     36  acetylcholine 36   <- JO
+  JO-CM                        0     0    0    30     30  acetylcholine 30   <- JO
+  -                            0     0    0    27     27  acetylcholine 25, - 2
+  BM_vOcci_vPoOr               0     0    0    26     26  acetylcholine 26
+  JO-A-unclear                 0     0    0    24     24  - 18, unclear 6   <- JO
+  JO-EV5                       0     0    0    23     23  acetylcholine 23   <- JO
+  BM_Vib                       0     0    0    22     22  acetylcholine 22
+  JO-ED2_b                     0     0    0    21     21  acetylcholine 21   <- JO
+  JO-EV6                       0     0    0    21     21  acetylcholine 21   <- JO
+  aPhM1                        0     0    0    21     21  acetylcholine 21
+  JO-CL                        0     0    0    19     19  acetylcholine 19   <- JO
+  JO-ED1                       0     0    0    18     18  acetylcholine 18   <- JO
+  JO-B1_a                      0     0    0    17     17  acetylcholine 17   <- JO
+  BM_MaPa                      0     0    0    15     15  acetylcholine 15
+  JO-ED2_c                     0     0    0    14     14  acetylcholine 14   <- JO
+  JO-A2                        0     0    0    13     13  acetylcholine 13   <- JO
+  JO-B-unclear                 0     0    0    13     13  unclear 7, - 6   <- JO
+  JO-B1_b                      0     0    0    12     12  acetylcholine 12   <- JO
+  JO-B3                        0     0    0    12     12  acetylcholine 12   <- JO
+  JO-B4_b                      0     0    0    12     12  acetylcholine 12   <- JO
+  TPMN2                        0     0    0    12     12  acetylcholine 12
+  JO-mz                        0     0    0    11     11  acetylcholine 11   <- JO
+  JO-B1_c                      0     0    0    10     10  acetylcholine 10   <- JO
+  JO-CA1                       0     0    0    10     10  acetylcholine 10   <- JO
+  JO-B2                        0     0    0     9      9  acetylcholine 9   <- JO
+  JO-CA2                       0     0    0     9      9  acetylcholine 9   <- JO
+  BM_Vt_PoOc                   0     0    0     8      8  acetylcholine 8
+  JO-A1                        0     0    0     8      8  acetylcholine 8   <- JO
+  BM_Hau                       0     0    0     7      7  acetylcholine 7
+  JO-DA                        0     0    0     5      5  acetylcholine 5   <- JO
+  aPhM2a                       0     0    0     5      5  acetylcholine 5
+  aPhM3                        0     0    0     5      5  acetylcholine 5
+  JO-FD1                       0     0    0     4      4  acetylcholine 4   <- JO
+  JO-FD2                       0     0    0     4      4  acetylcholine 4   <- JO
+  aPhM5                        0     0    0     4      4  acetylcholine 4
+  JO-A4                        0     0    0     3      3  acetylcholine 3   <- JO
+  JO-B4_a                      0     0    0     3      3  acetylcholine 3   <- JO
+  JO-DP                        0     0    0     3      3  acetylcholine 3   <- JO
+  GNG642                       0     0    0     2      2  unclear 2
+  JO-A3                        0     0    0     2      2  acetylcholine 2   <- JO
+  aPhM2b                       0     0    0     2      2  acetylcholine 2
+  aPhM4                        0     0    0     2      2  acetylcholine 2
+  JO-EV4                       0     0    0     1      1  acetylcholine 1   <- JO
+  52 types, 1705 neurons
+== ol_sensory superclass
+  type                         L     R    M  none  total  transmitter
+  R1-R6                        4     9    0  1381   1394  histamine 1394
+  R7y                          0     0    0   482    482  histamine 482
+  R8y                          5     0    0   476    481  histamine 481
+  R8_unclear                   2     0    0   440    442  histamine 442
+  R7_unclear                   1     1    0   402    404  histamine 404
+  R7p                          0     0    0   332    332  histamine 332
+  R8p                          3     0    0   327    330  histamine 330
+  R7R8_unclear                 0     0    0    85     85  histamine 85
+  R7d                          0     0    0    82     82  histamine 82
+  R8d                          4     0    0    72     76  histamine 76
+  HBeyelet                     4     3    0     0      7  histamine 7
+  11 types, 4115 neurons
