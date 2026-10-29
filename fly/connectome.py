@@ -144,6 +144,9 @@ class ConnectomeNetwork:
     def set_rates(self, poisson_rates: np.ndarray) -> None:
         self.lif.set_rates(poisson_rates)
 
+    def set_spike_rates(self, spike_rates: np.ndarray) -> None:
+        self.lif.set_spike_rates(spike_rates)
+
     def group(self, name: str) -> np.ndarray:
         if name in self.groups:
             return self.groups[name]

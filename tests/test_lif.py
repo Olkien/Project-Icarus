@@ -187,3 +187,52 @@ def test_input_units():
     assert psp_peak_mV(0.275) == pytest.approx(0.275 * analytic, rel=0.03)
     assert mean_drive_mV(20.0, 10.0) == pytest.approx(1.0)
     assert mean_drive_mV(200.0, 10.0) == pytest.approx(10.0)
+
+
+def test_spike_mode_rate_and_delivery():
+    w = csc_matrix(np.array([[0.0, 0.0], [50.0, 0.0]], dtype=np.float32))
+    lif = LIFStepper(w)
+    lif.reset(2)
+    lif.set_spike_rates(np.array([200.0, 0.0]))
+    steps = 50_000
+    count = 0
+    target_g = 0.0
+    for _ in range(steps):
+        spikes = lif.step()
+        count += int(0 in spikes)
+        target_g = max(target_g, float(lif.g[1]))
+    expected = 200.0 * steps * LIF_DEFAULTS["dt_ms"] / 1000.0
+    assert count == pytest.approx(expected, rel=0.1)
+    assert target_g > 0.0
+    assert lif.input_ids.size == 0
+
+
+def test_spike_mode_seeded_and_off_by_default():
+    def run(seed: int, spike: bool) -> list:
+        net = SyntheticNetwork()
+        net.reset(seed)
+        rates = np.zeros(net.n, dtype=np.float32)
+        rates[net.group("vis_L")] = 100.0
+        if spike:
+            net.set_spike_rates(rates)
+        return [tuple(net.step().tolist()) for _ in range(500)]
+
+    assert run(3, True) == run(3, True)
+    assert run(3, True) != run(4, True)
+    assert all(s == () for s in run(3, False))
+
+
+def test_numba_spike_mode_matches_numpy():
+    pytest.importorskip("numba")
+    from fly.lif_numba import NumbaLIFStepper
+
+    a = SyntheticNetwork()
+    b = SyntheticNetwork()
+    b.lif = NumbaLIFStepper(b.weights, b.lif_params)
+    rates = np.zeros(a.n, dtype=np.float32)
+    rates[a.group("vis_R")] = 150.0
+    for net in (a, b):
+        net.reset(5)
+        net.set_spike_rates(rates)
+    for _ in range(2000):
+        assert np.array_equal(a.step(), b.step())

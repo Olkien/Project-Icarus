@@ -47,6 +47,8 @@ class NumbaLIFStepper(LIFStepper):
             self.ring[self.pos], self.indptr, self.indices, self.data, self.v_rest, self.v_reset,
             self.v_thresh, self.decay_m, self.decay_syn, np.int32(self.ref_steps),
         )
+        if self.spike_ids.size:
+            spikes = self.add_forced(spikes)
         self.ring[self.pos] = spikes
         self.pos = (self.pos + 1) % self.delay
         self.steps += 1

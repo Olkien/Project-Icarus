@@ -10,6 +10,8 @@ from fly.connectome import CACHE_DIR, ConnectomeNetwork
 from fly.lif import mean_drive_mV, psp_peak_mV
 
 OUT_PATH = REPO_ROOT / "results" / "drive_scan.txt"
+SPIKE_OUT_PATH = REPO_ROOT / "results" / "drive_scan_spike.txt"
+SPIKE_RATES_HZ = (20.0, 50.0, 100.0, 150.0)
 GROUPS = {"LPLC2": "type=LPLC2", "LC4": "type=LC4", "LC10": "type^=LC10"}
 RATES_HZ = (20.0, 50.0, 100.0, 200.0)
 WEIGHTS_MV = (10.0, 25.0, 50.0)
@@ -27,13 +29,16 @@ def load(cache: Path, stepper: str) -> ConnectomeNetwork:
     return net
 
 
-def drive(net: ConnectomeNetwork, driven: np.ndarray, rate_hz: float, weight_mV: float,
-          seconds: float, seed: int) -> tuple[np.ndarray, float]:
-    net.lif.input_weight = np.float32(weight_mV)
+def drive(net: ConnectomeNetwork, driven: np.ndarray, rate_hz: float, weight_mV: float | None,
+          seconds: float, seed: int, mode: str = "drive") -> tuple[np.ndarray, float]:
     rates = np.zeros(net.n, dtype=np.float32)
     rates[driven] = rate_hz
     net.reset(seed)
-    net.set_rates(rates)
+    if mode == "spike":
+        net.set_spike_rates(rates)
+    else:
+        net.lif.input_weight = np.float32(weight_mV)
+        net.set_rates(rates)
     counts = np.zeros(net.n, dtype=np.int64)
     steps = round(seconds * 1000.0 / net.dt_ms)
     start = time.perf_counter()
@@ -78,15 +83,21 @@ def top_dn_types(net: ConnectomeNetwork, rate: np.ndarray) -> list[str]:
 
 
 def scan(cache: Path, groups: dict[str, str], rates: tuple, weights: tuple, seconds: float,
-         seed: int, stepper: str, out: Path) -> None:
+         seed: int, stepper: str, out: Path, mode: str = "drive") -> None:
     rep = Report()
     start = time.perf_counter()
     net = load(cache, stepper)
-    rep.say(f"cache {cache.name}: {net.n} neurons; stepper {stepper}; {seconds:g} s per setting")
-    rep.say("per-spike input adds the stated mV to g; peak membrane step and mean drive:")
-    for w in weights:
-        rep.say(f"  {w:g} mV -> peak {psp_peak_mV(w):.2f} mV; mean drive at "
-                + ", ".join(f"{r:g} Hz {mean_drive_mV(r, w):.1f} mV" for r in rates))
+    rep.say(f"cache {cache.name}: {net.n} neurons; stepper {stepper}; {seconds:g} s per setting; "
+            f"synapse weight scale {getattr(net, 'weight_scale', 1.0):g}; input mode {mode}")
+    if mode == "spike":
+        rep.say("spike mode: driven neurons emit Poisson spikes directly at the stated rate; "
+                "no drive is injected, so there is no mV setting (w_mV shows 0)")
+        weights = (0.0,)
+    else:
+        rep.say("per-spike input adds the stated mV to g; peak membrane step and mean drive:")
+        for w in weights:
+            rep.say(f"  {w:g} mV -> peak {psp_peak_mV(w):.2f} mV; mean drive at "
+                    + ", ".join(f"{r:g} Hz {mean_drive_mV(r, w):.1f} mV" for r in rates))
     rep.say(f"runaway means network mean rate above {RUNAWAY_HZ:g} Hz")
     any_downstream = False
     for name, query in groups.items():
@@ -97,7 +108,7 @@ def scan(cache: Path, groups: dict[str, str], rates: tuple, weights: tuple, seco
                     "   DN_L_Hz   DN_R_Hz   net_Hz  wall_s  runaway")
             for weight in weights:
                 for rate_hz in rates:
-                    rate, wall = drive(net, driven, rate_hz, weight, seconds, seed)
+                    rate, wall = drive(net, driven, rate_hz, weight, seconds, seed, mode)
                     s = summarize(net, rate, driven)
                     any_downstream |= s["fired_downstream"] > 0
                     runaway = "YES" if s["net_hz"] > RUNAWAY_HZ else "no"
@@ -122,10 +133,13 @@ def main() -> None:
     parser.add_argument("--seconds", type=float, default=1.0)
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--stepper", choices=("numba", "numpy"), default="numba")
-    parser.add_argument("--out", default=str(OUT_PATH))
+    parser.add_argument("--mode", choices=("drive", "spike"), default="drive")
+    parser.add_argument("--out")
     args = parser.parse_args()
-    scan(Path(args.cache), GROUPS, RATES_HZ, WEIGHTS_MV, args.seconds, args.seed, args.stepper,
-         Path(args.out))
+    spike = args.mode == "spike"
+    out = Path(args.out) if args.out else (SPIKE_OUT_PATH if spike else OUT_PATH)
+    scan(Path(args.cache), GROUPS, SPIKE_RATES_HZ if spike else RATES_HZ, WEIGHTS_MV,
+         args.seconds, args.seed, args.stepper, out, args.mode)
 
 
 if __name__ == "__main__":

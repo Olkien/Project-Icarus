@@ -65,6 +65,20 @@ class LIFStepper:
         self.steps = 0
         self.input_ids = np.empty(0, dtype=np.int64)
         self.input_p = np.empty(0, dtype=np.float64)
+        self.spike_ids = np.empty(0, dtype=np.int64)
+        self.spike_p = np.empty(0, dtype=np.float64)
+
+    def set_spike_rates(self, rates_hz: np.ndarray) -> None:
+        self.spike_ids = np.flatnonzero(rates_hz > 0.0)
+        self.spike_p = (rates_hz[self.spike_ids] * self.p_scale).astype(np.float64)
+
+    def add_forced(self, spikes: np.ndarray) -> np.ndarray:
+        forced = self.spike_ids[self.rng.random(self.spike_ids.size) < self.spike_p]
+        if forced.size == 0:
+            return spikes
+        self.v[forced] = self.v_reset
+        self.ref[forced] = self.ref_steps
+        return np.union1d(spikes, forced)
 
     def set_rates(self, rates_hz: np.ndarray) -> None:
         self.input_ids = np.flatnonzero(rates_hz > 0.0)
@@ -94,6 +108,8 @@ class LIFStepper:
         spikes = np.flatnonzero(self.v >= self.v_thresh)
         self.v[spikes] = self.v_reset
         self.ref[spikes] = self.ref_steps
+        if self.spike_ids.size:
+            spikes = self.add_forced(spikes)
         self.ring[self.pos] = spikes
         self.pos = (self.pos + 1) % self.delay
         self.steps += 1
