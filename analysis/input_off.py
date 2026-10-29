@@ -10,6 +10,7 @@ from fly.check_load import REPO_ROOT, Report
 from fly.connectome import CACHE_DIR, ConnectomeNetwork
 
 OUT_PATH = REPO_ROOT / "results" / "input_off.txt"
+SCALE_OUT_PATH = REPO_ROOT / "results" / "weight_scale.txt"
 CASES = {"LC4 R": "type=LC4,somaSide=R", "LPLC2 L": "type=LPLC2,somaSide=L"}
 RATE_HZ = 100.0
 WEIGHT_MV = 25.0
@@ -73,25 +74,49 @@ def report_case(rep: Report, label: str, bins: list[dict], extra: bool) -> None:
     rep.say(f"  {label}: {died_out(bins)}")
 
 
+def summary(bins: list[dict]) -> str:
+    on = [b for b in bins if b["input"]][-5:]
+    off = [b for b in bins if not b["input"]][-10:]
+
+    def avg(rows, key):
+        return sum(r[key] for r in rows) / len(rows)
+
+    return (f"input on (last 0.5 s): net {avg(on, 'net_hz'):.3f} Hz, driven "
+            f"{avg(on, 'driven_hz'):.2f} Hz, DN L {avg(on, 'dn_l_hz'):.2f} R "
+            f"{avg(on, 'dn_r_hz'):.2f}; input off (last 1 s): net {avg(off, 'net_hz'):.3f} Hz, "
+            f"share {100 * avg(off, 'share'):.3f}%")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--cache", default=str(CACHE_DIR / "network_A.npz"))
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--stepper", choices=("numba", "numpy"), default="numba")
-    parser.add_argument("--out", default=str(OUT_PATH))
+    parser.add_argument("--scales", help="comma separated synapse weight scales")
+    parser.add_argument("--out")
     args = parser.parse_args()
+    scales = [float(x) for x in args.scales.split(",")] if args.scales else [1.0]
+    out = Path(args.out) if args.out else (SCALE_OUT_PATH if args.scales else OUT_PATH)
     rep = Report()
     start = time.perf_counter()
     net = load(Path(args.cache), args.stepper)
     rep.say(f"input off test: {RATE_HZ:g} Hz, {WEIGHT_MV:g} mV per spike to g, on {ON_S:g} s, "
             f"off {OFF_S:g} s, {BIN_MS:g} ms bins")
-    for label, query in CASES.items():
-        driven = net.group(query)
-        rep.say(f"== {label}: {driven.size} neurons ({query})")
-        bins = binned_run(net, driven, RATE_HZ, WEIGHT_MV, ON_S, OFF_S, BIN_MS, args.seed)
-        report_case(rep, label, bins, extra=True)
+    summaries = []
+    for scale in scales:
+        net.set_weight_scale(scale)
+        for label, query in CASES.items():
+            driven = net.group(query)
+            rep.say(f"== {label}, weight scale {scale:g}: {driven.size} neurons ({query})")
+            bins = binned_run(net, driven, RATE_HZ, WEIGHT_MV, ON_S, OFF_S, BIN_MS, args.seed)
+            report_case(rep, label, bins, extra=True)
+            summaries.append(f"  scale {scale:<5g} {label:8s} {summary(bins)}; {died_out(bins)}")
+    if len(scales) > 1:
+        rep.say("== Summary")
+        for line in summaries:
+            rep.say(line)
     rep.say(f"peak memory {peak_memory_mb():.0f} MB, total {time.perf_counter() - start:.0f} s")
-    rep.save(Path(args.out))
+    rep.save(out)
 
 
 if __name__ == "__main__":

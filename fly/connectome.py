@@ -10,6 +10,7 @@ from fly.bench import peak_memory_mb
 from fly.check_load import open_feather
 from fly.download_data import DATA_DIR, FILES
 from fly.lif import LIF_DEFAULTS, LIFStepper
+from fly.network import scale_weights
 from fly.neurons import keep_mask, load_annotations, load_nt, lookup
 
 CACHE_DIR = DATA_DIR / "network_cache"
@@ -86,12 +87,16 @@ def build_cache(
 
 
 class ConnectomeNetwork:
-    def __init__(self, path: Path | str | None = None, lif_params: dict | None = None):
+    def __init__(self, path: Path | str | None = None, lif_params: dict | None = None,
+                 weight_scale: float = 1.0):
         self.lif_params = {**LIF_DEFAULTS, **(lif_params or {})}
         self.dt_ms = self.lif_params["dt_ms"]
         self.groups: dict[str, np.ndarray] = {}
+        self.weight_scale = 1.0
         if path is not None:
             self.load(path)
+            if weight_scale != 1.0:
+                self.set_weight_scale(weight_scale)
 
     def load(self, path: Path | str) -> None:
         with np.load(path, allow_pickle=False) as f:
@@ -146,6 +151,9 @@ class ConnectomeNetwork:
 
     def group_names(self) -> list[str]:
         return list(self.groups)
+
+    def set_weight_scale(self, scale: float) -> None:
+        scale_weights(self, scale)
 
 
 def main() -> None:

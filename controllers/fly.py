@@ -23,12 +23,13 @@ class Fly(Controller):
 
     @classmethod
     def default_params(cls) -> dict:
-        return {"mapping": str(DEFAULT_MAPPING), "stepper": "numpy"}
+        return {"mapping": str(DEFAULT_MAPPING), "stepper": "numpy", "weight_scale": 1.0}
 
     @classmethod
     def param_space(cls) -> dict[str, tuple[float, float]]:
         return {"bearing_hz": (50.0, 500.0), "range_hz": (0.0, 300.0), "air_hz": (0.0, 300.0),
-                "gain_yaw": (0.2, 4.0), "gain_thrust": (0.0, 1.0), "thrust_base": (0.1, 0.7)}
+                "gain_yaw": (0.2, 4.0), "gain_thrust": (0.0, 1.0), "thrust_base": (0.1, 0.7),
+                "weight_scale": (0.05, 1.5)}
 
     def __init__(self, params: dict | None = None, network: Network | None = None):
         super().__init__(params)
@@ -39,6 +40,9 @@ class Fly(Controller):
                     **{k: self.params[k] for k in TUNABLE_DECODING if k in self.params}}
         self.steps_per_tick = int(mapping["steps_per_tick"])
         self.net = network or build_network(mapping["network"])
+        scale = float(self.params.get("weight_scale", 1.0))
+        if scale != 1.0:
+            self.net.set_weight_scale(scale)
         if self.params.get("stepper") == "numba":
             from fly.lif_numba import NumbaLIFStepper
 

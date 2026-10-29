@@ -184,3 +184,25 @@ def test_explorer_describes_group(fake_data, tmp_path):
     for body in (10, 40, 50, 90):
         assert f"  {body}  index" in text
     assert describe(net, "type=none", 5) == ["query type=none: 0 neurons"]
+
+
+def test_weight_scale_scales_synapses_not_input(fake_data, tmp_path):
+    path = build_cache(fake_data, tmp_path / "cache")
+    base = ConnectomeNetwork(path)
+    half = ConnectomeNetwork(path, weight_scale=0.5)
+    assert half.weight_scale == 0.5
+    assert np.allclose(half.weights.toarray(), 0.5 * base.weights.toarray())
+    assert half.lif.input_weight == base.lif.input_weight
+    assert (half.counts != base.counts).nnz == 0
+    half.set_weight_scale(1.0)
+    assert np.allclose(half.weights.toarray(), base.weights.toarray())
+
+
+def test_fly_weight_scale_param():
+    from fly.synthetic import SyntheticNetwork
+
+    assert "weight_scale" in Fly.param_space()
+    unit = SyntheticNetwork()
+    fly = Fly({"weight_scale": 0.25})
+    assert np.allclose(fly.net.weights.toarray(), 0.25 * unit.weights.toarray())
+    assert np.allclose(fly.net.lif.data, 0.25 * unit.lif.data)

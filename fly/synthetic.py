@@ -5,6 +5,7 @@ import numpy as np
 from scipy.sparse import coo_matrix, csc_matrix
 
 from fly.lif import LIF_DEFAULTS, LIFStepper
+from fly.network import scale_weights
 
 GROUP_SIZES = {
     "vis_L": 40, "vis_R": 40,
@@ -94,3 +95,6 @@ class SyntheticNetwork:
 
     def group_names(self) -> list[str]:
         return list(self.groups)
+
+    def set_weight_scale(self, scale: float) -> None:
+        scale_weights(self, scale)

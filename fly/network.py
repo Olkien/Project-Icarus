@@ -23,6 +23,19 @@ class Network(Protocol):
 
     def group_names(self) -> list[str]: ...
 
+    def set_weight_scale(self, scale: float) -> None: ...
+
+
+def scale_weights(net, scale: float) -> None:
+    if not hasattr(net, "unit_weights"):
+        net.unit_weights = net.weights
+    if scale == 1.0:
+        net.weights = net.unit_weights
+    else:
+        net.weights = (net.unit_weights * np.float32(scale)).astype(np.float32).tocsc()
+    net.weight_scale = float(scale)
+    net.lif = type(net.lif)(net.weights, net.lif_params)
+
 
 class WeightNetwork:
     def __init__(
@@ -69,6 +82,9 @@ class WeightNetwork:
     def group_names(self) -> list[str]:
         return list(self.groups)
 
+    def set_weight_scale(self, scale: float) -> None:
+        scale_weights(self, scale)
+
 
 def build_network(spec: dict) -> Network:
     kind = spec.get("type")
@@ -79,7 +95,8 @@ def build_network(spec: dict) -> Network:
     if kind == "connectome":
         from fly.connectome import ConnectomeNetwork
 
-        net = ConnectomeNetwork(spec["path"], spec.get("lif_params"))
+        net = ConnectomeNetwork(spec["path"], spec.get("lif_params"),
+                                spec.get("weight_scale", 1.0))
         for name, query in spec.get("groups", {}).items():
             net.add_group(name, query)
         return net
