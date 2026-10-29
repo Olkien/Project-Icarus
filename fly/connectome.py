@@ -103,7 +103,7 @@ class ConnectomeNetwork:
             self.columns = {c: f[f"ann_{c}"] for c in CACHE_COLUMNS}
             self.columns.update({c: f[f"nt_{c}"] for c in NT_CACHE_COLUMNS})
         self.n = n
-        weights = csc_matrix(self.counts.T)
+        weights = csc_matrix(self.counts.T, copy=True)
         scale = np.float32(self.lif_params["weight_mV_per_synapse"])
         per_pre = self.sign.astype(np.float32) * scale
         weights.data *= np.repeat(per_pre, np.diff(weights.indptr))
