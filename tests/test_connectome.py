@@ -33,27 +33,32 @@ KEPT_B = [10, 20, 30, 90, 100]
 SCALE = LIF_DEFAULTS["weight_mV_per_synapse"]
 
 
-@pytest.fixture
-def fake_data(tmp_path):
-    cols = list(zip(*NEURONS))
+def write_fake(path, neurons, edges):
+    path.mkdir(parents=True, exist_ok=True)
+    cols = list(zip(*neurons))
     feather.write_feather(pa.table({
         "bodyId": pa.array(cols[0], pa.int64()), "statusLabel": list(cols[1]),
         "superclass": list(cols[2]), "class": list(cols[3]), "type": list(cols[4]),
         "somaSide": list(cols[5]),
-    }), tmp_path / FILES[0])
-    with_nt = [n for n in NEURONS if n[6] is not None]
+    }), path / FILES[0])
+    with_nt = [n for n in neurons if n[6] is not None]
     feather.write_feather(pa.table({
         "body": pa.array([n[0] for n in with_nt], pa.int64()),
         "consensus_nt": [n[6] for n in with_nt],
         "celltype_predicted_nt": [n[7] for n in with_nt],
         "predicted_nt": [n[7] for n in with_nt],
-    }), tmp_path / FILES[1])
-    pre, post, w = zip(*EDGES)
+    }), path / FILES[1])
+    pre, post, w = zip(*edges)
     feather.write_feather(pa.table({
         "body_pre": pa.array(pre, pa.int64()), "body_post": pa.array(post, pa.int64()),
         "weight": pa.array(w, pa.int64()),
-    }), tmp_path / FILES[2])
-    return tmp_path
+    }), path / FILES[2])
+    return path
+
+
+@pytest.fixture
+def fake_data(tmp_path):
+    return write_fake(tmp_path, NEURONS, EDGES)
 
 
 def index(body: int) -> int:
@@ -206,3 +211,21 @@ def test_fly_weight_scale_param():
     fly = Fly({"weight_scale": 0.25})
     assert np.allclose(fly.net.weights.toarray(), 0.25 * unit.weights.toarray())
     assert np.allclose(fly.net.lif.data, 0.25 * unit.lif.data)
+
+
+def test_orientation_row_is_presynaptic(tmp_path):
+    pair = [(1, "Reviewed", "cb_intrinsic", None, "A", "L", "acetylcholine", "acetylcholine"),
+            (2, "Reviewed", "cb_intrinsic", None, "B", "L", "acetylcholine", "acetylcholine")]
+    fired = {}
+    for label, edge in (("a_to_b", (1, 2, 200)), ("b_to_a", (2, 1, 200))):
+        net = ConnectomeNetwork(build_cache(write_fake(tmp_path / label, pair, [edge]),
+                                            tmp_path / label / "cache"))
+        assert net.counts[0, 1] == (200 if label == "a_to_b" else 0)
+        assert net.counts[1, 0] == (0 if label == "a_to_b" else 200)
+        rates = np.zeros(2, dtype=np.float32)
+        rates[net.group("type=A")] = 1000.0
+        net.reset(0)
+        spikes = [net.step(rates) for _ in range(2000)]
+        fired[label] = sum(int(1 in s) for s in spikes)
+    assert fired["a_to_b"] > 0
+    assert fired["b_to_a"] == 0

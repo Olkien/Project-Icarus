@@ -1,0 +1,146 @@
+orientation: counts row = presynaptic, column = postsynaptic (unit test in tests/test_connectome.py); LIF weights are the transpose, post by pre
+one presynaptic spike moves the membrane 0.0437 mV per synapse; a single spike crosses the 7 mV gap alone at 161 synapses or more
+excitatory edges with >= 161 synapses: 8932 of 25617721; neurons receiving one: 3419 (2.04%)
+excitatory synapses received per neuron: median 171, 90th percentile 939, max 111050
+== LC4 R: 55 driven neurons, 2251 direct partners
+top 20 postsynaptic neurons by synapses from the group, rates at 100 Hz, 25 mV, 1 s (driven group 20.09 Hz):
+  syn_from_group  in_syn  rate_Hz  type           side superclass         nt
+            4786    8930    95.00  DNp04          R  descending_neuron  acetylcholine
+            2580   16060    45.00  DNp01          R  descending_neuron  acetylcholine
+            2114    7894    67.00  AMMC-A1        R  cb_intrinsic       acetylcholine
+            1968    3343   119.00  PVLP024        R  cb_intrinsic       gaba         
+            1930    7922    72.00  DNp02          R  descending_neuron  acetylcholine
+            1820    3409   135.00  PVLP024        R  cb_intrinsic       gaba         
+            1644    9744    56.00  DNp11          R  descending_neuron  acetylcholine
+            1335    6341    70.00  AMMC-A1        R  cb_intrinsic       acetylcholine
+            1313    9463    33.00  PVLP122        R  cb_intrinsic       acetylcholine
+            1260    6493    60.00  AMMC-A1        R  cb_intrinsic       acetylcholine
+            1104    3587    77.00  PVLP021        R  cb_intrinsic       gaba         
+            1069    4087    52.00  -              R  cb_intrinsic       acetylcholine
+             939    3070    27.00  -              R  cb_intrinsic       acetylcholine
+             938   18719    69.00  PVLP010        R  cb_intrinsic       glutamate    
+             923    8150    30.00  PVLP122        R  cb_intrinsic       acetylcholine
+             913    6267    92.00  PVLP130        R  cb_intrinsic       gaba         
+             775    4644    18.00  PVLP022        R  cb_intrinsic       gaba         
+             773    2748    48.00  CB3400         R  cb_intrinsic       acetylcholine
+             744    3090    29.00  -              R  cb_intrinsic       acetylcholine
+             726    8123    54.00  PVLP141        R  cb_intrinsic       acetylcholine
+  top partners mean 62.40 Hz vs matched random non-partners 21.80 Hz
+  matched controls:
+                    8312     0.00  INXXX100       L  vnc_intrinsic      acetylcholine
+                   16335     1.00  CL001          L  cb_intrinsic       glutamate    
+                    8063     0.00  AN09B003       R  ascending_neuron   acetylcholine
+                    3496     0.00  GNG554         L  cb_intrinsic       glutamate    
+                    8698    16.00  AVLP535        L  cb_intrinsic       gaba         
+                    3342    29.00  GNG303         R  cb_intrinsic       gaba         
+                   10283     1.00  LoVC11         R  visual_centrifugal gaba         
+                    6742   375.00  V_ilPN         L  cb_intrinsic       acetylcholine
+                    8634     0.00  CvN7           L  cb_motor           unclear      
+                    6789     0.00  INXXX044       L  vnc_intrinsic      gaba         
+                    3753     0.00  AN17A024       L  ascending_neuron   acetylcholine
+                    3965     1.00  IN06B029       R  vnc_intrinsic      gaba         
+                    3295     0.00  Pm4            R  ol_intrinsic       gaba         
+                   17247     0.00  AN05B102a      L  ascending_neuron   acetylcholine
+                    7948     9.00  MNad67         L  vnc_motor          unclear      
+                    5750     0.00  CRE022         L  cb_intrinsic       glutamate    
+                    4772     4.00  PVLP004        L  cb_intrinsic       glutamate    
+                    2650     0.00  Pm9            R  ol_intrinsic       gaba         
+                    2830     0.00  Y11            R  ol_intrinsic       glutamate    
+                    7492     0.00  Sternal posterior rotator MN L  vnc_motor          unclear      
+per setting (scale 1.0, 1 s): rate_Hz w_mV driven_Hz partner_Hz non_partner_Hz net_Hz
+      20    10      0.02      0.000          0.000   0.000
+      50    10      1.02      0.047          0.003   0.004
+     100    10      1.45      3.302         10.258  10.162
+     200    10     12.25      3.913         10.844  10.751
+      20    25      3.53      0.457          0.341   0.344
+      50    25      4.15      3.356         10.617  10.517
+     100    25     20.09      4.239         10.871  10.784
+     200    25    119.11      8.814         10.752  10.761
+      20    50      4.73      3.288          9.683   9.596
+      50    50     22.49      4.175         10.992  10.904
+     100    50    128.67      8.624          1.260   1.401
+     200    50    209.35     12.799         10.708  10.801
+== LPLC2 L: 94 driven neurons, 3820 direct partners
+top 20 postsynaptic neurons by synapses from the group, rates at 100 Hz, 25 mV, 1 s (driven group 14.93 Hz):
+  syn_from_group  in_syn  rate_Hz  type           side superclass         nt
+            4857    6163   161.00  PVLP069        L  cb_intrinsic       acetylcholine
+            4640   38557   184.00  PVLP011        L  cb_intrinsic       gaba         
+            2642   20695    20.00  DNp01          L  descending_neuron  acetylcholine
+            2198   26097    17.00  DNp103         L  descending_neuron  acetylcholine
+            2000    9054    67.00  PVLP151        L  cb_intrinsic       acetylcholine
+            1957   12108    17.00  DNp04          L  descending_neuron  acetylcholine
+            1664    2019   125.00  PVLP111        L  cb_intrinsic       gaba         
+            1610    6898    94.00  AVLP531        L  cb_intrinsic       gaba         
+            1535    2034   110.00  PVLP111        L  cb_intrinsic       gaba         
+            1355    1936   108.00  PVLP111        L  cb_intrinsic       gaba         
+            1296    2187    63.00  PVLP111        L  cb_intrinsic       gaba         
+            1265    8636     5.00  PVLP151        L  cb_intrinsic       acetylcholine
+            1200    5674    44.00  PVLP130        L  cb_intrinsic       gaba         
+            1172    8691     0.00  DNg40          L  descending_neuron  glutamate    
+            1097    8869   100.00  AVLP479        L  cb_intrinsic       gaba         
+            1076    8041     5.00  AVLP500        L  cb_intrinsic       acetylcholine
+            1075   25547    10.00  LHAD1g1        L  cb_intrinsic       gaba         
+            1001    8762   115.00  AVLP479        L  cb_intrinsic       gaba         
+             891    4725    33.00  PVLP071        L  cb_intrinsic       acetylcholine
+             886   22331     1.00  DNp06          L  descending_neuron  acetylcholine
+  top partners mean 63.95 Hz vs matched random non-partners 29.25 Hz
+  matched controls:
+                    5913    38.00  DNpe031        R  descending_neuron  glutamate    
+                   39726   174.00  AVLP076        R  cb_intrinsic       gaba         
+                   21122     0.00  lLN2T_c        L  cb_intrinsic       acetylcholine
+                   24389     0.00  MBON01         R  cb_intrinsic       glutamate    
+                    8995     0.00  AVLP536        R  cb_intrinsic       glutamate    
+                   11093     0.00  MNad19         R  vnc_motor          unclear      
+                    2153    53.00  GNG638         R  cb_intrinsic       gaba         
+                    7543     0.00  DNge054        R  descending_neuron  gaba         
+                    1889     0.00  PLP141         L  cb_intrinsic       gaba         
+                    2092     0.00  Dm6            L  ol_intrinsic       glutamate    
+                    1985     1.00  IN18B033       L  vnc_intrinsic      acetylcholine
+                    8047     0.00  MeVP52         R  visual_projection  acetylcholine
+                    5538     0.00  MeVPMe1        R  visual_projection  glutamate    
+                    8924     5.00  Sternotrochanter MN R  vnc_motor          unclear      
+                    8289   186.00  MeVPMe2        R  visual_projection  glutamate    
+                    8557     0.00  lLN2P_c        R  cb_intrinsic       gaba         
+                   25071     0.00  LoVC16         R  visual_centrifugal glutamate    
+                    8698   128.00  AVLP535        L  cb_intrinsic       gaba         
+                    4289     0.00  Pm2b           R  ol_intrinsic       gaba         
+                   23065     0.00  MBON05         R  cb_intrinsic       glutamate    
+per setting (scale 1.0, 1 s): rate_Hz w_mV driven_Hz partner_Hz non_partner_Hz net_Hz
+      20    10      0.01      0.000          0.000   0.000
+      50    10      0.62      0.354          0.512   0.508
+     100    10      2.98      0.433          0.590   0.588
+     200    10      9.28      0.665          0.537   0.545
+      20    25      1.89      0.289          0.868   0.856
+      50    25      5.97      0.489          0.531   0.533
+     100    25     14.93      2.736          2.235   2.254
+     200    25    255.57      7.190          1.471   1.744
+      20    50      7.73      1.735          9.207   9.036
+      50    50     19.82      2.202          9.427   9.268
+     100    50    251.07      7.197          1.447   1.719
+     200    50    290.05      8.019          1.588   1.896
+== What keeps firing after input off (LC4 R, 100 Hz, 25 mV, scale 1.0)
+neurons firing in the second after input off: 13042
+  by superclass: cb_intrinsic 10159, vnc_intrinsic 1668, vnc_motor 241, descending_neuron 240, ascending_neuron 238, ol_intrinsic 130, visual_projection 91, visual_centrifugal 84
+  by transmitter: acetylcholine 7514, gaba 2707, glutamate 1777, unclear 624, dopamine 364, octopamine 43, serotonin 13
+  top firing neurons:
+      435 Hz  PPL105         R  cb_intrinsic       dopamine     
+      435 Hz  lLN1_bc        L  cb_intrinsic       acetylcholine
+      435 Hz  lLN1_bc        L  cb_intrinsic       acetylcholine
+      435 Hz  MBON30         L  cb_intrinsic       glutamate    
+      435 Hz  MBON03         R  cb_intrinsic       glutamate    
+      435 Hz  lLN1_bc        L  cb_intrinsic       acetylcholine
+      435 Hz  PPL101         L  cb_intrinsic       dopamine     
+      435 Hz  lLN1_bc        R  cb_intrinsic       acetylcholine
+      435 Hz  MBON11         R  cb_intrinsic       gaba         
+      435 Hz  MBON32         L  cb_intrinsic       gaba         
+      435 Hz  lLN1_bc        L  cb_intrinsic       acetylcholine
+      435 Hz  PPL106         L  cb_intrinsic       dopamine     
+      435 Hz  lLN1_bc        R  cb_intrinsic       acetylcholine
+      435 Hz  lLN2X05        R  cb_intrinsic       acetylcholine
+      435 Hz  lLN2X04        L  cb_intrinsic       acetylcholine
+      435 Hz  MBON14         R  cb_intrinsic       acetylcholine
+      435 Hz  lLN1_bc        R  cb_intrinsic       acetylcholine
+      435 Hz  MBON12         R  cb_intrinsic       acetylcholine
+      435 Hz  lLN2P_a        R  cb_intrinsic       gaba         
+      435 Hz  il3LN6         L  cb_intrinsic       gaba         
+peak memory 1085 MB, total 120 s
