@@ -7,6 +7,8 @@ import numpy as np
 
 from fly.check_load import REPO_ROOT, Report
 from fly.connectome import CACHE_DIR, ConnectomeNetwork
+from fly.download_data import DATA_DIR, FILES
+from fly.neurons import read_columns, text_column
 
 RESULTS = REPO_ROOT / "results"
 SIDES = ("L", "R", "M", "")
@@ -73,13 +75,37 @@ def inputs_report(net: ConnectomeNetwork, rep: Report) -> None:
         rep.say(line)
 
 
+def nerve_table(net: ConnectomeNetwork, mask: np.ndarray, data_dir: Path = DATA_DIR) -> list[str]:
+    table = read_columns(Path(data_dir) / FILES[0], ("bodyId", "exitNerve"))
+    ids = table["bodyId"].to_numpy()
+    nerves = text_column(table["exitNerve"].to_pylist())
+    order = np.argsort(ids)
+    ids, nerves = ids[order], nerves[order]
+    idx = np.flatnonzero(mask)
+    pos = np.searchsorted(ids, net.body_ids[idx])
+    counts: dict[str, Counter] = {}
+    for nerve, side in zip(nerves[pos].tolist(), net.columns["somaSide"][idx].tolist()):
+        counts.setdefault(nerve or "-", Counter())[side] += 1
+    lines = [f"  {'exitNerve':24s}{'L':>6s}{'R':>6s}{'M':>5s}{'none':>6s}{'total':>7s}"]
+    for nerve in sorted(counts, key=lambda k: (-sum(counts[k].values()), k)):
+        c = counts[nerve]
+        lines.append(f"  {nerve:24s}{c['L']:6d}{c['R']:6d}{c['M']:5d}{c['']:6d}"
+                     f"{sum(c.values()):7d}")
+    lines.append(f"  {len(counts)} nerves, {idx.size} neurons")
+    return lines
+
+
 def outputs_report(net: ConnectomeNetwork, rep: Report) -> None:
     sc = net.columns["superclass"]
     rep.say("== Descending neuron types (superclass descending_neuron)")
     for line in type_table(net, sc == "descending_neuron"):
         rep.say(line)
-    rep.say("== vnc_motor neurons by type (no nerve column in the cache)")
-    for line in type_table(net, sc == "vnc_motor"):
+    rep.say("== vnc_motor neurons by type")
+    motor = sc == "vnc_motor"
+    for line in type_table(net, motor):
+        rep.say(line)
+    rep.say("== vnc_motor neurons by exitNerve (from the annotations file)")
+    for line in nerve_table(net, motor):
         rep.say(line)
     rep.say("== cb_motor neurons by type")
     for line in type_table(net, sc == "cb_motor"):

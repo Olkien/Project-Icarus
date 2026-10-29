@@ -1,0 +1,698 @@
+cache network_A.npz, 167526 neurons, Rule A
+== Descending neuron types (superclass descending_neuron)
+  type                         L     R    M  none  total  transmitter
+  DNg08                       12    11    0     0     23  gaba 23
+  DNpe008                      9    10    0     0     19  acetylcholine 19
+  DNg07                        8     8    0     0     16  acetylcholine 16
+  DNg106                       9     7    0     0     16  gaba 16
+  DNge091                      7     7    0     0     14  acetylcholine 14
+  DNge094                      6     7    0     0     13  acetylcholine 13
+  DNg03                        6     6    0     0     12  acetylcholine 12
+  DNg06                        6     6    0     0     12  acetylcholine 12
+  DNg10                        6     6    0     0     12  gaba 12
+  DNp17                        6     6    0     0     12  acetylcholine 12
+  DNge019                      6     5    0     0     11  acetylcholine 11
+  DNpe015                      6     5    0     0     11  acetylcholine 11
+  DNg02_a                      5     5    0     0     10  acetylcholine 10
+  DNg12_b                      5     5    0     0     10  acetylcholine 10
+  DNge071                      5     5    0     0     10  gaba 10
+  DNg12_a                      4     4    0     0      8  acetylcholine 8
+  DNg12_c                      4     4    0     0      8  acetylcholine 8
+  DNge085                      4     4    0     0      8  gaba 8
+  DNge115                      4     4    0     0      8  acetylcholine 8
+  DNg36_b                      3     4    0     0      7  acetylcholine 7
+  DNge009                      4     3    0     0      7  acetylcholine 7
+  DNpe054                      4     3    0     0      7  acetylcholine 7
+  DNg09_a                      3     3    0     0      6  acetylcholine 6
+  DNg11                        3     3    0     0      6  gaba 6
+  DNg110                       3     3    0     0      6  acetylcholine 6
+  DNg12_e                      3     3    0     0      6  acetylcholine 6
+  DNg18_b                      3     3    0     0      6  gaba 6
+  DNge020                      3     3    0     0      6  acetylcholine 6
+  DNge089                      3     3    0     0      6  acetylcholine 6
+  DNge111                      3     3    0     0      6  acetylcholine 6
+  DNge114                      4     2    0     0      6  acetylcholine 6
+  DNge179                      3     3    0     0      6  gaba 6
+  DNpe009                      3     3    0     0      6  acetylcholine 6
+  DNg02_b                      3     2    0     0      5  acetylcholine 5
+  DNge108                      3     2    0     0      5  acetylcholine 5
+  -                            3     1    0     0      4  acetylcholine 3, unclear 1
+  DNa13                        2     2    0     0      4  acetylcholine 4
+  DNb02                        2     2    0     0      4  glutamate 4
+  DNb03                        2     2    0     0      4  acetylcholine 4
+  DNb08                        2     2    0     0      4  acetylcholine 4
+  DNbe002                      2     2    0     0      4  acetylcholine 4
+  DNde003                      2     2    0     0      4  acetylcholine 4
+  DNg02_c                      2     2    0     0      4  acetylcholine 4
+  DNg02_g                      2     2    0     0      4  acetylcholine 4
+  DNg04                        2     2    0     0      4  acetylcholine 4
+  DNg05_b                      2     2    0     0      4  acetylcholine 4
+  DNg102                       2     2    0     0      4  gaba 4
+  DNg12_f                      2     2    0     0      4  acetylcholine 4
+  DNg26                        2     2    0     0      4  unclear 4
+  DNg36_a                      2     2    0     0      4  acetylcholine 4
+  DNg51                        2     2    0     0      4  acetylcholine 4
+  DNg52                        2     2    0     0      4  gaba 4
+  DNg72                        2     2    0     0      4  glutamate 4
+  DNg79                        2     2    0     0      4  acetylcholine 4
+  DNg82                        2     2    0     0      4  acetylcholine 4
+  DNg92_b                      2     2    0     0      4  acetylcholine 4
+  DNge024                      2     2    0     0      4  acetylcholine 4
+  DNge046                      2     2    0     0      4  gaba 4
+  DNge061                      2     2    0     0      4  acetylcholine 4
+  DNge087                      2     2    0     0      4  gaba 4
+  DNge092                      2     2    0     0      4  acetylcholine 4
+  DNge093                      2     2    0     0      4  acetylcholine 4
+  DNge113                      2     2    0     0      4  acetylcholine 4
+  DNge116                      2     2    0     0      4  acetylcholine 4
+  DNge117                      2     2    0     0      4  gaba 4
+  DNge136                      2     2    0     0      4  gaba 4
+  DNge145                      2     2    0     0      4  acetylcholine 4
+  DNge172                      1     3    0     0      4  acetylcholine 4
+  DNge181                      2     2    0     0      4  acetylcholine 4
+  DNp41                        2     2    0     0      4  acetylcholine 4
+  DNp51,DNpe019                2     2    0     0      4  acetylcholine 4
+  DNpe003                      2     2    0     0      4  acetylcholine 4
+  DNpe004                      2     2    0     0      4  acetylcholine 4
+  DNpe011                      2     2    0     0      4  acetylcholine 4
+  DNpe012_a                    2     2    0     0      4  acetylcholine 4
+  DNpe012_b                    2     2    0     0      4  acetylcholine 4
+  DNpe014                      2     2    0     0      4  acetylcholine 4
+  DNpe029                      2     2    0     0      4  acetylcholine 4
+  DNpe031                      2     2    0     0      4  glutamate 4
+  DNpe057                      2     2    0     0      4  acetylcholine 4
+  MDN                          2     2    0     0      4  acetylcholine 4
+  DNg18_a                      2     1    0     0      3  gaba 3
+  DNge001                      1     2    0     0      3  acetylcholine 3
+  DNge015                      1     2    0     0      3  acetylcholine 3
+  DNge025                      2     1    0     0      3  acetylcholine 3
+  DNge095                      1     2    0     0      3  acetylcholine 3
+  DNge137                      1     2    0     0      3  acetylcholine 3
+  DNpe018                      2     1    0     0      3  acetylcholine 3
+  CB0429                       1     1    0     0      2  acetylcholine 2
+  DNa01                        1     1    0     0      2  acetylcholine 2
+  DNa02                        1     1    0     0      2  acetylcholine 2
+  DNa03                        1     1    0     0      2  acetylcholine 2
+  DNa04                        1     1    0     0      2  acetylcholine 2
+  DNa05                        1     1    0     0      2  acetylcholine 2
+  DNa06                        1     1    0     0      2  acetylcholine 2
+  DNa07                        1     1    0     0      2  acetylcholine 2
+  DNa08                        1     1    0     0      2  acetylcholine 2
+  DNa09                        1     1    0     0      2  acetylcholine 2
+  DNa10                        1     1    0     0      2  acetylcholine 2
+  DNa11                        1     1    0     0      2  acetylcholine 2
+  DNa14                        1     1    0     0      2  acetylcholine 2
+  DNa15                        1     1    0     0      2  acetylcholine 2
+  DNa16                        1     1    0     0      2  acetylcholine 2
+  DNae001                      1     1    0     0      2  acetylcholine 2
+  DNae002                      1     1    0     0      2  acetylcholine 2
+  DNae003                      1     1    0     0      2  acetylcholine 2
+  DNae004                      1     1    0     0      2  acetylcholine 2
+  DNae005                      1     1    0     0      2  acetylcholine 2
+  DNae006                      1     1    0     0      2  acetylcholine 2
+  DNae007                      1     1    0     0      2  acetylcholine 2
+  DNae008                      1     1    0     0      2  acetylcholine 2
+  DNae009                      1     1    0     0      2  acetylcholine 2
+  DNae010                      1     1    0     0      2  acetylcholine 2
+  DNb01                        1     1    0     0      2  glutamate 2
+  DNb04                        1     1    0     0      2  glutamate 2
+  DNb05                        1     1    0     0      2  acetylcholine 2
+  DNb06                        1     1    0     0      2  acetylcholine 2
+  DNb07                        1     1    0     0      2  glutamate 2
+  DNb09                        1     1    0     0      2  glutamate 2
+  DNbe001                      1     1    0     0      2  acetylcholine 2
+  DNbe003                      1     1    0     0      2  acetylcholine 2
+  DNbe004                      1     1    0     0      2  glutamate 2
+  DNbe005                      1     1    0     0      2  glutamate 2
+  DNbe006                      1     1    0     0      2  acetylcholine 2
+  DNbe007                      1     1    0     0      2  acetylcholine 2
+  DNc01                        1     1    0     0      2  unclear 2
+  DNc02                        1     1    0     0      2  unclear 2
+  DNd02                        1     1    0     0      2  unclear 2
+  DNd03                        1     1    0     0      2  glutamate 2
+  DNd04                        1     1    0     0      2  glutamate 2
+  DNd05                        1     1    0     0      2  acetylcholine 2
+  DNde001                      1     1    0     0      2  glutamate 2
+  DNde002                      1     1    0     0      2  acetylcholine 2
+  DNde005                      1     1    0     0      2  acetylcholine 2
+  DNde006                      1     1    0     0      2  glutamate 2
+  DNde007                      1     1    0     0      2  glutamate 2
+  DNg01_a                      1     1    0     0      2  acetylcholine 2
+  DNg01_b                      1     1    0     0      2  acetylcholine 2
+  DNg01_c                      1     1    0     0      2  acetylcholine 2
+  DNg01_d                      1     1    0     0      2  acetylcholine 2
+  DNg02_d                      1     1    0     0      2  acetylcholine 2
+  DNg02_e                      1     1    0     0      2  acetylcholine 2
+  DNg02_f                      1     1    0     0      2  acetylcholine 2
+  DNg05_a                      1     1    0     0      2  acetylcholine 2
+  DNg05_c                      1     1    0     0      2  acetylcholine 2
+  DNg09_b                      1     1    0     0      2  acetylcholine 2
+  DNg100                       1     1    0     0      2  acetylcholine 2
+  DNg101                       1     1    0     0      2  acetylcholine 2
+  DNg103                       1     1    0     0      2  gaba 2
+  DNg104                       1     1    0     0      2  unclear 2
+  DNg105                       1     1    0     0      2  gaba 2
+  DNg107                       1     1    0     0      2  acetylcholine 2
+  DNg108                       1     1    0     0      2  gaba 2
+  DNg109                       1     1    0     0      2  acetylcholine 2
+  DNg111                       1     1    0     0      2  glutamate 2
+  DNg12_d                      1     1    0     0      2  acetylcholine 2
+  DNg12_g                      1     1    0     0      2  acetylcholine 2
+  DNg12_h                      1     1    0     0      2  acetylcholine 2
+  DNg13                        1     1    0     0      2  acetylcholine 2
+  DNg14                        1     1    0     0      2  acetylcholine 2
+  DNg15                        1     1    0     0      2  acetylcholine 2
+  DNg16                        1     1    0     0      2  acetylcholine 2
+  DNg17                        1     1    0     0      2  acetylcholine 2
+  DNg19                        1     1    0     0      2  acetylcholine 2
+  DNg20                        1     1    0     0      2  gaba 2
+  DNg21                        1     1    0     0      2  acetylcholine 2
+  DNg22                        1     1    0     0      2  acetylcholine 2
+  DNg23                        1     1    0     0      2  gaba 2
+  DNg24                        1     1    0     0      2  gaba 2
+  DNg27                        1     1    0     0      2  glutamate 2
+  DNg29                        1     1    0     0      2  acetylcholine 2
+  DNg30                        1     1    0     0      2  serotonin 2
+  DNg31                        1     1    0     0      2  gaba 2
+  DNg32                        1     1    0     0      2  acetylcholine 2
+  DNg33                        1     1    0     0      2  acetylcholine 2
+  DNg34                        1     1    0     0      2  unclear 2
+  DNg35                        1     1    0     0      2  acetylcholine 2
+  DNg37                        1     1    0     0      2  acetylcholine 2
+  DNg38                        1     1    0     0      2  gaba 2
+  DNg39                        1     1    0     0      2  acetylcholine 2
+  DNg40                        1     1    0     0      2  glutamate 2
+  DNg41                        1     1    0     0      2  glutamate 2
+  DNg42                        1     1    0     0      2  glutamate 2
+  DNg43                        1     1    0     0      2  acetylcholine 2
+  DNg44                        1     1    0     0      2  glutamate 2
+  DNg45                        1     1    0     0      2  acetylcholine 2
+  DNg46                        1     1    0     0      2  glutamate 2
+  DNg47                        1     1    0     0      2  acetylcholine 2
+  DNg48                        1     1    0     0      2  acetylcholine 2
+  DNg49                        1     1    0     0      2  gaba 2
+  DNg50                        1     1    0     0      2  acetylcholine 2
+  DNg53                        1     1    0     0      2  acetylcholine 2
+  DNg54                        1     1    0     0      2  acetylcholine 2
+  DNg56                        1     1    0     0      2  gaba 2
+  DNg57                        1     1    0     0      2  acetylcholine 2
+  DNg58                        1     1    0     0      2  acetylcholine 2
+  DNg59                        1     1    0     0      2  gaba 2
+  DNg60                        1     1    0     0      2  gaba 2
+  DNg61                        1     1    0     0      2  acetylcholine 2
+  DNg62                        1     1    0     0      2  acetylcholine 2
+  DNg63                        1     1    0     0      2  acetylcholine 2
+  DNg64                        1     1    0     0      2  gaba 2
+  DNg65                        1     1    0     0      2  unclear 2
+  DNg67                        1     1    0     0      2  acetylcholine 2
+  DNg68                        1     1    0     0      2  acetylcholine 2
+  DNg69                        1     1    0     0      2  acetylcholine 2
+  DNg70                        1     1    0     0      2  gaba 2
+  DNg71                        1     1    0     0      2  glutamate 2
+  DNg73                        1     1    0     0      2  acetylcholine 2
+  DNg74_a                      1     1    0     0      2  gaba 2
+  DNg74_b                      1     1    0     0      2  gaba 2
+  DNg75                        1     1    0     0      2  acetylcholine 2
+  DNg76                        1     1    0     0      2  acetylcholine 2
+  DNg77                        1     1    0     0      2  acetylcholine 2
+  DNg78                        1     1    0     0      2  acetylcholine 2
+  DNg80                        1     1    0     0      2  glutamate 2
+  DNg81                        1     1    0     0      2  gaba 2
+  DNg83                        1     1    0     0      2  gaba 2
+  DNg84                        1     1    0     0      2  acetylcholine 2
+  DNg85                        1     1    0     0      2  acetylcholine 2
+  DNg86                        1     1    0     0      2  unclear 2
+  DNg87                        1     1    0     0      2  acetylcholine 2
+  DNg88                        1     1    0     0      2  acetylcholine 2
+  DNg89                        1     1    0     0      2  gaba 2
+  DNg90                        1     1    0     0      2  gaba 2
+  DNg91                        1     1    0     0      2  acetylcholine 2
+  DNg92_a                      1     1    0     0      2  acetylcholine 2
+  DNg93                        1     1    0     0      2  gaba 2
+  DNg94                        1     1    0     0      2  acetylcholine 2
+  DNg95                        1     1    0     0      2  acetylcholine 2
+  DNg96                        1     1    0     0      2  glutamate 2
+  DNg97                        1     1    0     0      2  acetylcholine 2
+  DNg98                        1     1    0     0      2  gaba 2
+  DNg99                        1     1    0     0      2  gaba 2
+  DNge002                      1     1    0     0      2  acetylcholine 2
+  DNge003                      1     1    0     0      2  acetylcholine 2
+  DNge004                      1     1    0     0      2  glutamate 2
+  DNge006                      1     1    0     0      2  acetylcholine 2
+  DNge007                      1     1    0     0      2  acetylcholine 2
+  DNge008                      1     1    0     0      2  acetylcholine 2
+  DNge010                      1     1    0     0      2  acetylcholine 2
+  DNge011                      1     1    0     0      2  acetylcholine 2
+  DNge012                      1     1    0     0      2  acetylcholine 2
+  DNge013                      1     1    0     0      2  acetylcholine 2
+  DNge014                      1     1    0     0      2  acetylcholine 2
+  DNge016                      1     1    0     0      2  acetylcholine 2
+  DNge017                      1     1    0     0      2  acetylcholine 2
+  DNge018                      1     1    0     0      2  acetylcholine 2
+  DNge021                      1     1    0     0      2  acetylcholine 2
+  DNge022                      1     1    0     0      2  acetylcholine 2
+  DNge023                      1     1    0     0      2  acetylcholine 2
+  DNge026                      1     1    0     0      2  glutamate 2
+  DNge027                      1     1    0     0      2  acetylcholine 2
+  DNge028                      1     1    0     0      2  acetylcholine 2
+  DNge029                      1     1    0     0      2  glutamate 2
+  DNge030                      1     1    0     0      2  acetylcholine 2
+  DNge031                      1     1    0     0      2  gaba 2
+  DNge032                      1     1    0     0      2  acetylcholine 2
+  DNge033                      1     1    0     0      2  gaba 2
+  DNge034                      1     1    0     0      2  glutamate 2
+  DNge035                      1     1    0     0      2  acetylcholine 2
+  DNge036                      1     1    0     0      2  acetylcholine 2
+  DNge037                      1     1    0     0      2  acetylcholine 2
+  DNge038                      1     1    0     0      2  acetylcholine 2
+  DNge039                      1     1    0     0      2  acetylcholine 2
+  DNge040                      1     1    0     0      2  glutamate 2
+  DNge041                      1     1    0     0      2  acetylcholine 2
+  DNge042                      1     1    0     0      2  acetylcholine 2
+  DNge043                      1     1    0     0      2  acetylcholine 2
+  DNge044                      1     1    0     0      2  acetylcholine 2
+  DNge045                      1     1    0     0      2  gaba 2
+  DNge047                      1     1    0     0      2  unclear 2
+  DNge048                      1     1    0     0      2  acetylcholine 2
+  DNge049                      1     1    0     0      2  acetylcholine 2
+  DNge050                      1     1    0     0      2  acetylcholine 2
+  DNge051                      1     1    0     0      2  gaba 2
+  DNge052                      1     1    0     0      2  gaba 2
+  DNge053                      1     1    0     0      2  acetylcholine 2
+  DNge054                      1     1    0     0      2  gaba 2
+  DNge055                      1     1    0     0      2  glutamate 2
+  DNge056                      1     1    0     0      2  acetylcholine 2
+  DNge057                      1     1    0     0      2  acetylcholine 2
+  DNge058                      1     1    0     0      2  acetylcholine 2
+  DNge059                      1     1    0     0      2  acetylcholine 2
+  DNge060                      1     1    0     0      2  glutamate 2
+  DNge062                      1     1    0     0      2  acetylcholine 2
+  DNge063                      1     1    0     0      2  gaba 2
+  DNge064                      1     1    0     0      2  glutamate 2
+  DNge065                      1     1    0     0      2  gaba 2
+  DNge067                      1     1    0     0      2  gaba 2
+  DNge068                      1     1    0     0      2  glutamate 2
+  DNge069                      1     1    0     0      2  glutamate 2
+  DNge070                      1     1    0     0      2  gaba 2
+  DNge072                      1     1    0     0      2  gaba 2
+  DNge073                      1     1    0     0      2  acetylcholine 2
+  DNge074                      1     1    0     0      2  acetylcholine 2
+  DNge075                      1     1    0     0      2  acetylcholine 2
+  DNge076                      1     1    0     0      2  gaba 2
+  DNge077                      1     1    0     0      2  acetylcholine 2
+  DNge078                      1     1    0     0      2  acetylcholine 2
+  DNge079                      1     1    0     0      2  gaba 2
+  DNge080                      1     1    0     0      2  acetylcholine 2
+  DNge081                      1     1    0     0      2  acetylcholine 2
+  DNge082                      1     1    0     0      2  acetylcholine 2
+  DNge083                      1     1    0     0      2  glutamate 2
+  DNge084                      1     1    0     0      2  gaba 2
+  DNge086                      1     1    0     0      2  gaba 2
+  DNge088                      1     1    0     0      2  glutamate 2
+  DNge090                      1     1    0     0      2  acetylcholine 2
+  DNge096                      1     1    0     0      2  gaba 2
+  DNge097                      1     1    0     0      2  glutamate 2
+  DNge098                      1     1    0     0      2  gaba 2
+  DNge099                      1     1    0     0      2  glutamate 2
+  DNge100                      1     1    0     0      2  acetylcholine 2
+  DNge101                      1     1    0     0      2  gaba 2
+  DNge102                      1     1    0     0      2  glutamate 2
+  DNge103                      1     1    0     0      2  gaba 2
+  DNge104                      1     1    0     0      2  gaba 2
+  DNge105                      1     1    0     0      2  acetylcholine 2
+  DNge106                      1     1    0     0      2  acetylcholine 2
+  DNge107                      1     1    0     0      2  gaba 2
+  DNge110                      1     1    0     0      2  acetylcholine 2
+  DNge119                      1     1    0     0      2  glutamate 2
+  DNge120                      1     1    0     0      2  glutamate 2
+  DNge121                      1     1    0     0      2  acetylcholine 2
+  DNge122                      1     1    0     0      2  gaba 2
+  DNge123                      1     1    0     0      2  glutamate 2
+  DNge124                      1     1    0     0      2  acetylcholine 2
+  DNge125                      1     1    0     0      2  acetylcholine 2
+  DNge126                      1     1    0     0      2  acetylcholine 2
+  DNge127                      1     1    0     0      2  gaba 2
+  DNge128                      1     1    0     0      2  gaba 2
+  DNge129                      1     1    0     0      2  gaba 2
+  DNge130                      1     1    0     0      2  acetylcholine 2
+  DNge131                      1     1    0     0      2  gaba 2
+  DNge132                      1     1    0     0      2  acetylcholine 2
+  DNge133                      1     1    0     0      2  acetylcholine 2
+  DNge134                      1     1    0     0      2  glutamate 2
+  DNge135                      1     1    0     0      2  gaba 2
+  DNge138                      0     0    2     0      2  unclear 2
+  DNge139                      1     1    0     0      2  acetylcholine 2
+  DNge140                      1     1    0     0      2  acetylcholine 2
+  DNge141                      1     1    0     0      2  gaba 2
+  DNge142                      1     1    0     0      2  gaba 2
+  DNge143                      1     1    0     0      2  gaba 2
+  DNge144                      1     1    0     0      2  acetylcholine 2
+  DNge146                      1     1    0     0      2  gaba 2
+  DNge147                      1     1    0     0      2  acetylcholine 2
+  DNge148                      1     1    0     0      2  acetylcholine 2
+  DNge153                      1     1    0     0      2  gaba 2
+  DNge154                      1     1    0     0      2  acetylcholine 2
+  DNge173                      1     1    0     0      2  acetylcholine 2
+  DNge174                      1     1    0     0      2  acetylcholine 2
+  DNge175                      1     1    0     0      2  acetylcholine 2
+  DNge176                      1     1    0     0      2  acetylcholine 2
+  DNge178                      1     1    0     0      2  acetylcholine 2
+  DNge180                      1     1    0     0      2  acetylcholine 2
+  DNge182                      1     1    0     0      2  glutamate 2
+  DNge183                      1     1    0     0      2  acetylcholine 2
+  DNge184                      1     1    0     0      2  acetylcholine 2
+  DNp01                        1     1    0     0      2  acetylcholine 2
+  DNp02                        1     1    0     0      2  acetylcholine 2
+  DNp03                        1     1    0     0      2  acetylcholine 2
+  DNp04                        1     1    0     0      2  acetylcholine 2
+  DNp05                        1     1    0     0      2  acetylcholine 2
+  DNp06                        1     1    0     0      2  acetylcholine 2
+  DNp07                        1     1    0     0      2  acetylcholine 2
+  DNp08                        1     1    0     0      2  glutamate 2
+  DNp09                        1     1    0     0      2  acetylcholine 2
+  DNp10                        1     1    0     0      2  acetylcholine 2
+  DNp101                       1     1    0     0      2  acetylcholine 2
+  DNp102                       1     1    0     0      2  acetylcholine 2
+  DNp103                       1     1    0     0      2  acetylcholine 2
+  DNp104                       1     1    0     0      2  acetylcholine 2
+  DNp11                        1     1    0     0      2  acetylcholine 2
+  DNp12                        1     1    0     0      2  acetylcholine 2
+  DNp13                        1     1    0     0      2  acetylcholine 2
+  DNp14                        1     1    0     0      2  acetylcholine 2
+  DNp15                        1     1    0     0      2  acetylcholine 2
+  DNp16_a                      1     1    0     0      2  acetylcholine 2
+  DNp16_b                      1     1    0     0      2  acetylcholine 2
+  DNp18                        1     1    0     0      2  acetylcholine 2
+  DNp19                        1     1    0     0      2  acetylcholine 2
+  DNp20                        1     1    0     0      2  acetylcholine 2
+  DNp21                        1     1    0     0      2  acetylcholine 2
+  DNp22                        1     1    0     0      2  acetylcholine 2
+  DNp23                        1     1    0     0      2  acetylcholine 2
+  DNp24                        1     1    0     0      2  gaba 2
+  DNp25                        1     1    0     0      2  gaba 2
+  DNp26                        1     1    0     0      2  acetylcholine 2
+  DNp27                        1     1    0     0      2  acetylcholine 2
+  DNp28                        1     1    0     0      2  acetylcholine 2
+  DNp29                        1     1    0     0      2  unclear 2
+  DNp30                        1     1    0     0      2  glutamate 2
+  DNp31                        1     1    0     0      2  acetylcholine 2
+  DNp32                        1     1    0     0      2  unclear 2
+  DNp33                        1     1    0     0      2  acetylcholine 2
+  DNp34                        1     1    0     0      2  acetylcholine 2
+  DNp35                        1     1    0     0      2  acetylcholine 2
+  DNp36                        1     1    0     0      2  glutamate 2
+  DNp38                        1     1    0     0      2  acetylcholine 2
+  DNp39                        1     1    0     0      2  acetylcholine 2
+  DNp42                        1     1    0     0      2  acetylcholine 2
+  DNp43                        1     1    0     0      2  acetylcholine 2
+  DNp44                        1     1    0     0      2  acetylcholine 2
+  DNp45                        1     1    0     0      2  acetylcholine 2
+  DNp46                        1     1    0     0      2  acetylcholine 2
+  DNp47                        1     1    0     0      2  acetylcholine 2
+  DNp48                        1     1    0     0      2  acetylcholine 2
+  DNp49                        1     1    0     0      2  glutamate 2
+  DNp52                        1     1    0     0      2  acetylcholine 2
+  DNp53                        1     1    0     0      2  acetylcholine 2
+  DNp54                        1     1    0     0      2  gaba 2
+  DNp55                        1     1    0     0      2  acetylcholine 2
+  DNp56                        1     1    0     0      2  acetylcholine 2
+  DNp57                        1     1    0     0      2  acetylcholine 2
+  DNp58                        1     1    0     0      2  acetylcholine 2
+  DNp59                        1     1    0     0      2  gaba 2
+  DNp60                        1     1    0     0      2  acetylcholine 2
+  DNp62                        1     1    0     0      2  unclear 2
+  DNp63                        1     1    0     0      2  acetylcholine 2
+  DNp64                        1     1    0     0      2  acetylcholine 2
+  DNp65                        1     1    0     0      2  gaba 2
+  DNp66                        1     1    0     0      2  acetylcholine 2
+  DNp67                        1     1    0     0      2  acetylcholine 2
+  DNp68                        1     1    0     0      2  acetylcholine 2
+  DNp69                        1     1    0     0      2  acetylcholine 2
+  DNp70                        1     1    0     0      2  acetylcholine 2
+  DNp71                        1     1    0     0      2  acetylcholine 2
+  DNp72                        1     1    0     0      2  acetylcholine 2
+  DNp73                        1     1    0     0      2  acetylcholine 2
+  DNpe001                      1     1    0     0      2  acetylcholine 2
+  DNpe002                      1     1    0     0      2  acetylcholine 2
+  DNpe005                      1     1    0     0      2  acetylcholine 2
+  DNpe006                      1     1    0     0      2  acetylcholine 2
+  DNpe007                      1     1    0     0      2  acetylcholine 2
+  DNpe010                      1     1    0     0      2  glutamate 2
+  DNpe013                      1     1    0     0      2  acetylcholine 2
+  DNpe016                      1     1    0     0      2  acetylcholine 2
+  DNpe017                      1     1    0     0      2  acetylcholine 2
+  DNpe020                      0     0    2     0      2  acetylcholine 2
+  DNpe021                      1     1    0     0      2  acetylcholine 2
+  DNpe022                      1     1    0     0      2  acetylcholine 2
+  DNpe023                      1     1    0     0      2  acetylcholine 2
+  DNpe024                      1     1    0     0      2  acetylcholine 2
+  DNpe025                      1     1    0     0      2  acetylcholine 2
+  DNpe026                      1     1    0     0      2  acetylcholine 2
+  DNpe027                      1     1    0     0      2  acetylcholine 2
+  DNpe028                      1     1    0     0      2  acetylcholine 2
+  DNpe030                      1     1    0     0      2  acetylcholine 2
+  DNpe032                      1     1    0     0      2  acetylcholine 2
+  DNpe033                      1     1    0     0      2  gaba 2
+  DNpe034                      1     1    0     0      2  acetylcholine 2
+  DNpe035                      1     1    0     0      2  acetylcholine 2
+  DNpe036                      1     1    0     0      2  acetylcholine 2
+  DNpe037                      1     1    0     0      2  acetylcholine 2
+  DNpe039                      1     1    0     0      2  acetylcholine 2
+  DNpe040                      1     1    0     0      2  acetylcholine 2
+  DNpe041                      1     1    0     0      2  gaba 2
+  DNpe042                      1     1    0     0      2  acetylcholine 2
+  DNpe043                      1     1    0     0      2  acetylcholine 2
+  DNpe045                      1     1    0     0      2  acetylcholine 2
+  DNpe048                      1     1    0     0      2  unclear 2
+  DNpe049                      1     1    0     0      2  acetylcholine 2
+  DNpe050                      1     1    0     0      2  acetylcholine 2
+  DNpe052                      1     1    0     0      2  acetylcholine 2
+  DNpe053                      1     1    0     0      2  acetylcholine 2
+  DNpe055                      1     1    0     0      2  acetylcholine 2
+  DNpe056                      1     1    0     0      2  acetylcholine 2
+  DNxl114                      1     1    0     0      2  gaba 2
+  aSP22                        1     1    0     0      2  acetylcholine 2
+  pIP1                         1     1    0     0      2  acetylcholine 2
+  pIP10                        1     1    0     0      2  acetylcholine 2
+  pMP2                         1     1    0     0      2  acetylcholine 2
+  DNg01_unclear                1     0    0     0      1  acetylcholine 1
+  DNg55                        0     0    1     0      1  gaba 1
+  DNg66                        0     0    1     0      1  unclear 1
+  DNge149                      0     0    1     0      1  unclear 1
+  DNge150                      0     0    1     0      1  unclear 1
+  DNge151                      0     0    1     0      1  unclear 1
+  DNge152                      0     0    1     0      1  unclear 1
+  481 types, 1314 neurons
+== vnc_motor neurons by type
+  type                         L     R    M  none  total  transmitter
+  Acc. ti flexor MN           24    23    0     0     47  glutamate 47
+  Ti flexor MN                19    18    0     0     37  glutamate 37
+  Tr flexor MN                16    19    0     0     35  glutamate 35
+  Acc. tr flexor MN           13     9    0     0     22  unclear 22
+  Sternal posterior rotator MN    12    10    0     0     22  unclear 22
+  ltm MN                      11    10    0     0     21  glutamate 21
+  Fe reductor MN               9    11    0     0     20  glutamate 20
+  Pleural remotor/abductor MN     7     7    0     0     14  unclear 14
+  Sternotrochanter MN          7     7    0     0     14  unclear 14
+  MNad02                       6     6    0     0     12  unclear 12
+  Sternal anterior rotator MN     6     6    0     0     12  unclear 12
+  Tergotr. MN                  6     6    0     0     12  unclear 12
+  Ti extensor MN               6     6    0     0     12  unclear 12
+  ltm2-femur MN                6     6    0     0     12  glutamate 12
+  Tr extensor MN               5     6    0     0     11  unclear 11
+  -                            3     6    0     0      9  unclear 8, - 1
+  Ta depressor MN              5     4    0     0      9  glutamate 9
+  ltm1-tibia MN                5     4    0     0      9  glutamate 9
+  DLMn c-f                     4     4    0     0      8  unclear 8
+  MNad01                       4     4    0     0      8  unclear 8
+  MNad06                       4     4    0     0      8  unclear 8
+  MNad09                       4     4    0     0      8  unclear 8
+  MNad11                       4     4    0     0      8  unclear 8
+  MNad14                       4     4    0     0      8  unclear 8
+  MNad16                       4     4    0     0      8  unclear 8
+  MNad17                       5     3    0     0      8  acetylcholine 8
+  MNad18,MNad27                4     4    0     0      8  unclear 8
+  Tergopleural/Pleural promotor MN     4     4    0     0      8  glutamate 8
+  DVMn 1a-c                    3     3    0     0      6  glutamate 6
+  MNad03                       3     3    0     0      6  unclear 6
+  MNad05                       3     3    0     0      6  unclear 6
+  MNad07                       3     3    0     0      6  unclear 6
+  MNad08                       3     3    0     0      6  unclear 6
+  MNad10                       3     3    0     0      6  unclear 6
+  MNml78                       4     2    0     0      6  glutamate 6
+  MNml80                       3     3    0     0      6  glutamate 6
+  Sternal adductor MN          3     3    0     0      6  acetylcholine 6
+  MNad04,MNad48                2     3    0     0      5  unclear 5
+  Ta levator MN                2     3    0     0      5  glutamate 5
+  DVMn 2a, b                   2     2    0     0      4  unclear 4
+  DVMn 3a, b                   2     2    0     0      4  unclear 4
+  MNad12                       2     2    0     0      4  unclear 4
+  MNad15                       2     2    0     0      4  unclear 4
+  MNad19                       2     2    0     0      4  unclear 4
+  MNad20                       2     2    0     0      4  unclear 4
+  MNad21                       2     2    0     0      4  unclear 4
+  MNad22                       2     2    0     0      4  unclear 4
+  MNad25                       2     2    0     0      4  unclear 4
+  MNad53                       2     2    0     0      4  unclear 4
+  MNad54                       2     2    0     0      4  unclear 4
+  MNnm07,MNnm12                2     2    0     0      4  glutamate 4
+  STTMm                        2     2    0     0      4  unclear 4
+  hi2 MN                       2     2    0     0      4  glutamate 4
+  MNhl65                       2     1    0     0      3  glutamate 3
+  ADNM1 MN                     1     1    0     0      2  unclear 2
+  ADNM2 MN                     1     1    0     0      2  unclear 2
+  DLMn a, b                    1     1    0     0      2  unclear 2
+  FNM2                         1     1    0     0      2  glutamate 2
+  MNad23                       1     1    0     0      2  unclear 2
+  MNad26                       1     1    0     0      2  unclear 2
+  MNad28                       1     1    0     0      2  glutamate 2
+  MNad29                       1     1    0     0      2  unclear 2
+  MNad30                       1     1    0     0      2  unclear 2
+  MNad31                       1     1    0     0      2  unclear 2
+  MNad32                       1     1    0     0      2  unclear 2
+  MNad33                       1     1    0     0      2  unclear 2
+  MNad34                       1     1    0     0      2  unclear 2
+  MNad35                       1     1    0     0      2  unclear 2
+  MNad36                       1     1    0     0      2  unclear 2
+  MNad40                       1     1    0     0      2  unclear 2
+  MNad41                       1     1    0     0      2  unclear 2
+  MNad42                       1     1    0     0      2  unclear 2
+  MNad43                       1     1    0     0      2  unclear 2
+  MNad44                       1     1    0     0      2  unclear 2
+  MNad45                       1     1    0     0      2  unclear 2
+  MNad46                       1     1    0     0      2  unclear 2
+  MNad47                       1     1    0     0      2  unclear 2
+  MNad49                       1     1    0     0      2  unclear 2
+  MNad55                       1     1    0     0      2  unclear 2
+  MNad56                       1     1    0     0      2  unclear 2
+  MNad57                       1     1    0     0      2  unclear 2
+  MNad61                       1     1    0     0      2  unclear 2
+  MNad62                       1     1    0     0      2  unclear 2
+  MNad63                       1     1    0     0      2  unclear 2
+  MNad64                       1     1    0     0      2  gaba 2
+  MNad65                       1     1    0     0      2  unclear 2
+  MNad66                       1     1    0     0      2  unclear 2
+  MNad67                       1     1    0     0      2  unclear 2
+  MNad68                       1     1    0     0      2  unclear 2
+  MNad69                       1     1    0     0      2  unclear 2
+  MNhl01                       1     1    0     0      2  unclear 2
+  MNhl02                       1     1    0     0      2  unclear 2
+  MNhl29                       1     1    0     0      2  glutamate 2
+  MNhl59                       1     1    0     0      2  unclear 2
+  MNhl60                       1     1    0     0      2  unclear 2
+  MNhl62                       1     1    0     0      2  unclear 2
+  MNhl64                       1     1    0     0      2  unclear 2
+  MNhl87                       1     1    0     0      2  unclear 2
+  MNhl88                       1     1    0     0      2  unclear 2
+  MNhm03                       1     1    0     0      2  glutamate 2
+  MNhm42                       1     1    0     0      2  glutamate 2
+  MNhm43                       1     1    0     0      2  glutamate 2
+  MNml29                       1     1    0     0      2  glutamate 2
+  MNml77                       1     1    0     0      2  glutamate 2
+  MNml79                       1     1    0     0      2  glutamate 2
+  MNml81                       1     1    0     0      2  unclear 2
+  MNml82                       1     1    0     0      2  glutamate 2
+  MNnm03                       1     1    0     0      2  glutamate 2
+  MNnm08                       1     1    0     0      2  glutamate 2
+  MNnm09                       1     1    0     0      2  glutamate 2
+  MNnm10                       1     1    0     0      2  glutamate 2
+  MNnm11                       1     1    0     0      2  glutamate 2
+  MNnm13                       1     1    0     0      2  glutamate 2
+  MNnm14                       1     1    0     0      2  glutamate 2
+  MNwm35                       1     1    0     0      2  unclear 2
+  MNwm36                       1     1    0     0      2  glutamate 2
+  MNxm01                       1     1    0     0      2  unclear 2
+  MNxm02                       1     1    0     0      2  unclear 2
+  MNxm03                       1     1    0     0      2  unclear 2
+  TTMn                         1     1    0     0      2  glutamate 2
+  b1 MN                        1     1    0     0      2  glutamate 2
+  b2 MN                        1     1    0     0      2  glutamate 2
+  b3 MN                        1     1    0     0      2  glutamate 2
+  hDVM MN                      1     1    0     0      2  glutamate 2
+  hg1 MN                       1     1    0     0      2  glutamate 2
+  hg2 MN                       1     1    0     0      2  glutamate 2
+  hg3 MN                       1     1    0     0      2  glutamate 2
+  hg4 MN                       1     1    0     0      2  unclear 2
+  hi1 MN                       1     1    0     0      2  glutamate 2
+  hiii2 MN                     1     1    0     0      2  glutamate 2
+  i1 MN                        1     1    0     0      2  glutamate 2
+  i2 MN                        1     1    0     0      2  glutamate 2
+  iii1 MN                      1     1    0     0      2  unclear 2
+  iii3 MN                      1     1    0     0      2  unclear 2
+  ps1 MN                       1     1    0     0      2  unclear 2
+  ps2 MN                       1     1    0     0      2  glutamate 2
+  tp1 MN                       1     1    0     0      2  glutamate 2
+  tp2 MN                       1     1    0     0      2  glutamate 2
+  tpn MN                       1     1    0     0      2  glutamate 2
+  MNad24                       0     1    0     0      1  unclear 1
+  MNad50                       0     1    0     0      1  unclear 1
+  MNml76                       0     1    0     0      1  glutamate 1
+  MNml83                       0     1    0     0      1  glutamate 1
+  143 types, 707 neurons
+== vnc_motor neurons by exitNerve (from the annotations file)
+  exitNerve                    L     R    M  none  total
+  MetaLN                      62    60    0     0    122
+  MesoLN                      58    58    0     0    116
+  ProLN                       41    40    0     0     81
+  AbN4                        36    36    0     0     72
+  AbNT                        32    32    0     0     64
+  AbN2                        21    22    0     0     43
+  AbN1                        15    15    0     0     30
+  ADMN                        14    14    0     0     28
+  AbN3                        14    14    0     0     28
+  DProN                       14    14    0     0     28
+  ProAN                       12    12    0     0     24
+  VProN                       11    11    0     0     22
+  MesoAN                       9    10    0     0     19
+  PDMNa                        8     8    0     0     16
+  PDMNp                        3     3    0     0      6
+  CvN                          2     2    0     0      4
+  DMetaN                       2     2    0     0      4
+  17 nerves, 707 neurons
+== cb_motor neurons by type
+  type                         L     R    M  none  total  transmitter
+  CEM                          3     2    0     0      5  unclear 5
+  MN1                          2     2    0     0      4  acetylcholine 4
+  MN12D                        2     2    0     0      4  unclear 4
+  MN3L                         2     2    0     0      4  acetylcholine 4
+  MN4a                         2     2    0     0      4  acetylcholine 4
+  MN7                          2     2    0     0      4  unclear 4
+  MNx01                        3     1    0     0      4  glutamate 4
+  GNG647                       1     2    0     0      3  unclear 3
+  MN10                         1     2    0     0      3  unclear 3
+  MN11D                        1     2    0     0      3  acetylcholine 3
+  MNx03                        2     1    0     0      3  unclear 3
+  CvN4                         1     1    0     0      2  unclear 2
+  CvN5                         1     1    0     0      2  unclear 2
+  CvN6                         1     1    0     0      2  unclear 2
+  CvN7                         1     1    0     0      2  unclear 2
+  GNG133                       1     1    0     0      2  unclear 2
+  GNG276                       1     1    0     0      2  unclear 2
+  GNG283                       1     1    0     0      2  unclear 2
+  GNG314                       1     1    0     0      2  unclear 2
+  GNG641                       1     1    0     0      2  unclear 2
+  GNG648                       1     1    0     0      2  unclear 2
+  GNG649                       1     1    0     0      2  unclear 2
+  GNG650                       1     1    0     0      2  unclear 2
+  GNG651                       1     1    0     0      2  unclear 2
+  GNG652                       1     1    0     0      2  unclear 2
+  GNG653                       1     1    0     0      2  unclear 2
+  GNG668                       1     1    0     0      2  unclear 2
+  MN11V                        1     1    0     0      2  acetylcholine 2
+  MN13                         1     1    0     0      2  unclear 2
+  MN2Da                        1     1    0     0      2  unclear 2
+  MN2Db                        1     1    0     0      2  unclear 2
+  MN2V                         1     1    0     0      2  unclear 2
+  MN3M                         1     1    0     0      2  unclear 2
+  MN4b                         1     1    0     0      2  unclear 2
+  MN5                          1     1    0     0      2  unclear 2
+  MN6                          1     1    0     0      2  acetylcholine 2
+  MN8                          1     1    0     0      2  acetylcholine 2
+  MN9                          1     1    0     0      2  acetylcholine 2
+  MNx02                        1     1    0     0      2  unclear 2
+  MNx04                        1     1    0     0      2  unclear 2
+  MNx05                        1     1    0     0      2  unclear 2
+  PS348                        1     1    0     0      2  unclear 2
+  PS349                        1     1    0     0      2  unclear 2
+  -                            0     1    0     0      1  unclear 1
+  44 types, 106 neurons
