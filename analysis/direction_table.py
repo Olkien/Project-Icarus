@@ -70,11 +70,14 @@ def main() -> None:
     parser.add_argument("--jobs", type=int, default=6)
     parser.add_argument("--stepper", choices=("numba", "numpy"), default="numba")
     parser.add_argument("--out", default=str(OUT_PATH))
+    parser.add_argument("--inputs", nargs="+", choices=list(INPUTS), default=list(INPUTS))
+    parser.add_argument("--rates", nargs="+", type=float, default=list(RATES_HZ))
     args = parser.parse_args()
     scale = json.loads(FLY_MODEL.read_text(encoding="utf-8"))["weight_scale"]
     rep = Report()
     start = time.perf_counter()
-    jobs = [(n, s, r, seed) for n in INPUTS for r in RATES_HZ for s in ("L", "R") for seed in SEEDS]
+    jobs = [(n, s, r, seed) for n in args.inputs for r in args.rates for s in ("L", "R")
+            for seed in SEEDS]
     with ProcessPoolExecutor(args.jobs, initializer=init_worker,
                              initargs=(args.cache, scale, args.stepper)) as pool:
         results = {job: (rates, size) for job, rates, size in pool.map(run_job, jobs)}
@@ -87,8 +90,8 @@ def main() -> None:
     rep.say(f"pooled SD is floored at {SD_FLOOR_HZ:g} Hz (one spike in a 1 s run), so units with "
             f"the same count in every seed do not get an infinite d")
     raw = {}
-    for name in INPUTS:
-        for rate_hz in RATES_HZ:
+    for name in args.inputs:
+        for rate_hz in args.rates:
             left = np.array([results[(name, "L", rate_hz, s)][0] for s in SEEDS])
             right = np.array([results[(name, "R", rate_hz, s)][0] for s in SEEDS])
             sizes = (results[(name, "L", rate_hz, 0)][1], results[(name, "R", rate_hz, 0)][1])
