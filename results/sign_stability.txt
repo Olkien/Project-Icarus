@@ -1,0 +1,19 @@
+sign sensitivity at weight scale 0.7, Poisson seed 0: glutamate -1 (original) against glutamate +1 (--glu-excitatory)
+stable = after input stops, every 50 ms bin from 0.2 s on is under 0.5 Hz network mean; every drive bin is under 20 Hz; under 0.5% of neurons fire at >= 0.9 x the refractory ceiling during drive
+  scale input    pass   drive_Hz  drive_max  ceiling%  off_max_Hz  quiet_s driven_Hz  network
+   0.7  LPLC2 L  PASS      1.059     1.184    0.002%      0.097     0.05    201.1  original
+   0.7  LPLC2 R  PASS      0.777     0.825    0.001%      0.096     0.00    100.4  original
+   0.7  LC4 L    PASS      0.801     0.861    0.001%      0.097     0.00    131.6  original
+   0.7  LC4 R    PASS      0.639     0.683    0.000%      0.000     0.00    111.7  original
+   0.7  LC10 L   PASS      1.457     1.913    0.004%      0.097     0.10     99.7  original
+   0.7  LC10 R   PASS      1.931     2.412    0.004%      0.097     0.05     99.7  original
+   0.7  LPLC2 L  fail     66.729    71.238    0.925%     70.968    never    211.3  glu +1
+   0.7  LPLC2 R  fail     66.712    71.185    0.919%     70.939    never    179.3  glu +1
+   0.7  LC4 L    fail     66.529    71.095    0.903%     70.999    never    101.5  glu +1
+   0.7  LC4 R    fail     66.435    71.041    0.899%     70.939    never    106.7  glu +1
+   0.7  LC10 L   fail     66.726    71.432    0.900%     70.988    never    200.2  glu +1
+   0.7  LC10 R   fail     66.819    71.377    0.938%     70.955    never    227.2  glu +1
+== Summary
+  original  signs {-1: 57308, 0: 6499, 1: 103719}: 6 of 6 pass, worst drive bin 2.412 Hz, worst off 0.097 Hz
+  glu +1    signs {-1: 27986, 0: 6499, 1: 133041}: 0 of 6 pass, worst drive bin 71.432 Hz, worst off 70.999 Hz
+peak memory 973 MB, total 230 s
