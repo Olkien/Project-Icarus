@@ -211,7 +211,7 @@ def test_weight_scale_scales_synapses_not_input(fake_data, tmp_path):
 def test_fly_weight_scale_param():
     from fly.synthetic import SyntheticNetwork
 
-    assert "weight_scale" in Fly.param_space()
+    assert "weight_scale" not in Fly.param_space()
     unit = SyntheticNetwork()
     fly = Fly({"weight_scale": 0.25})
     assert np.allclose(fly.net.weights.toarray(), 0.25 * unit.weights.toarray())

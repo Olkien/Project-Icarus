@@ -28,8 +28,7 @@ class Fly(Controller):
     @classmethod
     def param_space(cls) -> dict[str, tuple[float, float]]:
         return {"bearing_hz": (50.0, 500.0), "range_hz": (0.0, 300.0), "air_hz": (0.0, 300.0),
-                "gain_yaw": (0.2, 4.0), "gain_thrust": (0.0, 1.0), "thrust_base": (0.1, 0.7),
-                "weight_scale": (0.05, 1.5)}
+                "gain_yaw": (0.2, 4.0), "gain_thrust": (0.0, 1.0), "thrust_base": (0.1, 0.7)}
 
     def __init__(self, params: dict | None = None, network: Network | None = None):
         super().__init__(params)

@@ -1,0 +1,54 @@
+stability scan: network_A.npz, spike input 100 Hz, on 1 s, off 1 s, Poisson seed 0
+stable = after input stops, every 50 ms bin from 0.2 s on is under 0.5 Hz network mean; every drive bin is under 20 Hz; under 0.5% of neurons fire at >= 0.9 x the refractory ceiling during drive (ceiling 435 Hz)
+  scale input    pass   drive_Hz  drive_max  ceiling%  off_max_Hz  quiet_s driven_Hz
+   0.3  LPLC2 L  PASS      0.181     0.200    0.000%      0.000     0.00    100.8
+   0.3  LPLC2 R  PASS      0.196     0.217    0.000%      0.000     0.00     99.8
+   0.3  LC4 L    PASS      0.153     0.175    0.000%      0.000     0.00    100.7
+   0.3  LC4 R    PASS      0.133     0.155    0.000%      0.000     0.00    100.0
+   0.3  LC10 L   PASS      0.489     0.505    0.002%      0.000     0.00     99.7
+   0.3  LC10 R   PASS      0.513     0.530    0.002%      0.000     0.00     99.7
+   0.4  LPLC2 L  PASS      0.313     0.352    0.000%      0.000     0.00    103.9
+   0.4  LPLC2 R  PASS      0.345     0.377    0.000%      0.000     0.00     99.8
+   0.4  LC4 L    PASS      0.246     0.282    0.000%      0.000     0.00    102.6
+   0.4  LC4 R    PASS      0.220     0.241    0.000%      0.000     0.00    100.5
+   0.4  LC10 L   PASS      0.617     0.650    0.002%      0.000     0.00     99.7
+   0.4  LC10 R   PASS      0.641     0.666    0.003%      0.000     0.00     99.7
+   0.5  LPLC2 L  PASS      0.500     0.542    0.000%      0.055     0.00    113.7
+   0.5  LPLC2 R  PASS      0.483     0.521    0.000%      0.000     0.00     99.9
+   0.5  LC4 L    PASS      0.382     0.428    0.001%      0.000     0.00    108.9
+   0.5  LC4 R    PASS      0.345     0.383    0.000%      0.000     0.00    102.5
+   0.5  LC10 L   PASS      0.764     0.820    0.003%      0.058     0.00     99.7
+   0.5  LC10 R   PASS      0.840     0.891    0.004%      0.058     0.00     99.7
+   0.6  LPLC2 L  PASS      0.731     0.815    0.001%      0.079     0.00    146.0
+   0.6  LPLC2 R  PASS      0.669     0.722    0.001%      0.080     0.00    100.0
+   0.6  LC4 L    PASS      0.618     0.686    0.001%      0.078     0.00    119.8
+   0.6  LC4 R    PASS      0.495     0.526    0.000%      0.000     0.00    106.3
+   0.6  LC10 L   PASS      1.001     1.156    0.004%      0.079     0.00     99.7
+   0.6  LC10 R   PASS      1.259     1.357    0.004%      0.080     0.00     99.7
+   0.7  LPLC2 L  PASS      1.059     1.184    0.002%      0.097     0.05    201.1
+   0.7  LPLC2 R  PASS      0.777     0.825    0.001%      0.096     0.00    100.4
+   0.7  LC4 L    PASS      0.801     0.861    0.001%      0.097     0.00    131.6
+   0.7  LC4 R    PASS      0.639     0.683    0.000%      0.000     0.00    111.7
+   0.7  LC10 L   PASS      1.457     1.913    0.004%      0.097     0.10     99.7
+   0.7  LC10 R   PASS      1.931     2.412    0.004%      0.097     0.05     99.7
+   0.8  LPLC2 L  fail      1.269     1.443    0.004%      9.139    never    243.5
+   0.8  LPLC2 R  PASS      0.873     0.969    0.001%      0.284     0.15    100.9
+   0.8  LC4 L    fail      2.459     8.812    0.001%      8.946    never    146.9
+   0.8  LC4 R    PASS      0.831     0.932    0.001%      0.111     0.00    114.4
+   0.8  LC10 L   PASS      1.935     2.558    0.004%      0.191     0.10     99.7
+   0.8  LC10 R   fail      8.704     9.546    0.081%      8.523    never     99.7
+   0.9  LPLC2 L  PASS      1.482     1.638    0.005%      0.125     0.05    268.9
+   0.9  LPLC2 R  fail      1.017     1.167    0.001%     11.195    never    101.5
+   0.9  LC4 L    fail      7.242    11.101    0.004%     11.095    never    160.4
+   0.9  LC4 R    fail      9.626    10.911    0.014%     11.200    never    105.8
+   0.9  LC10 L   fail      5.805    12.131    0.004%     11.117    never     99.7
+   0.9  LC10 R   fail     10.729    11.779    0.073%     11.027    never     99.7
+   1.0  LPLC2 L  PASS      1.841     1.973    0.010%      0.486     0.10    293.1
+   1.0  LPLC2 R  PASS      1.150     1.346    0.001%      0.458     0.05    102.8
+   1.0  LC4 L    fail      6.587    12.321    0.005%     12.503    never    184.1
+   1.0  LC4 R    fail     10.793    12.041    0.066%     12.332    never    105.0
+   1.0  LC10 L   fail      5.127    13.147    0.004%     12.298    never     99.7
+   1.0  LC10 R   fail     12.360    13.221    0.122%     12.382    never     99.7
+chosen weight_scale 0.7 (largest scale where all six inputs pass)
+wrote configs/fly_model.json
+peak memory 1163 MB, total 640 s

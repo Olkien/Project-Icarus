@@ -1,0 +1,7 @@
+{
+  "weight_scale": 0.7,
+  "input_mode": "spike",
+  "stability_rule": "stable = after input stops, every 50 ms bin from 0.2 s on is under 0.5 Hz network mean; every drive bin is under 20 Hz; under 0.5% of neurons fire at >= 0.9 x the refractory ceiling during drive",
+  "stability_rate_hz": 100.0,
+  "cache": "network_A.npz"
+}
