@@ -56,13 +56,14 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--workers", type=int, default=6)
     parser.add_argument("--out", default=str(OUT_PATH))
+    parser.add_argument("--only", nargs=2, type=float, metavar=("R_MIN", "R_MAX"))
     args = parser.parse_args()
     scale = fly_model()["weight_scale"]
     net = ConnectomeNetwork(NETWORKS["orig"])
     lc10 = side_ids(net, LC10)
     dna02 = side_ids(net, DNA02)
     bearings = [s * b for b in BEARINGS_DEG for s in (1, -1)]
-    settings = [(lo, hi) for lo in R_MIN for hi in R_MAX]
+    settings = [tuple(args.only)] if args.only else [(lo, hi) for lo in R_MIN for hi in R_MAX]
     needed = {}
     for lo, hi in settings:
         for b in bearings:
@@ -103,7 +104,10 @@ def main() -> None:
     passing = [o for o in outcomes if o[1]["pass"]]
     pool = passing or outcomes
     (lo, hi), ev = max(pool, key=lambda o: o[1]["margin"])
-    if passing:
+    if args.only:
+        rep.say(f"checked r_min {lo:g} Hz, r_max {hi:g} Hz only: "
+                f"{'PASS' if ev['pass'] else 'fail'}; mapping file not changed")
+    elif passing:
         rep.say(f"chosen: r_min {lo:g} Hz, r_max {hi:g} Hz (largest pass margin {ev['margin']:+.3f})")
         mapping = {
             "network": {"type": "connectome", "path": "data/network_cache/network_A.npz",

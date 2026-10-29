@@ -8,8 +8,8 @@
   "steering": {
     "input_left": "type^=LC10,somaSide=L",
     "input_right": "type^=LC10,somaSide=R",
-    "r_min_hz": 0.0,
-    "r_max_hz": 20.0,
+    "r_min_hz": 10.0,
+    "r_max_hz": 60.0,
     "rate_left": "r_min + (r_max - r_min) * max(0, bearing) / pi",
     "rate_right": "r_min + (r_max - r_min) * max(0, -bearing) / pi",
     "output_left": "type=DNa02,somaSide=L",
@@ -18,5 +18,5 @@
     "yaw": "(spikes_left - spikes_right) / (spikes_left + spikes_right + 1)"
   },
   "thrust": null,
-  "chosen_by": "T3 open loop, sign 1.000, rho 1.000"
+  "chosen_by": "T3 open loop, tied at margin +0.050, set to 10 and 60 Hz, sign 1.000, rho 0.857"
 }
