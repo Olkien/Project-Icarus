@@ -1,0 +1,36 @@
+T1 stability: network_A.npz, 167526 neurons, stepper numba
+inputs LPLC2, LC4, LC10 (both sides): 1271 neurons at 200 Hz, 50 mV per spike to g (peak 6.97 mV, mean drive 50.0 mV)
+2 s model time, 20000 steps, 1811 steps/s, wall 11.0 s
+network mean rate 14.505 Hz, driven group 114.50 Hz
+neurons that fired 20366 of 167526 (12.16%), max single neuron 434.0 Hz
+by superclass (neurons, share fired, mean Hz):
+  ol_intrinsic               89381    1.81%     0.292
+  cb_intrinsic               32160   39.71%    59.626
+  vnc_intrinsic              13157   20.20%    13.903
+  visual_projection           9201   19.69%    18.157
+  vnc_sensory                 6366    0.02%     0.017
+  cb_sensory                  4821    1.60%     2.297
+  ol_sensory                  4115    0.00%     0.000
+  <missing>                   2926    1.67%     1.266
+  ascending_neuron            1846   18.26%    15.569
+  descending_neuron           1314   35.39%    26.353
+  vnc_motor                    707   38.76%    46.936
+  visual_centrifugal           563   32.50%    25.083
+  sensory_ascending            537    0.93%     0.005
+  cb_motor                     106   30.19%    31.274
+  vnc_efferent                  94   46.81%    34.330
+  cb_endocrine                  72   16.67%     2.792
+  ENS                           46    0.00%     0.000
+  vnc_sensory_tbc               35    0.00%     0.000
+  vnc_endocrine                 22   81.82%   115.727
+  cb_sensory_tbc                12    0.00%     0.000
+  sensory_descending            12    0.00%     0.000
+  vnc_tbc                       11    9.09%     1.091
+  efferent_ascending             8  100.00%   160.938
+  efferent_descending            4    0.00%     0.000
+  cb_efferent                    4    0.00%     0.000
+  sensory_ascending_tbc          2    0.00%     0.000
+  visual_projection_tbc          2   50.00%    61.750
+  descending_neuron_tbc          2    0.00%     0.000
+T1 PASS (no runaway): network mean 14.505 Hz vs limit 50 Hz
+peak memory 620 MB, total 12.0 s
