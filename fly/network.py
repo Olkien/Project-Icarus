@@ -76,4 +76,11 @@ def build_network(spec: dict) -> Network:
         from fly.synthetic import SyntheticNetwork
 
         return SyntheticNetwork(**{k: v for k, v in spec.items() if k != "type"})
+    if kind == "connectome":
+        from fly.connectome import ConnectomeNetwork
+
+        net = ConnectomeNetwork(spec["path"], spec.get("lif_params"))
+        for name, query in spec.get("groups", {}).items():
+            net.add_group(name, query)
+        return net
     raise ValueError(f"unknown network type {kind!r}")
