@@ -1,0 +1,22 @@
+{
+  "network": {
+    "type": "connectome",
+    "path": "data/network_cache/network_A.npz",
+    "weight_scale": 0.6
+  },
+  "input_mode": "spike",
+  "steering": {
+    "input_left": "type^=LC10,somaSide=L",
+    "input_right": "type^=LC10,somaSide=R",
+    "r_min_hz": 0.0,
+    "r_max_hz": 20.0,
+    "rate_left": "r_min + (r_max - r_min) * max(0, bearing) / pi",
+    "rate_right": "r_min + (r_max - r_min) * max(0, -bearing) / pi",
+    "output_left": "type=DNa02,somaSide=L",
+    "output_right": "type=DNa02,somaSide=R",
+    "window_ms": 20.0,
+    "yaw": "(spikes_left - spikes_right) / (spikes_left + spikes_right + 1)"
+  },
+  "thrust": null,
+  "chosen_by": "T3 open loop, sign 1.000, rho 1.000"
+}
