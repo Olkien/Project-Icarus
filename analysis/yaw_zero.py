@@ -44,6 +44,7 @@ def small_angle(yaws: dict) -> tuple[float, dict]:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--workers", type=int, default=6)
+    parser.add_argument("--centres", nargs="*", type=float, default=list(CENTRES_HZ))
     parser.add_argument("--out", default=str(OUT_PATH))
     args = parser.parse_args()
     scale = fly_model()["weight_scale"]
@@ -52,8 +53,8 @@ def main() -> None:
     dna02 = side_ids(net, DNA02)
     pass_bearings = [s * b for b in BEARINGS_DEG for s in (1, -1)]
     bearings = sorted(set(pass_bearings) | {s * b for b in SMALL_DEG for s in (1, -1)})
-    grid = [(c, a) for c in CENTRES_HZ for a in AMPLITUDES_HZ]
-    needed = {rate_key(0, c, 0.0, s): None for c in CENTRES_HZ for s in SEEDS}
+    grid = [(c, a) for c in args.centres for a in AMPLITUDES_HZ]
+    needed = {rate_key(0, c, 0.0, s): None for c in args.centres for s in SEEDS}
     for c, a in grid:
         for b in bearings:
             for s in SEEDS:
@@ -71,7 +72,7 @@ def main() -> None:
             f"at bearing 0 both sides get c, so a does not change the zero point")
     zero = {}
     rep.say("  c_Hz  yaw_zero  sd")
-    for c in CENTRES_HZ:
+    for c in args.centres:
         y = np.array([raw[rate_key(0, c, 0.0, s)] for s in SEEDS])
         zero[c] = round(float(y.mean()), 4)
         rep.say(f"  {c:4g} {zero[c]:9.4f} {y.std(ddof=1):6.4f}")
@@ -97,7 +98,9 @@ def main() -> None:
     for a, ok in by_a.items():
         rep.say(f"a {a:g} Hz: {'PASS at every c' if ok else 'fail'}")
     mapping = json.loads(MAPPING_PATH.read_text(encoding="utf-8"))
-    mapping["yaw_zero"] = {"c_hz": list(CENTRES_HZ), "yaw": [zero[c] for c in CENTRES_HZ],
+    table = dict(zip(*(mapping["yaw_zero"][k] for k in ("c_hz", "yaw")))) if "yaw_zero" in mapping else {}
+    table.update(zero)
+    mapping["yaw_zero"] = {"c_hz": sorted(table), "yaw": [table[c] for c in sorted(table)],
                            "use": "subtract from the yaw decode, interpolated in c"}
     MAPPING_PATH.write_text(json.dumps(mapping, indent=2) + "\n", encoding="utf-8", newline="\n")
     rep.say(f"wrote yaw_zero to configs/{MAPPING_PATH.name}")
