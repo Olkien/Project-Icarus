@@ -95,7 +95,7 @@ class Fly(Controller):
 
 
 REAL_MAPPING = CONFIG_DIR / "fly_mapping_real.json"
-YAW_AT_180 = 0.6668
+YAW_AT_180 = 0.6893
 STEER_ONLY_THRUST = 0.5
 _real_cache: dict = {}
 
