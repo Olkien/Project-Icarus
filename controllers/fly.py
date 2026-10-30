@@ -148,6 +148,7 @@ class RealFlyBase(Controller):
         self.net = real_network({"path": str(path), "weight_scale": self.weight_scale})
         self.steer = mapping["steering"]
         self.thrust_map = mapping.get("thrust")
+        self.yaw_zero = mapping.get("yaw_zero")
         self.gain_yaw = float(self.params["gain_yaw"])
         self.lc10_L, self.lc10_R = side_groups(self.net, self.steer["input_left"].split(",")[0])
         self.dna02_L, self.dna02_R = side_groups(self.net, self.steer["output_left"].split(",")[0])
@@ -171,10 +172,16 @@ class RealFlyBase(Controller):
     def centre_hz(self, range_mm: float) -> float:
         return float(self.steer["c_hz"])
 
+    def yaw_zero_at(self, range_mm: float) -> float:
+        if self.yaw_zero is None:
+            return 0.0
+        return float(np.interp(self.centre_hz(range_mm), self.yaw_zero["c_hz"],
+                               self.yaw_zero["yaw"]))
+
     def header_info(self) -> dict:
         return {"weight_scale": self.weight_scale, "mapping": Path(self.params["mapping"]).name,
                 "steering": self.steer.get("type", "rectified"), "gain_yaw": self.gain_yaw,
-                "thrust_source": self.thrust_source}
+                "yaw_calibrated": self.yaw_zero is not None, "thrust_source": self.thrust_source}
 
     def reset(self, seed: int, scenario: dict) -> None:
         super().reset(seed, scenario)
@@ -207,7 +214,7 @@ class RealFlyBase(Controller):
         self.window.append(self.counts)
         n_l = sum(c["dna02_L"] for c in self.window)
         n_r = sum(c["dna02_R"] for c in self.window)
-        self.yaw_signal = (n_l - n_r) / (n_l + n_r + 1.0)
+        self.yaw_signal = (n_l - n_r) / (n_l + n_r + 1.0) - self.yaw_zero_at(obs["range"])
         if self.thrust_ids.size:
             self.thrust_decode = sum(c["thrust"] for c in self.window) / self.thrust_ids.size
         return {"thrust": float(clip(self.thrust(), 0.0, 1.0)),

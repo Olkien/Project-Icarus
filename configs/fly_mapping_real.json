@@ -45,5 +45,22 @@
     "output_right": "type=DNa02,somaSide=R",
     "window_ms": 20.0,
     "yaw": "(spikes_left - spikes_right) / (spikes_left + spikes_right + 1)"
+  },
+  "yaw_zero": {
+    "c_hz": [
+      25.0,
+      30.0,
+      35.0,
+      40.0,
+      45.0
+    ],
+    "yaw": [
+      -0.1378,
+      -0.2057,
+      -0.2373,
+      -0.1186,
+      -0.0611
+    ],
+    "use": "subtract from the yaw decode, interpolated in c"
   }
 }
