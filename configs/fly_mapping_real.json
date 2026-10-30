@@ -5,7 +5,36 @@
     "weight_scale": 0.6
   },
   "input_mode": "spike",
+  "thrust": {
+    "group": "DNp31",
+    "queries": [
+      "type=DNp31"
+    ],
+    "decode": "spikes per 20 ms window per neuron",
+    "c_near_hz": 25.0,
+    "c_far_hz": 45.0,
+    "range_ref_mm": 400.0,
+    "centre": "c_near + (c_far - c_near) * clip(range / range_ref_mm, 0, 1)",
+    "decode_near": 1.8885,
+    "decode_far": 4.2225,
+    "chosen_by": "range test at bearing 0, rho 1.000, worst coupling 22.9%, span 2.3340"
+  },
+  "chosen_by": "push-pull steering c 30, a 20; thrust DNp31 from the push-pull thrust test",
   "steering": {
+    "type": "push_pull",
+    "input_left": "type^=LC10,somaSide=L",
+    "input_right": "type^=LC10,somaSide=R",
+    "c_hz": 30.0,
+    "a_hz": 20.0,
+    "rate_max_hz": 80.0,
+    "rate_left": "clip(c + a * bearing / pi, 0, rate_max)",
+    "rate_right": "clip(c - a * bearing / pi, 0, rate_max)",
+    "output_left": "type=DNa02,somaSide=L",
+    "output_right": "type=DNa02,somaSide=R",
+    "window_ms": 20.0,
+    "yaw": "(spikes_left - spikes_right) / (spikes_left + spikes_right + 1)"
+  },
+  "steering_rectified": {
     "input_left": "type^=LC10,somaSide=L",
     "input_right": "type^=LC10,somaSide=R",
     "r_min_hz": 10.0,
@@ -16,7 +45,5 @@
     "output_right": "type=DNa02,somaSide=R",
     "window_ms": 20.0,
     "yaw": "(spikes_left - spikes_right) / (spikes_left + spikes_right + 1)"
-  },
-  "thrust": null,
-  "chosen_by": "T3 open loop, tied at margin +0.050, set to 10 and 60 Hz, sign 1.000, rho 0.857"
+  }
 }
