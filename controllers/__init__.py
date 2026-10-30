@@ -6,6 +6,8 @@ REGISTRY = {
     "point_and_go": "controllers.dummy:PointAndGo",
     "pid": "controllers.pid:PID",
     "fly": "controllers.fly:Fly",
+    "fly_real": "controllers.fly:FlyReal",
+    "fly_steer_only": "controllers.fly:FlySteerOnly",
     "shuffled": "controllers.shuffled:Shuffled",
 }
 

@@ -5,9 +5,16 @@ import pytest
 
 from controllers import REGISTRY, make_controller
 from env.engine import Sim, run_episode
+from fly.connectome import CACHE_DIR
 from tests.conftest import scenario
 
 SHORT_S = 3.0
+REAL_CACHE = CACHE_DIR / "network_A.npz"
+
+
+def needs_data(name: str) -> None:
+    if name in ("fly_real", "fly_steer_only") and not REAL_CACHE.exists():
+        pytest.skip("real connectome cache not found in data/")
 
 
 def short(name: str) -> dict:
@@ -16,6 +23,7 @@ def short(name: str) -> dict:
 
 @pytest.mark.parametrize("name", sorted(REGISTRY))
 def test_controller_contract(name, physics):
+    needs_data(name)
     for scen, seed in (("s1_still", 0), ("s3_gust", 1), ("s4_turbulent", 2)):
         controller = make_controller(name)
         result = run_episode(Sim(physics), controller, seed, short(scen))
@@ -31,6 +39,7 @@ def test_controller_contract(name, physics):
 
 @pytest.mark.parametrize("name", sorted(REGISTRY))
 def test_controller_raw_output(name, physics):
+    needs_data(name)
     controller = make_controller(name)
     sim = Sim(physics)
     obs = sim.reset(5, short("s2_crosswind"))
@@ -47,6 +56,7 @@ def test_controller_raw_output(name, physics):
 
 @pytest.mark.parametrize("name", sorted(REGISTRY))
 def test_controller_deterministic(name, physics):
+    needs_data(name)
     a = run_episode(Sim(physics), make_controller(name), 8, short("s4_turbulent"))
     b = run_episode(Sim(physics), make_controller(name), 8, short("s4_turbulent"))
     assert a.ticks == b.ticks

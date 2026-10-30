@@ -44,10 +44,13 @@ def run_one(
 ) -> dict:
     physics = physics or load_physics()
     sim = Sim(physics)
-    result = run_episode(sim, make_controller(controller, params), seed, scenario, on_tick)
+    ctrl = make_controller(controller, params)
+    result = run_episode(sim, ctrl, seed, scenario, on_tick)
     metrics = compute_metrics(result.ticks, scenario, sim.tick_s, result.act_s_total)
     if log:
         header = make_header(scenario, controller, seed, physics, commit or git_commit())
+        if hasattr(ctrl, "header_info"):
+            header.update(ctrl.header_info())
         path = out or run_path(scenario["name"], controller, seed)
         write_run(path, header, result.ticks, {"type": "summary", "metrics": metrics})
     return metrics
