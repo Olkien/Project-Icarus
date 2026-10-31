@@ -6,7 +6,7 @@ from pathlib import Path
 import numpy as np
 
 from analysis.lockin_check import lockin_events, read_spikes
-from analysis.run import default_params, run_one
+from analysis.run import default_params, load_params, run_one
 from env.params import CONFIG_DIR
 from env.runlog import run_path
 from env.scenario import load_scenario
@@ -14,8 +14,16 @@ from fly.check_load import REPO_ROOT, Report
 
 OUT_PATH = REPO_ROOT / "results" / "eval_s1_s4.txt"
 SCENARIOS = ("s1_still", "s2_crosswind", "s3_gust", "s4_turbulent")
-CONTROLLERS = ("fly_real", "pid")
+CONTROLLERS = ("fly_real", "pid", "pid_40")
 SEEDS = tuple(range(5))
+PID_40_PATH = CONFIG_DIR / "pid_tuned_40.json"
+PID_40_DIR = REPO_ROOT / "results" / "runs" / "pid_40"
+
+
+def label_path(name: str, label: str, seed: int) -> Path:
+    if label == "pid_40":
+        return run_path(name, "pid", seed, PID_40_DIR)
+    return run_path(name, label, seed)
 
 
 def read_metrics(path: Path) -> dict:
@@ -25,19 +33,21 @@ def read_metrics(path: Path) -> dict:
 
 def fly_runs(controllers: tuple[str, ...]) -> None:
     for controller in controllers:
-        params = default_params(controller)
+        params = load_params(str(PID_40_PATH)) if controller == "pid_40" else default_params(controller)
         for name in SCENARIOS:
             scenario = load_scenario(str(CONFIG_DIR / "scenarios" / f"{name}.json"))
             for seed in SEEDS:
                 start = time.perf_counter()
-                m = run_one(scenario, controller, seed, params)
+                m = run_one(scenario, controller.removesuffix("_40"), seed, params,
+                            out=label_path(name, controller, seed))
                 print(f"{name} {controller} s{seed}: hits {m['targets_hit']}, "
                       f"{time.perf_counter() - start:.0f} s", flush=True)
 
 
 def summary(out: Path) -> None:
     rep = Report()
-    rep.say("closed-loop S1 to S4, seeds 0-4, serial, no tuning; pid uses configs/pid_tuned.json")
+    rep.say("closed-loop S1 to S4, seeds 0-4, serial, no tuning; pid uses configs/pid_tuned.json, pid_40 uses configs/pid_tuned_40.json; "
+            "lock-ins by the absolute rule")
     rep.say("median time per target = median over seeds of the episode time_per_target_s, seeds "
             "with no hit left out; ms per tick is the mean over seeds")
     rep.say("scenario controller success mean_hits median_time_per_target n_timed ms_per_tick "
@@ -45,7 +55,7 @@ def summary(out: Path) -> None:
     rows = []
     for name in SCENARIOS:
         for controller in CONTROLLERS:
-            paths = [run_path(name, controller, s) for s in SEEDS]
+            paths = [label_path(name, controller, s) for s in SEEDS]
             metrics = [read_metrics(p) for p in paths]
             times = [m["time_per_target_s"] for m in metrics if m["time_per_target_s"] is not None]
             events = "-"

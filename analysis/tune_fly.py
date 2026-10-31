@@ -9,6 +9,7 @@ from pathlib import Path
 import numpy as np
 
 from analysis.evaluate import RESULTS_DIR
+from analysis.lockin_check import lockin_events
 from analysis.run import run_one
 from controllers import controller_class
 from env.metrics import tuning_cost
@@ -36,18 +37,28 @@ def plan(cfg: dict) -> list[dict]:
     return [{**cfg.get("fixed", {}), **t} for t in trials]
 
 
+def spike_logger(spikes: list[int]):
+    def on_tick(record: dict) -> None:
+        if "spikes_total" in record["info"]:
+            spikes.append(record["info"]["spikes_total"])
+    return on_tick
+
+
 def evaluate(job: tuple) -> dict:
     index, cfg, params, overrides = job
     start = time.perf_counter()
     costs = []
+    lockins = 0
     for name in cfg["scenarios"]:
         scenario = {**load_scenario(name), **overrides}
         for seed in cfg["seeds"]:
+            spikes: list[int] = []
             metrics = run_one(scenario, cfg["controller"], seed, params, physics=load_physics(),
-                              log=False)
+                              log=False, on_tick=spike_logger(spikes))
             costs.append(tuning_cost(metrics))
+            lockins += len(lockin_events(np.array(spikes)))
     return {"eval": index, "cost": statistics.fmean(costs), "episodes": len(costs),
-            "wall_s": round(time.perf_counter() - start, 2), "params": json.dumps(params)}
+            "lockins": lockins, "wall_s": round(time.perf_counter() - start, 2), "params": json.dumps(params)}
 
 
 def meta_of(cfg: dict) -> dict:
@@ -69,7 +80,7 @@ def read_log(path: Path) -> list[dict]:
 def append_row(path: Path, row: dict) -> None:
     new = not path.exists()
     with open(path, "a", encoding="utf-8", newline="\n") as f:
-        writer = csv.DictWriter(f, fieldnames=["eval", "cost", "episodes", "wall_s", "params"],
+        writer = csv.DictWriter(f, fieldnames=["eval", "cost", "episodes", "lockins", "wall_s", "params"],
                                 lineterminator="\n")
         if new:
             writer.writeheader()
@@ -111,7 +122,8 @@ def tune(cfg: dict, out_dir: Path, jobs: int = 1, overrides: dict | None = None)
 
 def report(log_path: Path, row: dict) -> None:
     append_row(log_path, row)
-    print(f"eval {row['eval']:3d}  cost {row['cost']:.4f}  {row['wall_s']:.1f} s")
+    print(f"eval {row['eval']:3d}  cost {row['cost']:.4f}  lockins {row['lockins']}  "
+          f"{row['wall_s']:.1f} s")
 
 
 def main() -> None:
@@ -120,11 +132,17 @@ def main() -> None:
     parser.add_argument("--evals", type=int, help="override the budget in the space file")
     parser.add_argument("--jobs", type=int, default=1)
     parser.add_argument("--stepper", choices=("numba", "numpy"))
+    parser.add_argument("--scenarios", nargs="+")
+    parser.add_argument("--seeds", nargs="+", type=int)
     parser.add_argument("--out-dir", default=str(RESULTS_DIR))
     args = parser.parse_args()
     cfg = load_space(args.space)
     if args.evals:
         cfg["evals"] = args.evals
+    if args.scenarios:
+        cfg["scenarios"] = args.scenarios
+    if args.seeds:
+        cfg["seeds"] = args.seeds
     if args.stepper:
         cfg["fixed"] = {**cfg.get("fixed", {}), "stepper": args.stepper}
     summary = tune(cfg, Path(args.out_dir), args.jobs)

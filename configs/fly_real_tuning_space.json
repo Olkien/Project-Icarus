@@ -1,0 +1,8 @@
+{
+  "controller": "fly_real",
+  "evals": 40,
+  "scenarios": ["s1_still", "s2_crosswind", "s3_gust", "s4_turbulent"],
+  "seeds": [0, 1],
+  "search_seed": 0,
+  "params": ["gain_yaw", "gain_thrust"]
+}

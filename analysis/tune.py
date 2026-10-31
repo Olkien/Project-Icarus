@@ -17,7 +17,9 @@ TUNING_SEEDS = 50
 SEEDS_PER_EVAL = 4
 
 
-def eval_seeds(index: int) -> list[int]:
+def eval_seeds(index: int, fixed: list[int] | None = None) -> list[int]:
+    if fixed:
+        return fixed
     return [(SEEDS_PER_EVAL * index + i) % TUNING_SEEDS for i in range(SEEDS_PER_EVAL)]
 
 
@@ -32,7 +34,8 @@ def sample_params(space: dict, rng: np.random.Generator) -> dict:
     return {k: float(rng.uniform(lo, hi)) for k, (lo, hi) in space.items()}
 
 
-def tune(controller: str, base: dict, evals: int, jobs: int, search_seed: int) -> dict:
+def tune(controller: str, base: dict, evals: int, jobs: int, search_seed: int,
+         seeds_fixed: list[int] | None = None) -> dict:
     cls = controller_class(controller)
     space = cls.param_space()
     rng = np.random.default_rng(search_seed)
@@ -43,7 +46,7 @@ def tune(controller: str, base: dict, evals: int, jobs: int, search_seed: int) -
         for index in range(evals):
             trial = {} if index == 0 else sample_params(space, rng)
             params = {**base, **trial}
-            seeds = eval_seeds(index)
+            seeds = eval_seeds(index, seeds_fixed)
             work = [(controller, params, s, seed) for s in TUNING_SCENARIOS for seed in seeds]
             costs = list(pool.map(episode_cost, work)) if pool else [episode_cost(w) for w in work]
             cost = statistics.fmean(costs)
@@ -57,7 +60,7 @@ def tune(controller: str, base: dict, evals: int, jobs: int, search_seed: int) -
         if pool:
             pool.shutdown()
     return {"controller": controller, "evals": evals, "search_seed": search_seed,
-            "scenarios": list(TUNING_SCENARIOS), "seeds_per_eval": SEEDS_PER_EVAL,
+            "scenarios": list(TUNING_SCENARIOS), "seeds_per_eval": len(seeds_fixed or range(SEEDS_PER_EVAL)),
             "best": best, "log": log}
 
 
@@ -68,12 +71,14 @@ def main() -> None:
     parser.add_argument("--evals", type=int, default=150)
     parser.add_argument("--jobs", type=int, default=1)
     parser.add_argument("--search-seed", type=int, default=0)
+    parser.add_argument("--seeds", nargs="+", type=int)
+    parser.add_argument("--log-name")
     parser.add_argument("--out", default=str(CONFIG_DIR / "pid_tuned.json"))
     args = parser.parse_args()
 
     result = tune(args.controller, load_params(args.base), args.evals, args.jobs,
-                  args.search_seed)
-    name = f"tune_{args.controller}"
+                  args.search_seed, args.seeds)
+    name = args.log_name or f"tune_{args.controller}"
     write_csv(result["log"], RESULTS_DIR / f"{name}_log.csv")
     (RESULTS_DIR / f"{name}.json").write_text(json.dumps(result, indent=2) + "\n",
                                               encoding="utf-8", newline="\n")

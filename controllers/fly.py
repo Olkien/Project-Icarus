@@ -229,6 +229,10 @@ class RealFlyBase(Controller):
 class FlyReal(RealFlyBase):
     name = "fly_real"
 
+    @classmethod
+    def param_space(cls) -> dict[str, tuple[float, float]]:
+        return {"gain_yaw": (0.2, 4.0), "gain_thrust": (0.0, 1.0)}
+
     def __init__(self, params: dict | None = None):
         super().__init__(params)
         self.gain_thrust = float(self.params.get("gain_thrust",

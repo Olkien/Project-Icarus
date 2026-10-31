@@ -42,6 +42,7 @@ def test_end_to_end_and_resume(tmp_path):
     rows = read_log(tmp_path / "tune_fly_log.csv")
     assert [r["eval"] for r in rows] == [0, 1, 2]
     assert all(r["episodes"] == "2" for r in rows)
+    assert all(r["lockins"] == "0" for r in rows)
     assert summary["evals_run_now"] == 3
     assert summary["best_cost"] == min(r["cost"] for r in rows)
     saved = json.loads((tmp_path / "tune_fly.json").read_text(encoding="utf-8"))
