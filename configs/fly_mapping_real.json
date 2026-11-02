@@ -67,5 +67,11 @@
       -0.16
     ],
     "use": "subtract from the yaw decode, interpolated in c"
+  },
+  "gains": {
+    "gain_yaw": 1.391,
+    "gain_thrust": 0.3814,
+    "yaw_at_180": 0.7187,
+    "source": "mean abs yaw at 180 deg at c 27.5, a 25; thrust decode at c_far"
   }
 }
