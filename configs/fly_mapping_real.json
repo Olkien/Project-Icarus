@@ -15,10 +15,10 @@
     "c_far_hz": 30.0,
     "range_ref_mm": 400.0,
     "centre": "c_near + (c_far - c_near) * clip(range / range_ref_mm, 0, 1)",
-    "decode_near": 1.817,
-    "decode_far": 2.1955,
-    "chosen_by": "range test at bearing 0, rho 0.943, worst coupling 46.3%, span 0.3785",
-    "rule": "fail, closest setting, kept to fly"
+    "decode_near": 2.1445,
+    "decode_far": 2.622,
+    "chosen_by": "range test at bearing 0, rho 1.000, worst coupling 24.8%, span 0.4775",
+    "rule": "pass"
   },
   "chosen_by": "push-pull steering c 30, a 25; thrust DNp31 from the push-pull thrust test",
   "steering": {
