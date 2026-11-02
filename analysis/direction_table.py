@@ -72,7 +72,9 @@ def main() -> None:
     parser.add_argument("--out", default=str(OUT_PATH))
     parser.add_argument("--inputs", nargs="+", choices=list(INPUTS), default=list(INPUTS))
     parser.add_argument("--rates", nargs="+", type=float, default=list(RATES_HZ))
+    parser.add_argument("--raw", default=str(RAW_PATH))
     args = parser.parse_args()
+    raw_path = Path(args.raw)
     scale = json.loads(FLY_MODEL.read_text(encoding="utf-8"))["weight_scale"]
     rep = Report()
     start = time.perf_counter()
@@ -113,8 +115,8 @@ def main() -> None:
                     break
             if shown == 0:
                 rep.say("  no unit differs between left and right drive")
-    np.savez(RAW_PATH, units=np.array(names), **raw)
-    rep.say(f"raw per-seed rates saved to data/network_cache/{RAW_PATH.name} (git-ignored)")
+    np.savez(raw_path, units=np.array(names), **raw)
+    rep.say(f"raw per-seed rates saved to data/network_cache/{raw_path.name} (git-ignored)")
     rep.say(f"peak memory (main) {peak_memory_mb():.0f} MB, total {time.perf_counter() - start:.0f} s")
     rep.save(Path(args.out))
 
