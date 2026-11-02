@@ -2,7 +2,7 @@
   "network": {
     "type": "connectome",
     "path": "data/network_cache/network_A.npz",
-    "weight_scale": 0.6
+    "weight_scale": 0.55
   },
   "input_mode": "spike",
   "thrust": {
