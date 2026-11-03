@@ -31,9 +31,11 @@ def read_metrics(path: Path) -> dict:
         return json.loads(f.readlines()[-1])["metrics"]
 
 
-def fly_runs(controllers: tuple[str, ...], fly_dir: Path = RUNS_DIR) -> None:
+def fly_runs(controllers: tuple[str, ...], fly_dir: Path = RUNS_DIR, fly_params: str | None = None) -> None:
     for controller in controllers:
         params = load_params(str(PID_40_PATH)) if controller == "pid_40" else default_params(controller)
+        if controller == "fly_real" and fly_params:
+            params = load_params(fly_params)
         for name in SCENARIOS:
             scenario = load_scenario(str(CONFIG_DIR / "scenarios" / f"{name}.json"))
             for seed in SEEDS:
@@ -84,11 +86,12 @@ def main() -> None:
     parser.add_argument("--controllers", nargs="+", default=list(CONTROLLERS))
     parser.add_argument("--out", default=str(OUT_PATH))
     parser.add_argument("--fly-dir", default=str(RUNS_DIR))
+    parser.add_argument("--fly-params")
     args = parser.parse_args()
     fly_dir = Path(args.fly_dir)
     fly_dir.mkdir(parents=True, exist_ok=True)
     if not args.summary_only:
-        fly_runs(tuple(args.controllers), fly_dir)
+        fly_runs(tuple(args.controllers), fly_dir, args.fly_params)
     summary(Path(args.out), fly_dir)
 
 
