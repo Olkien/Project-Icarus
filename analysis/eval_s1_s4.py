@@ -46,9 +46,10 @@ def fly_runs(controllers: tuple[str, ...], fly_dir: Path = RUNS_DIR, fly_params:
                       f"{time.perf_counter() - start:.0f} s", flush=True)
 
 
-def summary(out: Path, fly_dir: Path = RUNS_DIR) -> None:
+def summary(out: Path, fly_dir: Path = RUNS_DIR, fly_params: str | None = None) -> None:
     rep = Report()
-    rep.say("closed-loop S1 to S4, seeds 0-4, serial, no tuning; pid uses configs/pid_tuned.json, pid_40 uses configs/pid_tuned_40.json; "
+    fly_note = f"fly_real uses {Path(fly_params).name}" if fly_params else "fly_real untuned"
+    rep.say(f"closed-loop S1 to S4, seeds 0-4, serial, {fly_note}; pid uses configs/pid_tuned.json, pid_40 uses configs/pid_tuned_40.json; "
             "lock-ins by the absolute rule")
     rep.say("median time per target = median over seeds of the episode time_per_target_s, seeds "
             "with no hit left out; ms per tick is the mean over seeds")
@@ -92,7 +93,7 @@ def main() -> None:
     fly_dir.mkdir(parents=True, exist_ok=True)
     if not args.summary_only:
         fly_runs(tuple(args.controllers), fly_dir, args.fly_params)
-    summary(Path(args.out), fly_dir)
+    summary(Path(args.out), fly_dir, args.fly_params)
 
 
 if __name__ == "__main__":
