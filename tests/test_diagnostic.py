@@ -44,3 +44,9 @@ def test_decode_smooth_finds_variant():
 
     assert scenario_of("s4d_alone_delay")["sensor_delay_scale"] == 7.0
     assert scenario_of("s1_still")["name"] == "s1_still"
+
+
+def test_yaw_damp_settings_scale_pid_kd():
+    from analysis.yaw_damp import PID_KD, SETTINGS
+
+    assert [round(k / PID_KD, 2) for k in SETTINGS] == [0.5, 1.0, 2.0]

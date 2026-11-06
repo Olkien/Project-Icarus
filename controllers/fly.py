@@ -168,6 +168,7 @@ class RealFlyBase(Controller):
         self.yaw_ema = 0.0
         self.smooth_ms = float(self.params.get("decode_smooth_ms", 0.0))
         self.alpha = 1.0 - math.exp(-tick_ms / self.smooth_ms) if self.smooth_ms > 0 else 0.0
+        self.yaw_damp = float(self.params.get("yaw_damp", 0.0))
 
     def thrust_group(self) -> np.ndarray:
         return np.zeros(0, dtype=np.int64)
@@ -185,7 +186,8 @@ class RealFlyBase(Controller):
         return {"weight_scale": self.weight_scale, "mapping": Path(self.params["mapping"]).name,
                 "steering": self.steer.get("type", "rectified"), "gain_yaw": self.gain_yaw,
                 "yaw_calibrated": self.yaw_zero is not None, "thrust_source": self.thrust_source,
-                **({"decode_smooth_ms": self.smooth_ms} if self.alpha else {})}
+                **({"decode_smooth_ms": self.smooth_ms} if self.alpha else {}),
+                **({"yaw_damp": self.yaw_damp} if self.yaw_damp else {})}
 
     def reset(self, seed: int, scenario: dict) -> None:
         super().reset(seed, scenario)
@@ -229,8 +231,11 @@ class RealFlyBase(Controller):
         if self.alpha:
             self.yaw_ema = self.ema(self.yaw_ema, self.yaw_signal)
             self.yaw_signal = self.yaw_ema
+        yaw_cmd = self.gain_yaw * self.yaw_signal
+        if self.yaw_damp:
+            yaw_cmd -= self.yaw_damp * obs["yaw_rate"]
         return {"thrust": float(clip(self.thrust(), 0.0, 1.0)),
-                "yaw_torque": float(clip(self.gain_yaw * self.yaw_signal, -1.0, 1.0))}
+                "yaw_torque": float(clip(yaw_cmd, -1.0, 1.0))}
 
     def info(self) -> dict:
         return {"groups": dict(self.counts), "spikes_total": self.spikes_total,
