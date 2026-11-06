@@ -27,3 +27,20 @@ def test_rise_ms_on_a_clean_step():
     assert rise_ms(trace, 0.5) == 20.0
     assert rise_ms(trace, 0.9) == 20.0
     assert rise_ms(np.zeros(PRE_TICKS + POST_TICKS), 0.5) is None
+
+
+def test_decode_ema_step():
+    from types import SimpleNamespace
+
+    from controllers.fly import RealFlyBase
+
+    ns = SimpleNamespace(alpha=0.25)
+    assert RealFlyBase.ema(ns, 0.0, 1.0) == 0.25
+    assert abs(RealFlyBase.ema(SimpleNamespace(alpha=1.0), 0.3, 0.9) - 0.9) < 1e-12
+
+
+def test_decode_smooth_finds_variant():
+    from analysis.decode_smooth import scenario_of
+
+    assert scenario_of("s4d_alone_delay")["sensor_delay_scale"] == 7.0
+    assert scenario_of("s1_still")["name"] == "s1_still"

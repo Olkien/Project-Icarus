@@ -165,6 +165,9 @@ class RealFlyBase(Controller):
         self.spikes_total = 0
         self.yaw_signal = 0.0
         self.thrust_decode = 0.0
+        self.yaw_ema = 0.0
+        self.smooth_ms = float(self.params.get("decode_smooth_ms", 0.0))
+        self.alpha = 1.0 - math.exp(-tick_ms / self.smooth_ms) if self.smooth_ms > 0 else 0.0
 
     def thrust_group(self) -> np.ndarray:
         return np.zeros(0, dtype=np.int64)
@@ -181,7 +184,8 @@ class RealFlyBase(Controller):
     def header_info(self) -> dict:
         return {"weight_scale": self.weight_scale, "mapping": Path(self.params["mapping"]).name,
                 "steering": self.steer.get("type", "rectified"), "gain_yaw": self.gain_yaw,
-                "yaw_calibrated": self.yaw_zero is not None, "thrust_source": self.thrust_source}
+                "yaw_calibrated": self.yaw_zero is not None, "thrust_source": self.thrust_source,
+                **({"decode_smooth_ms": self.smooth_ms} if self.alpha else {})}
 
     def reset(self, seed: int, scenario: dict) -> None:
         super().reset(seed, scenario)
@@ -191,6 +195,7 @@ class RealFlyBase(Controller):
         self.spikes_total = 0
         self.yaw_signal = 0.0
         self.thrust_decode = 0.0
+        self.yaw_ema = 0.0
 
     def lc10_rates(self, bearing: float, range_mm: float) -> tuple[float, float]:
         s = self.steer
@@ -198,6 +203,9 @@ class RealFlyBase(Controller):
             return push_pull_rates(bearing, self.centre_hz(range_mm), float(s["a_hz"]),
                                    float(s["rate_max_hz"]))
         return rectified_rates(bearing, float(s["r_min_hz"]), float(s["r_max_hz"]))
+
+    def ema(self, prev: float, now: float) -> float:
+        return prev + self.alpha * (now - prev)
 
     def thrust(self) -> float:
         raise NotImplementedError
@@ -216,7 +224,11 @@ class RealFlyBase(Controller):
         n_r = sum(c["dna02_R"] for c in self.window)
         self.yaw_signal = (n_l - n_r) / (n_l + n_r + 1.0) - self.yaw_zero_at(obs["range"])
         if self.thrust_ids.size:
-            self.thrust_decode = sum(c["thrust"] for c in self.window) / self.thrust_ids.size
+            thrust_now = sum(c["thrust"] for c in self.window) / self.thrust_ids.size
+            self.thrust_decode = thrust_now if not self.alpha else self.ema(self.thrust_decode, thrust_now)
+        if self.alpha:
+            self.yaw_ema = self.ema(self.yaw_ema, self.yaw_signal)
+            self.yaw_signal = self.yaw_ema
         return {"thrust": float(clip(self.thrust(), 0.0, 1.0)),
                 "yaw_torque": float(clip(self.gain_yaw * self.yaw_signal, -1.0, 1.0))}
 
