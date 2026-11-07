@@ -50,3 +50,10 @@ def test_yaw_damp_settings_scale_pid_kd():
     from analysis.yaw_damp import PID_KD, SETTINGS
 
     assert [round(k / PID_KD, 2) for k in SETTINGS] == [0.5, 1.0, 2.0]
+
+
+def test_matched_kd_below_pid_kd():
+    from analysis.yaw_damp import PID_KD
+    from analysis.yaw_damp_matched import SETTINGS
+
+    assert all(0 < k < PID_KD / 4 for k in SETTINGS)
