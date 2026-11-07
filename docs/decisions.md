@@ -16,3 +16,14 @@
 | 2026-10-21 | Scenarios S5 and S6 are held out until all gains and mappings are frozen | No tuning on the test set |
 | 2026-10-21 | S1 to S4 made harder after PID calibration | The PID succeeded everywhere, so the comparison had no room |
 | 2026-10-22 | S1 to S4 recalibrated inside wind caps with sensor and actuator stress | Wind above top speed made success depend on target direction, not control |
+| 2026-11-07 | Fly weight scale lowered from 0.6 to 0.55 | Lock-ins in 13 of 150 soak episodes at 0.6 and 0 of 150 at 0.55. The 0.5 row was stopped early at 12 of 150 (partial) |
+| 2026-11-07 | Tuned fly config at 0.55 equals the calibrated gains | The gain search (40 evaluations x 8 episodes) found nothing better than the calibrated start point |
+| 2026-11-07 | S4 failure traced to sensor delay (tuning seeds 0 to 4) | S1 plus delay alone slows the fly from 1.85 to 3.20 s per target (PID 1.37 to 1.48). Removing delay from S4 gives the fly 5 of 5 |
+| 2026-11-07 | Decode smoothing (20, 40, 60 ms) rejected | It did not pass the fixed rule, and results got worse as smoothing grew |
+| 2026-11-07 | Yaw brake rejected | A PID-sized brake wrecked every scenario because the fly's steering is about 7 to 10 times weaker. A matched brake (kd 0.05, 0.08, 0.11) raised S4 mean hits to 3.4 to 4.8 but broke S1 and delay-alone, so it failed the fixed rule |
+| 2026-11-07 | Fly design frozen: weight scale 0.55, calibrated gains, decode_smooth_ms 0, yaw_damp 0 | The smoothing and brake options stay in the code, off by default, as diagnostics only. No further fly-side tuning before the scoring run |
+| 2026-11-07 | S4 recorded as a limit of this fly design | The fly fails S4 mainly through sensor delay combined with the other S4 stresses, as the diagnostics above show |
+| 2026-11-07 | Known flaw: range coupling rule passes at 24.8% against a 25% limit | Disclosed because the margin is small |
+| 2026-11-07 | Known flaw: small-angle check rounding | 96 of 120 (exactly 80%) prints as a fail at c 35, a 25. The band choice does not change |
+| 2026-11-07 | Known flaw: smoothing yaw-mean check | It failed the paired test by 0.003 to 0.005, so the smoothing flights were run as screening only |
+| 2026-11-07 | Known flaw: first brake test | It used the PID's brake scale without first comparing steering strength |
