@@ -1,6 +1,14 @@
-"""Train a SAC controller for the fly flight task. Run from the repo root: python -m ml.SAC"""
+"""Train a SAC controller for the fly flight task. Run from the repo root: python -m ml.SAC
+
+Ctrl+C saves a checkpoint and stops. Running the same command again resumes from it.
+Start over instead with: python -m ml.SAC --fresh
+"""
 import csv
+import json
 import math
+import os
+import shutil
+import sys
 from collections import deque
 
 import gymnasium as gym
@@ -18,6 +26,7 @@ from env.sensors import obs_to_vector
 
 # Settings
 TOTAL_STEPS = 1_500_000     # change if you want more or less training
+CHECKPOINT_DIR = "ml/models/checkpoint"   # resume data, also saved at every validation check
 EPISODE_BUDGET = 2400       # budget so cross checking works with fly and PID (PID used 4 scenarios x 4 seeds x 150 evaluations)
 VALIDATE_EVERY = 100_000    # steps between validation checks
 SEED = 0
@@ -144,18 +153,71 @@ class Validation(BaseCallback):
             self.model.save("ml/models/sac_best")
         print(f"step {self.num_timesteps:>8}   cost {cost:.3f}   success {success:.2f}"
               f"   episodes used {self.train_episodes + self.val_episodes}")
+        save_checkpoint(self.model, self)
+
+    def state(self):
+        return {"train_episodes": self.train_episodes, "val_episodes": self.val_episodes,
+                "best_cost": float(self.best_cost),
+                "log": [{k: float(v) for k, v in row.items()} for row in self.log]}
+
+    def load_state(self, state):
+        self.train_episodes, self.val_episodes = state["train_episodes"], state["val_episodes"]
+        self.best_cost = state["best_cost"]
+        self.log = [{"step": int(r["step"]), "cost": r["cost"], "success": r["success"],
+                     "episodes": int(r["episodes"])} for r in state["log"]]
+
+
+def save_checkpoint(model, callback):
+    """Saves everything needed to carry on later: the model, the replay buffer, the episode counts
+    (so the budget stays fair) and the random state of the scenario and seed picker."""
+    os.makedirs(CHECKPOINT_DIR, exist_ok=True)
+    path = lambda name: os.path.join(CHECKPOINT_DIR, name)
+    rng = model.get_env().envs[0].unwrapped.np_random.bit_generator.state
+    model.save(path("model_tmp.zip"))
+    model.save_replay_buffer(path("buffer_tmp.pkl"))
+    with open(path("state_tmp.json"), "w") as f:
+        json.dump({"steps": model.num_timesteps, "rng": rng, **callback.state()}, f)
+    for name in ("model.zip", "buffer.pkl", "state.json"):  # swap in only once all three are written
+        stem, ext = os.path.splitext(name)
+        os.replace(path(f"{stem}_tmp{ext}"), path(name))
+
+
+def load_checkpoint(callback):
+    path = lambda name: os.path.join(CHECKPOINT_DIR, name)
+    with open(path("state.json")) as f:
+        state = json.load(f)
+    model = SAC.load(path("model.zip"), env=Monitor(TrainEnv()), device="cpu")
+    model.load_replay_buffer(path("buffer.pkl"))
+    model.get_env().envs[0].unwrapped.np_random.bit_generator.state = state["rng"]
+    callback.load_state(state)
+    print(f"Resuming from step {model.num_timesteps}, "
+          f"{callback.train_episodes + callback.val_episodes} episodes used")
+    return model
 
 
 def main():
-    model = SAC("MlpPolicy", Monitor(TrainEnv()), seed=SEED, device="cpu", **SAC_SETTINGS)
+    if "--fresh" in sys.argv:
+        shutil.rmtree(CHECKPOINT_DIR, ignore_errors=True)
     callback = Validation()
-    model.learn(total_timesteps=TOTAL_STEPS, callback=callback, progress_bar=True)
+    if os.path.exists(os.path.join(CHECKPOINT_DIR, "state.json")):
+        model = load_checkpoint(callback)
+    else:
+        model = SAC("MlpPolicy", Monitor(TrainEnv()), seed=SEED, device="cpu", **SAC_SETTINGS)
+    try:
+        model.learn(total_timesteps=TOTAL_STEPS - model.num_timesteps, callback=callback,
+                    reset_num_timesteps=False, progress_bar=True)
+    except KeyboardInterrupt:
+        print("\nSaving checkpoint, wait for it to finish...")
+        save_checkpoint(model, callback)
+        print("Saved. Run python -m ml.SAC again to carry on.")
+        return
     callback.validate()
     model.save("ml/models/sac_final")
     with open("results/sac_validation.csv", "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=callback.log[0].keys())
         writer.writeheader()
         writer.writerows(callback.log)
+    shutil.rmtree(CHECKPOINT_DIR, ignore_errors=True)  # finished, so the next run starts fresh
     print(f"Done. Best validation cost {callback.best_cost:.3f}, saved to ml/models/sac_best.zip")
 
 

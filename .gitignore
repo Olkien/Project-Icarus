@@ -11,3 +11,4 @@ results/runs/
 .pytest_cache/
 .ruff_cache/
 !tests/data/
+*.pkl
