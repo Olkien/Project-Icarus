@@ -149,7 +149,7 @@ class Validation(BaseCallback):
 def main():
     model = SAC("MlpPolicy", Monitor(TrainEnv()), seed=SEED, device="cpu", **SAC_SETTINGS)
     callback = Validation()
-    model.learn(total_timesteps=TOTAL_STEPS, callback=callback)
+    model.learn(total_timesteps=TOTAL_STEPS, callback=callback, progress_bar=True)
     callback.validate()
     model.save("ml/models/sac_final")
     with open("results/sac_validation.csv", "w", newline="") as f:
